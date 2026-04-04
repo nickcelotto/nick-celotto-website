@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Nick Celotto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Nick Celotto</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="photography.html">Photography</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="photography.html">Photography</a>
+  </div>
+
+  <!-- ── PAGE HEADER ── -->
+  <section class="page-header">
+    <div class="container">
+      <p class="hero-eyebrow">Data Analytics</p>
+      <h1 class="page-title">Projects</h1>
+      <p class="page-subtitle">End-to-end analytical work — the problem, the process, and what it produced.</p>
+    </div>
+  </section>
+
+  <!-- ── TAB BAR ──
+       "Featured Project" shows view-featured.
+       "Other Projects" shows view-other.
+       JS in main.js handles the switching via data-view attributes. -->
+  <div class="filter-bar">
+    <div class="container">
+      <button class="tab-btn active" data-view="featured">Featured Project</button>
+      <button class="tab-btn" data-view="other">Other Projects</button>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       FEATURED PROJECT — editorial / magazine layout
+       ════════════════════════════════════════════════════ -->
+  <div id="view-featured" class="tab-view">
+
+    <!-- HERO BAND: warm paper background with title + key stats -->
+    <div class="fp-hero">
+      <div class="container">
+        <div class="fp-hero-inner">
+
+          <!-- Left: tags, large title, tagline, links -->
+          <div class="fp-hero-left">
+            <div class="fp-tags">
+              <span class="project-tag">Tableau</span>
+              <span class="project-tag secondary">SQL</span>
+              <span class="project-tag secondary">Excel</span>
+            </div>
+            <h2 class="fp-title">NYC Rental Market<br/><em>Dashboard</em></h2>
+            <p class="fp-tagline">Analyzing NYC rental data to uncover pricing trends, neighborhood differences, and key drivers of housing costs.</p>
+            <!-- Links sit right in the hero, below the tagline -->
+            <div class="fp-hero-links">
+              <a href="#" class="btn-outline" target="_blank">View on Tableau Public →</a>
+              <a href="#" class="btn-ghost" target="_blank">GitHub Repo</a>
+            </div>
+          </div>
+
+          <!-- Right: three key numbers -->
+          <div class="fp-hero-right">
+            <div class="fp-stat-pair">
+              <div class="fp-stat">
+                <span class="fp-stat-val">18%</span>
+                <span class="fp-stat-label">Regional underperformance uncovered</span>
+              </div>
+              <div class="fp-stat">
+                <span class="fp-stat-val">~0</span>
+                <span class="fp-stat-label">Hours to produce weekly report (was several)</span>
+              </div>
+              <div class="fp-stat">
+                <span class="fp-stat-val">50k</span>
+                <span class="fp-stat-label">Rows of sales data analyzed</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLEAU EMBED
+         ★ TO ADD YOUR DASHBOARD:
+         1. Publish to Tableau Public (public.tableau.com)
+         2. Click Share → Embed Code on your published viz
+         3. Copy the URL from the iframe src — looks like:
+            https://public.tableau.com/views/WorkbookName/SheetName
+         4. Paste it into the src below, appending:
+            ?:showVizHome=no&:embed=true
+         5. Set the iframe's style to display:block (remove display:none)
+         6. Delete the fp-embed-placeholder div below the iframe -->
+    <div class="fp-embed-section">
+      <div class="container">
+        <div class="fp-embed-label">
+          <span class="fp-embed-eyebrow">Live Dashboard</span>
+          <span class="fp-embed-note">Interactive — hover, filter, and explore directly below</span>
+        </div>
+        <div class="fp-embed-wrap">
+          <iframe
+            class="fp-embed-iframe"
+            src=""
+            frameborder="0"
+            allowfullscreen
+            title="Sales Performance Dashboard — Tableau"
+            style="display:none;"
+          ></iframe>
+          <!-- Remove this placeholder once you add your Tableau URL above -->
+          <div class="fp-embed-placeholder" id="embedPlaceholder">
+            <div class="fp-embed-placeholder-inner">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              <p>Tableau dashboard embed goes here.</p>
+              <p class="fp-embed-placeholder-sub">See the comment above for setup instructions.<br/>One URL change and it's live.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NARRATIVE — chapter label, three columns, pull quote, findings, links -->
+    <div class="fp-narrative-section">
+      <div class="container">
+
+        <!-- Decorative chapter divider with centered label -->
+        <div class="fp-chapter">
+          <span class="fp-chapter-line"></span>
+          <span class="fp-chapter-label">The Full Story</span>
+          <span class="fp-chapter-line"></span>
+        </div>
+
+        <!-- Three equal story columns -->
+        <div class="fp-story-grid">
+          <div class="fp-story-col">
+            <h3 class="fp-story-heading">The Problem</h3>
+            <p class="fp-story-text">Sales leadership had access to raw CRM exports but no reliable way to track performance across regions, reps, and product categories in real time. Quarterly reviews relied on manually updated spreadsheets — slow to produce and prone to version conflicts.</p>
+            <p class="fp-story-text">The ask was simple: make the data trustworthy and accessible. The answer was a single dashboard that anyone on the team could open on Monday morning and immediately understand.</p>
+          </div>
+          <div class="fp-story-col">
+            <h3 class="fp-story-heading">The Approach</h3>
+            <p class="fp-story-text">I started in SQL — auditing raw data, cleaning duplicates, standardizing region labels, and writing the aggregation queries that would power the views. The data work came first because a beautiful dashboard built on dirty data is worse than no dashboard at all.</p>
+            <p class="fp-story-text">In Tableau, I designed around the questions leadership actually asked in stand-ups. Parameters let users toggle between monthly and quarterly views without needing separate sheets. Calculated fields handled rolling averages and YTD comparisons cleanly.</p>
+          </div>
+          <div class="fp-story-col">
+            <h3 class="fp-story-heading">What It Found</h3>
+            <p class="fp-story-text">The Northeast region underperformed its Q3 target by 18% — despite having the highest raw lead volume. That was the signal: not a pipeline problem, a conversion problem. That finding alone made the whole project worth building.</p>
+            <p class="fp-story-text">Two product categories drove 71% of revenue. The top 20% of reps closed 65% of deals. These patterns were always in the data — they just needed to be surfaced in a way people would actually look at.</p>
+          </div>
+        </div>
+
+        <!-- Centered italic pull quote -->
+        <blockquote class="fp-pullquote">
+          "The data was always there. The dashboard just made it impossible to ignore."
+        </blockquote>
+
+        <!-- 2×2 key findings grid -->
+        <div class="fp-findings-bar">
+          <div class="fp-finding">
+            <span class="fp-finding-arrow">↗</span>
+            <span class="fp-finding-text">Northeast: highest leads, worst conversion — a coaching problem, not a pipeline problem</span>
+          </div>
+          <div class="fp-finding">
+            <span class="fp-finding-arrow">↗</span>
+            <span class="fp-finding-text">2 of 5 product lines drove 71% of total revenue</span>
+          </div>
+          <div class="fp-finding">
+            <span class="fp-finding-arrow">↗</span>
+            <span class="fp-finding-text">Top 20% of reps responsible for 65% of closed deals</span>
+          </div>
+          <div class="fp-finding">
+            <span class="fp-finding-arrow">↗</span>
+            <span class="fp-finding-text">Weekly report time reduced from several hours to near-zero</span>
+          </div>
+        </div>
+
+        <!-- Inline meta: tools / timeline / status -->
+        <div class="fp-bottom-meta">
+          <span>Tableau · PostgreSQL · Excel</span>
+          <span>3 weeks</span>
+          <span class="pf-status pf-status--live">Live</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /view-featured -->
+
+
+  <!-- ════════════════════════════════════════════
+       OTHER PROJECTS VIEW
+       Each project uses the standard .project-full layout:
+       title bar → image → narrative + sidebar
+       ════════════════════════════════════════════ -->
+  <div id="view-other" class="tab-view" style="display:none;">
+    <section class="section">
+      <div class="container projects-list">
+
+        <!-- PROJECT 2: Customer Churn -->
+        <article class="project-full" id="project2">
+          <div class="pf-topbar">
+            <div class="pf-title-group">
+              <div class="pf-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag secondary">pandas</span>
+                <span class="project-tag secondary">Seaborn</span>
+              </div>
+              <h2 class="pf-title">Sales Performance Analysis</h2>
+            </div>
+            <div class="pf-links">
+              <a href="#" class="btn-outline" target="_blank">View Notebook →</a>
+              <a href="#" class="btn-ghost" target="_blank">GitHub</a>
+            </div>
+          </div>
+          <div class="pf-image">
+            <img src="assets/project2.jpg" alt="Customer Churn Analysis" onerror="this.parentElement.classList.add('img-placeholder-lg')" />
+          </div>
+          <div class="pf-body">
+            <div class="pf-narrative">
+              <div class="pf-block">
+                <h3 class="pf-block-label">The Problem</h3>
+                <p class="pf-text">Customer churn is one of the most expensive problems in subscription businesses — it's far cheaper to retain a customer than acquire a new one. This project used IBM's public Telco dataset to identify which customer characteristics and behaviors most strongly predict churn, surfacing actionable segments for a retention team to target.</p>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Approach</h3>
+                <p class="pf-text">Exploratory data analysis in pandas across customer attributes — after cleaning (nulls, categorical encoding, TotalCharges dtype fix), I used Matplotlib and Seaborn to visualize churn rates across contract type, tenure, payment method, and service bundle. The goal was a communicable story, not a black-box model.</p>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Key Findings</h3>
+                <ul class="pf-findings">
+                  <li>Month-to-month customers churned at 3× the rate of annual subscribers — by far the strongest predictor.</li>
+                  <li>Churn dropped sharply after 12 months of tenure; early-stage customers are the highest-priority retention target.</li>
+                  <li>Electronic check payers churned at nearly 2× the rate of auto-pay customers.</li>
+                  <li>Service bundles reduced churn; premium add-ons without a contract did not.</li>
+                </ul>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Impact</h3>
+                <p class="pf-text">Clear prioritization framework: focus retention on month-to-month customers in year one paying by electronic check — 22% of the base, disproportionate share of churn.</p>
+              </div>
+            </div>
+            <div class="pf-meta">
+              <div class="pf-meta-block"><span class="pf-meta-label">Tools</span><span class="pf-meta-val">Python, pandas, Matplotlib, Seaborn, Jupyter</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Dataset</span><span class="pf-meta-val">IBM Telco Customer Churn (~7k rows)</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Techniques</span><span class="pf-meta-val">EDA, churn segmentation, cohort comparison</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Timeline</span><span class="pf-meta-val">2 weeks</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Status</span><span class="pf-meta-val pf-status pf-status--complete">Complete</span></div>
+            </div>
+          </div>
+        </article>
+
+        <div class="project-separator"></div>
+
+        <!-- PROJECT 3: E-Commerce SQL -->
+        <article class="project-full" id="project3">
+          <div class="pf-topbar">
+            <div class="pf-title-group">
+              <div class="pf-tags">
+                <span class="project-tag">SQL</span>
+                <span class="project-tag secondary">PostgreSQL</span>
+              </div>
+              <h2 class="pf-title">Personal Finance Spending Analysis</h2>
+            </div>
+            <div class="pf-links">
+              <a href="#" class="btn-outline" target="_blank">View on GitHub →</a>
+            </div>
+          </div>
+          <div class="pf-image">
+            <img src="assets/project3.jpg" alt="E-Commerce SQL Analysis" onerror="this.parentElement.classList.add('img-placeholder-lg')" />
+          </div>
+          <div class="pf-body">
+            <div class="pf-narrative">
+              <div class="pf-block">
+                <h3 class="pf-block-label">The Problem</h3>
+                <p class="pf-text">E-commerce businesses generate enormous transactional data but often lack the query infrastructure to answer strategic questions: who are the most valuable customers, are they being retained, and which products belong together? This project built that analytical layer from scratch.</p>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Approach</h3>
+                <p class="pf-text">Three analysis areas in PostgreSQL: CLV segmentation, cohort-based retention, and product affinity. Every query is documented with a plain-English explanation. No ORMs, no Python wrappers — demonstrating that complex business questions can be answered cleanly in SQL alone.</p>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Key Findings</h3>
+                <ul class="pf-findings">
+                  <li>Top 20% of customers drove 68% of revenue — stronger Pareto than typical benchmarks.</li>
+                  <li>Month-1 retention 38%; stabilized at ~22% by month 3, minimal drop-off beyond.</li>
+                  <li>Highest product affinity pair: 4.2× lift above random — strong bundling candidate.</li>
+                  <li>Promotion-acquired customers had lower CLV despite higher initial order values.</li>
+                </ul>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Impact</h3>
+                <p class="pf-text">Reusable query library — drop in any transactional dataset and the CLV and cohort analyses run with minimal modification.</p>
+              </div>
+            </div>
+            <div class="pf-meta">
+              <div class="pf-meta-block"><span class="pf-meta-label">Tools</span><span class="pf-meta-val">PostgreSQL, DBeaver</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Dataset</span><span class="pf-meta-val">Synthetic e-commerce schema</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Techniques</span><span class="pf-meta-val">CTEs, window functions, cohort analysis, market basket / lift</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Timeline</span><span class="pf-meta-val">2 weeks</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Status</span><span class="pf-meta-val pf-status pf-status--complete">Complete</span></div>
+            </div>
+          </div>
+        </article>
+
+        <div class="project-separator"></div>
+
+        <!-- PROJECT 4: Budget Tracker -->
+        <article class="project-full" id="project4">
+          <div class="pf-topbar">
+            <div class="pf-title-group">
+              <div class="pf-tags">
+                <span class="project-tag">Excel</span>
+                <span class="project-tag secondary">Power Query</span>
+              </div>
+              <h2 class="pf-title">Budget vs. Actuals Tracker</h2>
+            </div>
+            <div class="pf-links">
+              <a href="#" class="btn-outline" target="_blank">Download File →</a>
+            </div>
+          </div>
+          <div class="pf-image img-placeholder-lg"></div>
+          <div class="pf-body">
+            <div class="pf-narrative">
+              <div class="pf-block">
+                <h3 class="pf-block-label">The Problem</h3>
+                <p class="pf-text">Finance teams in mid-size organizations often track budget vs. actuals in fragmented, manually updated spreadsheets that are slow to reconcile and easy to break. This project built a clean, dynamic Excel model that automates variance calculations and surfaces issues at a glance.</p>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Approach</h3>
+                <p class="pf-text">Strict separation of data input, calculation, and presentation layers. Power Query for ingestion; structured tables with named ranges feed a variance calculation sheet; conditional formatting flags over-budget items automatically in the dashboard layer.</p>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Key Features</h3>
+                <ul class="pf-findings">
+                  <li>Automated variance flags — no manual highlighting.</li>
+                  <li>Dynamic pivot summary with department and period slicers.</li>
+                  <li>Rolling year-end forecast from actuals entered to date.</li>
+                </ul>
+              </div>
+              <div class="pf-block">
+                <h3 class="pf-block-label">Impact</h3>
+                <p class="pf-text">Demonstrates that well-structured Excel is still a powerful analytical tool in environments where BI platforms aren't available — and that the model is maintainable by anyone, not just its original builder.</p>
+              </div>
+            </div>
+            <div class="pf-meta">
+              <div class="pf-meta-block"><span class="pf-meta-label">Tools</span><span class="pf-meta-val">Excel, Power Query, Pivot Tables</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Techniques</span><span class="pf-meta-val">Named ranges, dynamic arrays, conditional formatting, rolling forecasts</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Timeline</span><span class="pf-meta-val">1 week</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Status</span><span class="pf-meta-val pf-status pf-status--complete">Complete</span></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </div><!-- /view-other -->
+
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Nick Celotto</p>
+      <p class="footer-copy">© 2026 · nickcelotto.com</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/nickcelotto" target="_blank">LinkedIn</a>
+        <a href="https://github.com/nickcelotto" target="_blank">GitHub</a>
+        <a href="https://public.tableau.com/app/profile/nickcelotto" target="_blank">Tableau</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

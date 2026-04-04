@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New York City Guide — Nick Celotto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Nick Celotto</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="photography.html" class="active">Photography</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="photography.html">Photography</a>
+  </div>
+
+
+  <!-- ════════════════════════
+       HERO — no cover photo,
+       just header + divider
+       ════════════════════════ -->
+  <div class="guide-page-hero">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <a href="photography.html?tab=guides" class="guide-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Travel Guides
+      </a>
+
+      <!-- Flag + title left, meta right -->
+      <div class="guide-page-header">
+        <div class="guide-page-title-group">
+          <div class="guide-page-flag-row">
+            <span class="guide-page-flag">🇺🇸</span>
+            <span class="guide-page-region">United States</span>
+          </div>
+          <h1 class="guide-page-title">New York City</h1>
+          <p class="guide-page-subtitle">The city I know best — lived here my whole life, which means I've stopped seeing it like a tourist and started seeing it like a local. That's actually more useful.</p>
+        </div>
+
+        <!-- ★ Meta sidebar — Best Season removed here (lives in Quick Facts sidebar)
+             Added: Days Needed and a feel for what kind of trip this is -->
+        <div class="guide-page-meta">
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Status</span>
+            <span class="guide-status guide-status--live" style="font-size:0.72rem;">Guide Live</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Type</span>
+            <span class="guide-page-meta-val">Home base</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Best for</span>
+            <span class="guide-page-meta-val">Food, walkability, neighborhoods</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Best season</span>
+            <span class="guide-page-meta-val">Sep – Nov, Apr – Jun</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Accent divider replaces the full-width cover photo -->
+    <div class="guide-hero-divider"></div>
+  </div>
+
+
+  <!-- ════════════════════════
+       GUIDE BODY
+       ════════════════════════ -->
+  <div class="guide-page-body">
+    <div class="container">
+      <div class="guide-page-layout">
+
+        <!-- ── Main content ── -->
+        <div class="guide-page-content">
+
+          <!-- OVERVIEW -->
+          <div class="guide-page-section">
+            <h2 class="guide-page-section-title">Overview</h2>
+            <p class="guide-page-text">Write your honest take on the city here. Not a Wikipedia summary — your actual impression. What surprised you, what it's really like to live here, what visitors almost always get wrong.</p>
+            <p class="guide-page-text">This should sound like you talking to a friend who's visiting for the first time. Set the tone for the whole guide right here.</p>
+          </div>
+
+          <!-- BOROUGHS
+               ★ Borough name, one-line vibe (shown in accent), short paragraph,
+                 and landmark highlight chips. Add/remove chips freely. -->
+          <div class="guide-page-section">
+            <h2 class="guide-page-section-title">Boroughs</h2>
+            <p class="guide-page-text">New York isn't one city — it's five boroughs that each feel like a different place. Understanding this is the single most useful thing you can know before you visit.</p>
+
+            <!-- MANHATTAN -->
+            <div class="guide-borough">
+              <div class="guide-borough-header">
+                <h3 class="guide-borough-name">Manhattan</h3>
+                <span class="guide-borough-vibe">The one everyone pictures. Dense, expensive, walkable, relentless.</span>
+              </div>
+              <p class="guide-borough-desc">Most of what you've seen in movies is here. It's worth spending serious time in, but the real experience is learning which parts to linger in (the West Village on a Sunday morning) and which to move through quickly (Midtown between noon and 2pm).</p>
+              <div class="guide-highlights">
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🏛️</span> Grand Central Terminal</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🎭</span> Madison Square Garden</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🌳</span> Central Park</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🗽</span> The High Line</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🏗️</span> The Vessel</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🌉</span> Brooklyn Bridge (walk it)</span>
+              </div>
+            </div>
+
+            <!-- BROOKLYN -->
+            <div class="guide-borough">
+              <div class="guide-borough-header">
+                <h3 class="guide-borough-name">Brooklyn</h3>
+                <span class="guide-borough-vibe">Where New York's creative scene actually lives.</span>
+              </div>
+              <p class="guide-borough-desc">Williamsburg gets all the attention but Greenpoint, Park Slope, and Bushwick are where the good stuff is. The views of Manhattan from DUMBO and Brooklyn Heights are the best in the city — better than any rooftop bar.</p>
+              <div class="guide-highlights">
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">📸</span> DUMBO (best Manhattan views)</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🎨</span> Bushwick murals</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🌳</span> Prospect Park</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🍕</span> Di Fara Pizza</span>
+              </div>
+            </div>
+
+            <!-- QUEENS -->
+            <div class="guide-borough">
+              <div class="guide-borough-header">
+                <h3 class="guide-borough-name">Queens</h3>
+                <span class="guide-borough-vibe">The most underrated borough. Best food in the city, full stop.</span>
+              </div>
+              <p class="guide-borough-desc">Jackson Heights alone has more authentic food per square block than anywhere else in New York. Astoria has better Greek food than most of Greece. Flushing is one of the best Chinatowns in the world. Come hungry.</p>
+              <div class="guide-highlights">
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🍜</span> Jackson Heights food scene</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🐟</span> Flushing Chinatown</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🎾</span> USTA Billie Jean King</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">✈️</span> Skyline views from LGA</span>
+              </div>
+            </div>
+
+            <!-- THE BRONX -->
+            <div class="guide-borough">
+              <div class="guide-borough-header">
+                <h3 class="guide-borough-name">The Bronx</h3>
+                <span class="guide-borough-vibe">Birthplace of hip-hop. More than most people give it credit for.</span>
+              </div>
+              <p class="guide-borough-desc">Most visitors never come here, which means they miss the best zoo in the US, one of the great botanical gardens, and Yankee Stadium — which is worth going to even if you don't care about baseball.</p>
+              <div class="guide-highlights">
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">⚾</span> Yankee Stadium</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🦁</span> Bronx Zoo</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🌸</span> NY Botanical Garden</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🎵</span> Hip-Hop Museum</span>
+              </div>
+            </div>
+
+            <!-- STATEN ISLAND -->
+            <div class="guide-borough">
+              <div class="guide-borough-header">
+                <h3 class="guide-borough-name">Staten Island</h3>
+                <span class="guide-borough-vibe">Worth it for the ferry alone — and the ferry is free.</span>
+              </div>
+              <p class="guide-borough-desc">The Staten Island Ferry gives you some of the best views of Lower Manhattan and the Statue of Liberty — completely free, round trip. The island itself is quieter and more residential, which is a genuine contrast after Manhattan.</p>
+              <div class="guide-highlights">
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">⛴️</span> Staten Island Ferry (free)</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🗽</span> Statue of Liberty views</span>
+                <span class="guide-highlight-chip"><span class="guide-highlight-icon">🏛️</span> Snug Harbor Cultural Center</span>
+              </div>
+            </div>
+
+          </div><!-- /boroughs section -->
+
+          <!-- PHOTO GRID 1 -->
+          <div class="guide-page-photos">
+            <div class="guide-page-photo-grid">
+              <div class="guide-page-photo guide-page-photo--tall">
+                <img src="assets/vessel.JPG" alt="The Vessel, Hudson Yards"
+                     onerror="this.parentElement.classList.add('img-placeholder')" />
+                <span class="guide-page-photo-caption">The Vessel, Hudson Yards</span>
+              </div>
+              <div class="guide-page-photo">
+                <img src="assets/nyc2.jpg" alt=""
+                     onerror="this.parentElement.classList.add('img-placeholder')" />
+              </div>
+              <div class="guide-page-photo">
+                <img src="assets/nyc3.jpg" alt=""
+                     onerror="this.parentElement.classList.add('img-placeholder')" />
+              </div>
+            </div>
+          </div>
+
+          <!-- BEST PLACES TO EAT -->
+          <div class="guide-page-section">
+            <h2 class="guide-page-section-title">Best places to eat</h2>
+            <p class="guide-page-text">New York is one of the best food cities in the world. These are the spots I keep coming back to — no affiliate links, just places I've actually eaten at more than once.</p>
+
+            <div class="guide-recs-list">
+              <div class="guide-rec">
+                <div class="guide-rec-header">
+                  <h3 class="guide-rec-name">Restaurant Name</h3>
+                  <span class="guide-rec-tag">Cuisine · Neighborhood</span>
+                </div>
+                <p class="guide-rec-note">What to order and why. Be specific — "get the X dish" beats "the food is great." Mention if there's a wait or best time to go.</p>
+              </div>
+              <div class="guide-rec">
+                <div class="guide-rec-header">
+                  <h3 class="guide-rec-name">Another Restaurant</h3>
+                  <span class="guide-rec-tag">Cuisine · Neighborhood</span>
+                </div>
+                <p class="guide-rec-note">Your honest take. Mention if it's better at lunch than dinner, or if you need a reservation.</p>
+              </div>
+              <div class="guide-rec">
+                <div class="guide-rec-header">
+                  <h3 class="guide-rec-name">Pizza Spot</h3>
+                  <span class="guide-rec-tag">🍕 Pizza · Neighborhood</span>
+                </div>
+                <p class="guide-rec-note">Tell them the style (slice shop vs sit-down), what makes this one stand out, and exactly what to order — plain slice, grandma, etc.</p>
+              </div>
+              <div class="guide-rec">
+                <div class="guide-rec-header">
+                  <h3 class="guide-rec-name">Bagel Shop</h3>
+                  <span class="guide-rec-tag">🥯 Bagels · Neighborhood</span>
+                </div>
+                <p class="guide-rec-note">Make a call on the order — everything bagel with lox and cream cheese, or plain with butter. And whether the line is worth it.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PHOTO GRID 2 -->
+          <div class="guide-page-photos">
+            <div class="guide-page-photo-grid guide-page-photo-grid--wide">
+              <div class="guide-page-photo">
+                <img src="assets/nyc4.jpg" alt=""
+                     onerror="this.parentElement.classList.add('img-placeholder')" />
+              </div>
+              <div class="guide-page-photo">
+                <img src="assets/nyc5.jpg" alt=""
+                     onerror="this.parentElement.classList.add('img-placeholder')" />
+              </div>
+              <div class="guide-page-photo">
+                <img src="assets/nyc6.jpg" alt=""
+                     onerror="this.parentElement.classList.add('img-placeholder')" />
+              </div>
+            </div>
+          </div>
+
+          <!-- MAP
+               ★ To use a custom embed: go to maps.google.com, navigate
+                 to your area, click Share → Embed a map, copy the
+                 iframe src URL and paste it below. -->
+          <div class="guide-page-section guide-map-section">
+            <h2 class="guide-page-section-title">Map</h2>
+            <p class="guide-page-text" style="margin-bottom:1.25rem;">The five boroughs — useful for getting a sense of scale before you go.</p>
+            <div class="guide-map-wrap">
+              <iframe
+                class="guide-map-iframe"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.25280949928!2d-74.11976385085911!3d40.69766374876142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1712000000000!5m2!1sen!2sus"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="New York City map">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- MISTAKES TO AVOID -->
+          <div class="guide-page-section">
+            <h2 class="guide-page-section-title">Mistakes to avoid</h2>
+            <p class="guide-page-text">Things that will make your trip worse — not because anywhere is bad, but because there are better ways to spend your time.</p>
+            <ul class="guide-tips-list">
+              <li class="guide-tip">
+                <span class="guide-tip-arrow">!</span>
+                <span><strong>Taking Uber everywhere.</strong> The subway gets you there faster and cheaper almost every time. Google Maps subway directions are reliable now — just use them.</span>
+              </li>
+              <li class="guide-tip">
+                <span class="guide-tip-arrow">!</span>
+                <span><strong>Trying to see too much in a day.</strong> New York rewards slowing down. One neighborhood explored properly beats five neighborhoods rushed.</span>
+              </li>
+              <li class="guide-tip">
+                <span class="guide-tip-arrow">!</span>
+                <span><strong>Only spending time in Manhattan.</strong> The best food, the most interesting neighborhoods, and the best views of Manhattan itself are all outside of it.</span>
+              </li>
+              <li class="guide-tip">
+                <span class="guide-tip-arrow">!</span>
+                <span><strong>Planning every hour.</strong> Leave gaps. The city fills them in ways you can't predict — that's the whole point of being here.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- THINGS I'D TELL A FRIEND -->
+          <div class="guide-page-section">
+            <h2 class="guide-page-section-title">Things I'd tell a friend</h2>
+            <p class="guide-page-text">The stuff that doesn't fit neatly into categories but genuinely matters.</p>
+            <ul class="guide-tips-list">
+              <li class="guide-tip">
+                <span class="guide-tip-arrow">↳</span>
+                <span>The best time to experience the city is early morning — 6–8am on a weekend. You get it almost entirely to yourself.</span>
+              </li>
+              <li class="guide-tip">
+                <span class="guide-tip-arrow">↳</span>
+                <span>Walk more than you think you need to. Manhattan is more walkable than it looks — crosstown blocks are short, north-south blocks are long.</span>
+              </li>
+              <li class="guide-tip">
+                <span class="guide-tip-arrow">↳</span>
+                <span>The Staten Island Ferry is one of the best free things in the city. 25-minute ride, perfect skyline views, no crowds. Just do it.</span>
+              </li>
+              <li class="guide-tip">
+                <span class="guide-tip-arrow">↳</span>
+                <span>Add your own local knowledge here — the more specific the better. "Best bagel is at X on Y street before 10am" beats "there are great bagels here."</span>
+              </li>
+            </ul>
+          </div>
+
+        </div><!-- /guide-page-content -->
+
+        <!-- ── Sidebar ── -->
+        <aside class="guide-page-sidebar">
+
+          <div class="guide-sidebar-card">
+            <h3 class="guide-sidebar-heading">Quick facts</h3>
+            <div class="guide-sidebar-facts">
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Language</span>
+                <span class="guide-sidebar-fact-val">English — but every language exists here</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Days needed</span>
+                <span class="guide-sidebar-fact-val">3–5 minimum</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Cost</span>
+                <!-- 4 filled = most expensive. Change filled/empty spans to adjust.
+                     NYC = $$$$  |  e.g. Portugal = $$$  |  e.g. Peru = $$ -->
+                <span class="guide-sidebar-fact-val">
+                  <span class="cost-meter">
+                    <span class="cost-dollar cost-dollar--filled">$</span>
+                    <span class="cost-dollar cost-dollar--filled">$</span>
+                    <span class="cost-dollar cost-dollar--filled">$</span>
+                    <span class="cost-dollar cost-dollar--filled">$</span>
+                  </span>
+                </span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Safety</span>
+                <span class="guide-sidebar-fact-val">Generally safe — use common sense at night</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Crowds</span>
+                <span class="guide-sidebar-fact-val">Always busy — mornings and weekdays are calmer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Getting Around replaces Don't Miss -->
+          <div class="guide-sidebar-card">
+            <h3 class="guide-sidebar-heading">Getting around</h3>
+            <div class="guide-sidebar-facts">
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Best option</span>
+                <span class="guide-sidebar-fact-val">Subway — fast, cheap, goes everywhere</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Navigation</span>
+                <span class="guide-sidebar-fact-val">Google Maps subway directions are reliable</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Free ride</span>
+                <span class="guide-sidebar-fact-val">Staten Island Ferry — best views, no cost</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Walking</span>
+                <span class="guide-sidebar-fact-val">Manhattan is very walkable — do it more than you think</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-sidebar-card guide-sidebar-card--accent">
+            <p class="guide-sidebar-note">All recommendations are personal — places I've actually been, food I've actually eaten. No sponsored content, ever.</p>
+          </div>
+
+        </aside>
+
+      </div><!-- /guide-page-layout -->
+    </div><!-- /container -->
+  </div><!-- /guide-page-body -->
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Nick Celotto</p>
+      <p class="footer-copy">© 2026 · nickcelotto.com</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/nickcelotto" target="_blank">LinkedIn</a>
+        <a href="https://github.com/nickcelotto" target="_blank">GitHub</a>
+        <a href="https://www.instagram.com/celottovision" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,3755 @@
+/* ============================================================
+   NICK CELOTTO — PORTFOLIO STYLESHEET
+   
+   TABLE OF CONTENTS:
+   1.  Reset & CSS Variables
+   2.  Base Styles (body, images, links)
+   3.  Navigation (desktop + mobile hamburger)
+   4.  Layout Utilities (container, two-column grid)
+   5.  Section Spacing & Dividers
+   6.  Hero (homepage)
+   7.  Bio Text & CTA Links
+   8.  Skills Grid
+   9.  Project Cards (homepage teaser)
+   10. Page Headers (projects, photography pages)
+   11. Filter/Tab Bar (sticky bar below page header)
+   12. Tab System (show/hide views via JS)
+   13. Project Detail Cards (Other Projects view)
+   14. Featured Project — editorial layout
+   15. Photo Strip (homepage teaser)
+   16. Gallery Page (masonry grid + lightbox)
+   17. Experience Section (homepage)
+   18. Resume Pill (accent-colored hero button)
+   19. Metrics Strip (photography page)
+   20. Photography Home — editorial intro
+   21. Footer
+   22. Animations & Scroll Reveal
+   23. Responsive Breakpoints
+   ============================================================ */
+
+
+/* ============================================================
+   1. RESET & CSS VARIABLES
+   ============================================================
+   box-sizing: border-box means padding and border are included
+   in an element's width/height — avoids layout math headaches.
+   CSS custom properties (--variables) are defined on :root so
+   they're available everywhere in the file.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── Text colors ── */
+  --ink: #111110;           /* near-black for headings and strong text */
+  --ink-mid: #555550;       /* body text, descriptions */
+  --ink-light: #999990;     /* captions, labels, secondary text */
+  --ink-faint: #e8e6e0;     /* borders, dividers, very subtle lines */
+
+  /* ── Background colors ── */
+  --paper: #faf9f6;         /* page background — warm off-white, not pure white */
+  --paper-warm: #f3f1eb;    /* slightly deeper warm tone for cards, strips */
+
+  /* ── Accent — warm terracotta/amber ──
+     Used on: labels, italic headings, icons, buttons, links,
+     tag backgrounds, stat numbers, quote marks, arrow symbols. */
+  --accent: #c2622a;        /* main accent, full saturation */
+  --accent-hover: #a84e1e;  /* darker shade for hover states */
+  --accent-faint: #f5e8de;  /* very light tint for backgrounds/hover fills */
+  --accent-mid: #d9845a;    /* mid tone — used in dark-bg contexts */
+
+  /* ── Legacy tag variables (kept for compatibility) ── */
+  --tag-bg: #eeecea;
+  --tag-color: #555550;
+
+  /* ── Typography ── */
+  --serif: 'DM Serif Display', Georgia, serif; /* headings, pull quotes */
+  --sans: 'DM Sans', system-ui, sans-serif;    /* all body text, UI labels */
+
+  /* ── Layout ── */
+  --nav-h: 64px;            /* nav bar height — used to offset sticky elements */
+  --max-w: 1100px;          /* max content width, centered on large screens */
+  --side-pad: clamp(1.25rem, 5vw, 3rem); /* responsive horizontal padding */
+  /* clamp(min, preferred, max) — shrinks on small screens, caps on large */
+}
+
+html { scroll-behavior: smooth; } /* makes anchor links (#section) animate */
+
+
+/* ============================================================
+   2. BASE STYLES
+   ============================================================ */
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased; /* crisper text rendering on macOS/iOS */
+}
+
+/* Images are block by default (removes inline bottom gap).
+   width: 100% makes them fill their container.
+   height: auto preserves natural aspect ratio — no cropping.
+   Individual containers override this where a fixed crop is needed. */
+img { display: block; width: 100%; height: auto; }
+
+/* Remove default link styling — we'll style each context manually */
+a { color: inherit; text-decoration: none; }
+
+
+/* ============================================================
+   3. NAVIGATION
+   ============================================================
+   The nav is fixed (stays at top while scrolling).
+   backdrop-filter: blur creates the frosted-glass effect.
+   z-index: 1000 keeps it above all page content.
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(250, 249, 246, 0.94); /* slightly transparent so blur shows */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);   /* Safari prefix */
+  border-bottom: 1px solid var(--ink-faint);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--side-pad);
+  z-index: 1000;
+}
+
+/* Logo text — uses serif font, slightly smaller than headings */
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* Desktop nav links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  transition: color 0.2s;
+  position: relative; /* needed for the ::after underline pseudo-element */
+}
+
+/* Animated underline on hover/active — grows from left using width transition */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--accent);
+  transition: width 0.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--ink);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%; /* triggers the underline animation */
+}
+
+/* Hamburger button — hidden on desktop, shown on mobile via media query */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;   /* extra padding = larger tap target on mobile */
+  margin: -8px;   /* negative margin cancels out the extra padding visually */
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--ink);
+  transition: all 0.25s;
+}
+
+/* Mobile dropdown — hidden until JS adds class "open" */
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-h); /* starts directly below the nav bar */
+  left: 0; right: 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink-faint);
+  padding: 1.5rem var(--side-pad) 2rem;
+  flex-direction: column;
+  gap: 0;
+  z-index: 999; /* just below the nav bar itself */
+  box-shadow: 0 8px 24px rgba(17,17,16,0.07);
+}
+
+.nav-mobile-menu.open { display: flex; } /* toggled by main.js */
+
+.nav-mobile-menu a {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink-mid);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+  transition: color 0.2s;
+}
+
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover { color: var(--ink); }
+
+
+/* ============================================================
+   4. LAYOUT UTILITIES
+   ============================================================ */
+
+/* Centered wrapper with max-width and horizontal padding */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
+}
+
+/* Two-column layout used in bio, skills, projects, experience sections.
+   180px label column on left, content fills the rest. */
+.two-col {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.col-label { padding-top: 0.5rem; }
+
+/* Small uppercase label like "About", "Skills", "Projects" */
+.label-tag {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent); /* accent color makes these stand out */
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   5. SECTION SPACING & DIVIDERS
+   ============================================================ */
+
+.section { padding: 5rem 0; }
+
+/* Horizontal rule between sections — constrained to content width */
+.section-divider {
+  height: 1px;
+  background: var(--ink-faint);
+  max-width: calc(var(--max-w) - 2 * var(--side-pad));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Shared heading style for section titles.
+   clamp() makes font-size scale smoothly between viewport sizes. */
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
+}
+
+/* The <em> inside headings is used for the italic accent line */
+.section-heading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+
+/* ============================================================
+   6. HERO (homepage)
+   ============================================================
+   padding-top accounts for the fixed nav bar so content
+   doesn't hide underneath it.
+   ============================================================ */
+
+.hero {
+  padding-top: calc(var(--nav-h) + 5rem);
+  padding-bottom: 5rem;
+  padding-left: var(--side-pad);
+  padding-right: var(--side-pad);
+}
+
+/* Two-column: photo left, text right */
+.hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-photo-wrap { position: relative; }
+
+/* Fixed-size portrait crop for the profile photo */
+.hero-photo {
+  width: 240px;
+  height: 300px;
+  border-radius: 4px;
+  overflow: hidden;           /* clips the image to the rounded corners */
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+}
+
+/* Override the global img rule — portrait photo needs cover crop */
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* fills the box, crops edges if needed */
+}
+
+/* Fallback shown when profile image is missing (via onerror in HTML) */
+.photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-faint) !important;
+}
+
+.photo-placeholder::after {
+  content: 'Add photo';
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  font-family: var(--sans);
+}
+
+/* Small uppercase label above the name */
+.hero-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* Large name — the biggest type on the page */
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.hero-location {
+  font-size: 0.875rem;
+  color: var(--ink-light);
+  margin-bottom: 2rem;
+}
+
+/* Wraps the row of link pills (LinkedIn, GitHub, Resume, etc.) */
+.hero-links {
+  display: flex;
+  flex-wrap: wrap; /* wraps to next line on narrow screens */
+  gap: 0.6rem;
+}
+
+/* ── Link pills ──
+   Used for LinkedIn, GitHub, Email, Resume buttons in the hero.
+   Border + small padding gives them a "chip" look. */
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--ink-mid);
+  background: transparent;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.link-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-faint);
+}
+
+
+/* ============================================================
+   7. BIO TEXT & CTA LINKS
+   ============================================================ */
+
+/* Body paragraph text in the About, Experience sections */
+.bio-text {
+  color: var(--ink-mid);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 560px; /* keeps line length readable */
+}
+
+/* "View my projects →" style inline link */
+.cta-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--accent-mid); /* underline via border, not text-decoration */
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+
+.cta-link:hover { opacity: 0.6; }
+
+
+/* ============================================================
+   8. SKILLS GRID
+   ============================================================ */
+
+/* Auto-fill means as many columns as fit; min 200px each */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.skill-card {
+  padding: 1.25rem;
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  background: var(--paper);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.skill-card:hover {
+  border-color: var(--accent-mid);
+  background: var(--accent-faint);
+}
+
+.skill-icon {
+  color: var(--accent); /* accent-colored SVG icons */
+  margin-bottom: 0.75rem;
+  line-height: 0; /* removes extra space below inline SVG */
+}
+
+.skill-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.skill-desc {
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   9. PROJECT CARDS (homepage featured work teaser)
+   ============================================================ */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  display: block;
+  cursor: pointer;
+}
+
+/* Fixed-height image box for the homepage project thumbnails */
+.project-img {
+  position: relative;  /* needed for the .project-overlay absolute positioning */
+  height: 200px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+  margin-bottom: 0.75rem;
+}
+
+/* These thumbnail images use cover crop (fixed height box) */
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fallback text shown when no image is found */
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-placeholder::after {
+  content: 'Add image';
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  font-family: var(--sans);
+}
+
+/* Dark overlay that fades in on hover, showing "View Project →" */
+.project-overlay {
+  position: absolute;
+  inset: 0; /* shorthand for top/right/bottom/left: 0 */
+  background: rgba(17, 17, 16, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.project-overlay span {
+  font-size: 0.85rem;
+  color: #faf9f6;
+  letter-spacing: 0.04em;
+}
+
+/* Show overlay and slightly zoom image on card hover */
+.project-card:hover .project-overlay { opacity: 1; }
+.project-card:hover .project-img img { transform: scale(1.03); transition: transform 0.4s; }
+
+.project-meta { padding: 0 0.1rem; }
+
+/* Accent-colored tag labels (Tableau, Python, SQL, etc.) */
+.project-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-faint);
+  border: 1px solid rgba(194, 98, 42, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 1px;
+  margin-bottom: 0.4rem;
+}
+
+/* Secondary tags (e.g. "pandas" next to "Python") are more muted */
+.project-tag.secondary {
+  margin-left: 0.3rem;
+  color: var(--ink-light);
+  background: var(--paper-warm);
+  border-color: var(--ink-faint);
+}
+
+.project-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-top: 0.35rem;
+}
+
+
+/* ============================================================
+   10. PAGE HEADERS (projects.html, photography.html)
+   ============================================================
+   Sits at the top of sub-pages. padding-top pushes it below
+   the fixed nav. border-bottom visually separates it from the
+   filter/tab bar below.
+   ============================================================ */
+
+.page-header {
+  padding-top: calc(var(--nav-h) + 4rem);
+  padding-bottom: 3rem;
+  padding-left: var(--side-pad);
+  padding-right: var(--side-pad);
+  border-bottom: 1px solid var(--ink-faint);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0.5rem 0 1rem;
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: var(--ink-mid);
+  max-width: 480px;
+  line-height: 1.65;
+}
+
+
+/* ============================================================
+   11. FILTER / TAB BAR
+   ============================================================
+   position: sticky makes it stick to the top of the viewport
+   as you scroll past it (offset by nav height).
+   overflow-x: auto + nowrap allows horizontal scrolling on
+   mobile so all buttons are accessible without wrapping.
+   ============================================================ */
+
+.filter-bar {
+  border-bottom: 1px solid var(--ink-faint);
+  padding: 1rem 0;
+  position: sticky;
+  top: var(--nav-h);
+  background: rgba(250, 249, 246, 0.97);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth momentum scroll on iOS */
+  scrollbar-width: none;             /* hide scrollbar in Firefox */
+}
+
+.filter-bar::-webkit-scrollbar { display: none; } /* hide scrollbar in Chrome/Safari */
+
+.filter-bar .container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;       /* single row — scrolls instead of wrapping */
+  min-width: max-content;  /* prevents container from shrinking below content */
+}
+
+
+/* ============================================================
+   12. TAB SYSTEM
+   ============================================================
+   .tab-btn — the clickable buttons in the filter bar.
+   .tab-view — the content panels shown/hidden by main.js.
+   JS reads data-view="key" on buttons and matches to id="view-{key}".
+   ============================================================ */
+
+.tab-btn {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 0.5rem 1.1rem;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  min-height: 38px; /* ensures comfortable tap target on mobile */
+}
+
+.tab-btn:hover {
+  color: var(--ink);
+  border-color: var(--ink-faint);
+}
+
+/* Active tab — accent border and background */
+.tab-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-faint);
+}
+
+/* Tab view containers — toggled between display:none and display:'' by JS */
+.tab-view { /* no default styles needed — JS handles visibility */ }
+
+/* Legacy filter buttons (kept in case any page still uses .filter-btn) */
+.filter-btn {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 0.45rem 1rem;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  min-height: 36px;
+}
+
+.filter-btn:hover { color: var(--ink); border-color: var(--ink-faint); }
+.filter-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-faint);
+}
+
+
+/* ============================================================
+   13. PROJECT DETAIL CARDS (Other Projects view)
+   ============================================================
+   Each card has: title row, full-width image, then a two-column
+   body with narrative on the left and a sticky metadata sidebar
+   on the right.
+   ============================================================ */
+
+.projects-list { display: flex; flex-direction: column; gap: 0; }
+
+/* Horizontal rule between project cards */
+.project-separator { height: 1px; background: var(--ink-faint); margin: 3rem 0; }
+
+.project-full {
+  scroll-margin-top: calc(var(--nav-h) + 80px); /* offset for sticky nav when anchor-linking */
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.project-full.hidden { display: none; }
+
+/* ── Top bar: title left, links right ── */
+.pf-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pf-title-group { flex: 1; }
+
+.pf-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+
+.pf-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.pf-links {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+/* ── Full-width project image ──
+   height: auto lets images show at natural aspect ratio */
+.pf-image {
+  width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+  margin-bottom: 2.5rem;
+}
+
+.pf-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: unset; /* no forced crop — respects natural aspect ratio */
+}
+
+/* ── Body: narrative (wider) + sticky sidebar ── */
+.pf-body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ── Narrative blocks (Problem, Approach, Findings, Impact) ── */
+.pf-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pf-block {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.pf-block:first-child { padding-top: 0; }
+.pf-block:last-child { border-bottom: none; padding-bottom: 0; }
+
+/* Small uppercase label ("The Problem", "Approach", etc.) */
+.pf-block-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  font-family: var(--sans);
+}
+
+.pf-text {
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.pf-text + .pf-text { margin-top: 0.85rem; }
+
+/* Key findings list — uses ↗ arrows instead of bullets */
+.pf-findings {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pf-findings li {
+  font-size: 0.92rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  padding-left: 1.25rem;
+  position: relative;
+  max-width: 600px;
+}
+
+/* The ↗ arrow — positioned absolutely to the left of each list item */
+.pf-findings li::before {
+  content: '↗';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+  top: 0.15rem;
+}
+
+/* ── Metadata sidebar ──
+   position: sticky keeps it visible as you scroll the narrative */
+.pf-meta {
+  position: sticky;
+  top: calc(var(--nav-h) + 5rem);
+  background: var(--paper-warm);
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pf-meta-block {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pf-meta-block:first-child { padding-top: 0; }
+.pf-meta-block:last-child { border-bottom: none; padding-bottom: 0; }
+
+.pf-meta-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+  font-weight: 500;
+}
+
+.pf-meta-val {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+/* ── Status badges ── */
+.pf-status {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+}
+
+.pf-status--live {
+  background: rgba(40, 167, 69, 0.1);
+  color: #1d7a38;
+  border: 1px solid rgba(40, 167, 69, 0.25);
+}
+
+.pf-status--complete {
+  background: var(--accent-faint);
+  color: var(--accent);
+  border: 1px solid rgba(194, 98, 42, 0.2);
+}
+
+.pf-status--wip {
+  background: rgba(255, 193, 7, 0.1);
+  color: #856404;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+/* ── Shared buttons used across project cards ── */
+
+.btn-outline {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.6rem 1.2rem;
+  border-radius: 1px;
+  transition: all 0.2s;
+  min-height: 40px; /* tap target */
+  line-height: 1.6;
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.btn-ghost {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ink-mid);
+  border: 1px solid var(--ink-faint);
+  padding: 0.6rem 1.2rem;
+  border-radius: 1px;
+  transition: all 0.2s;
+  min-height: 40px;
+  line-height: 1.6;
+}
+
+.btn-ghost:hover {
+  border-color: var(--ink-mid);
+  color: var(--ink);
+}
+
+/* Large placeholder for project images that haven't been added yet */
+.img-placeholder-lg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 340px !important;
+  background: var(--accent-faint) !important;
+  border: 1px solid var(--ink-faint) !important;
+  border-radius: 2px;
+}
+
+.img-placeholder-lg::after {
+  content: 'Add project image';
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  font-family: var(--sans);
+}
+
+
+/* ============================================================
+   14. FEATURED PROJECT — editorial layout
+   ============================================================
+   Unlike the Other Projects cards, the Featured Project uses a
+   magazine-style layout:
+     - Hero band with title + key stats
+     - Full-width interactive Tableau embed
+     - Three-column story narrative
+     - Centered pull quote
+     - 2x2 key findings grid
+     - Bottom row with links and metadata
+   ============================================================ */
+
+/* ── Hero band ──
+   Uses paper-warm background (same as the metrics strip) rather
+   than dark — keeps the page light and minimal. */
+.fp-hero {
+  background: var(--paper-warm);
+  border-bottom: 1px solid var(--ink-faint);
+  padding: 5rem 0 4rem;
+}
+
+/* Two columns: large title left, stat numbers right */
+.fp-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 4rem;
+  align-items: center;
+}
+
+.fp-tags { margin-bottom: 1.25rem; }
+
+/* Tags inside the hero band — slightly darker tint to read on warm bg */
+.fp-tags .project-tag {
+  background: var(--accent-faint);
+  border-color: rgba(194, 98, 42, 0.25);
+  color: var(--accent);
+}
+
+.fp-tags .project-tag.secondary {
+  background: var(--paper);
+  border-color: var(--ink-faint);
+  color: var(--ink-light);
+}
+
+/* Large serif title — the <em> part renders in accent color */
+.fp-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.fp-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* One-line project summary below the title */
+.fp-tagline {
+  font-size: 1rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* Right column: three key numbers stacked vertically */
+.fp-stat-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid var(--ink-faint); /* visual separator from title */
+  padding-left: 3rem;
+}
+
+.fp-stat {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.fp-stat:last-child { border-bottom: none; }
+
+/* Big accent-colored number */
+.fp-stat-val {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.fp-stat-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--ink-light);
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+/* ── Tableau embed section ── */
+.fp-embed-section {
+  padding: 3.5rem 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink-faint);
+  box-shadow: inset 0 3px 12px rgba(17,17,16,0.04);
+}
+
+/* Label row above the embed: "Live Dashboard" + instructions note */
+.fp-embed-label {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.fp-embed-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.fp-embed-note {
+  font-size: 0.8rem;
+  color: var(--ink-light);
+}
+
+/* Wrapper that clips the iframe */
+.fp-embed-wrap {
+  width: 100%;
+  background: var(--paper);
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* The actual Tableau iframe — src="" until you add your URL */
+.fp-embed-iframe {
+  width: 100%;
+  height: 600px;
+  display: block;
+  border: none;
+}
+
+/* Placeholder shown before you add a Tableau URL */
+.fp-embed-placeholder {
+  width: 100%;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+}
+
+.fp-embed-placeholder-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.fp-embed-placeholder-inner p {
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+}
+
+.fp-embed-placeholder-sub {
+  font-size: 0.78rem !important;
+  color: var(--ink-light) !important;
+  line-height: 1.55;
+}
+
+/* ── Narrative section ── */
+.fp-narrative-section { padding: 5rem 0; }
+
+/* Horizontal divider with centered label text */
+.fp-chapter {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.fp-chapter-line {
+  flex: 1;
+  height: 1px;
+  background: var(--ink-faint);
+}
+
+.fp-chapter-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  white-space: nowrap;
+}
+
+/* Three equal columns for the story text */
+.fp-story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+/* Each column heading has a bottom border in accent-faint */
+.fp-story-heading {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--accent-faint);
+}
+
+.fp-story-text {
+  font-size: 0.92rem;
+  color: var(--ink-mid);
+  line-height: 1.8;
+}
+
+.fp-story-text + .fp-story-text { margin-top: 0.85rem; }
+
+/* Centered italic pull quote between story and findings */
+.fp-pullquote {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-mid);
+  line-height: 1.5;
+  text-align: center;
+  padding: 3rem 4rem;
+  margin: 0 0 3rem;
+  border-top: 1px solid var(--ink-faint);
+  border-bottom: 1px solid var(--ink-faint);
+  letter-spacing: -0.01em;
+}
+
+/* 2×2 grid of key findings, each with an arrow icon */
+.fp-findings-bar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.fp-finding {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.25rem 1.5rem;
+  border-right: 1px solid var(--ink-faint);
+  border-bottom: 1px solid var(--ink-faint);
+  background: var(--paper);
+  transition: background 0.2s;
+}
+
+/* Remove right border from even items (right column) */
+.fp-finding:nth-child(even) { border-right: none; }
+/* Remove bottom border from last two items (bottom row) */
+.fp-finding:nth-last-child(-n+2) { border-bottom: none; }
+.fp-finding:hover { background: var(--accent-faint); }
+
+.fp-finding-arrow {
+  color: var(--accent);
+  font-size: 1rem;
+  flex-shrink: 0; /* prevents arrow from shrinking if text wraps */
+  margin-top: 0.05rem;
+}
+
+.fp-finding-text {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+}
+
+/* Bottom row: links on left, inline meta (tools/timeline/status) on right */
+.fp-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.fp-bottom-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.fp-bottom-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+}
+
+
+/* ============================================================
+   15. PHOTO STRIP (homepage teaser thumbnails)
+   ============================================================ */
+
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Square thumbnails — aspect-ratio enforces 1:1 crop */
+.photo-thumb {
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+  aspect-ratio: 1 / 1;
+}
+
+/* Cover crop within the square */
+.photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.photo-thumb:hover img { transform: scale(1.05); }
+
+
+/* ============================================================
+   16. GALLERY PAGE
+   ============================================================
+   CSS columns layout for masonry effect. Images show at their
+   natural aspect ratio (no forced height). Lightbox overlays
+   on click.
+   ============================================================ */
+
+.gallery-section { padding-top: 3rem; }
+
+/* columns: 3 creates a 3-column masonry layout.
+   break-inside: avoid on items prevents images from splitting. */
+.masonry-grid {
+  columns: 3;
+  column-gap: 1rem;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  transition: opacity 0.3s;
+}
+
+.masonry-item.hidden { display: none; } /* used by JS filter */
+
+/* Gallery image container — no fixed height, lets image define its own */
+.gallery-img {
+  position: relative; /* needed for .gallery-overlay absolute positioning */
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+  cursor: pointer;
+}
+
+/* Natural aspect ratio: height: auto means no cropping */
+.gallery-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s;
+  object-fit: unset;
+}
+
+.gallery-img:hover img { transform: scale(1.03); }
+
+/* Optional forced-crop classes — add .tall or .wide to .gallery-img
+   if you want to override natural aspect ratio for a specific photo */
+.gallery-img.tall { aspect-ratio: 2 / 3; }
+.gallery-img.tall img { height: 100%; object-fit: cover; }
+.gallery-img.wide { aspect-ratio: 16 / 9; }
+.gallery-img.wide img { height: 100%; object-fit: cover; }
+
+/* Fallback shown when image file isn't found */
+.img-placeholder-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.img-placeholder-gallery::after {
+  content: 'Add photo';
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  font-family: var(--sans);
+}
+
+/* Dark overlay with category tag — fades in on hover */
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 17, 16, 0.45);
+  display: flex;
+  align-items: flex-end; /* tag sits at bottom of image */
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.gallery-img:hover .gallery-overlay { opacity: 1; }
+
+/* Small tag shown in the overlay (City, People, etc.) */
+.gallery-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 246, 0.95);
+  border: 1px solid rgba(250, 249, 246, 0.5);
+  padding: 0.2rem 0.5rem;
+  border-radius: 1px;
+  background: rgba(194, 98, 42, 0.35); /* subtle accent tint */
+}
+
+/* ── Lightbox ──
+   Full-screen overlay shown when a gallery image is clicked.
+   JS adds class "open" to show it.
+   display: none → display: flex via .open class */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.96);
+  z-index: 2000; /* above everything else */
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.open { display: flex; }
+
+/* The enlarged image — constrained to viewport, maintains aspect ratio */
+.lightbox-img {
+  max-width: 88vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+/* × close button — top right corner */
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem; right: 1.5rem;
+  font-size: 2.2rem;
+  color: rgba(250,249,246,0.65);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+  padding: 0.5rem; /* larger tap target */
+}
+
+.lightbox-close:hover { color: var(--accent-mid); }
+
+/* ‹ › prev/next navigation buttons */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: rgba(250,249,246,0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 1rem; /* large tap target */
+  transition: color 0.2s;
+}
+
+.lightbox-nav:hover { color: var(--accent-mid); }
+.lightbox-nav.prev { left: 0.5rem; }
+.lightbox-nav.next { right: 0.5rem; }
+
+
+/* ============================================================
+   17. EXPERIENCE SECTION (homepage)
+   ============================================================ */
+
+.exp-item {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+/* Header row: role + company left, dates right */
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.exp-left { flex: 1; }
+
+.exp-role {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 0.2rem;
+}
+
+.exp-company {
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  letter-spacing: 0.01em;
+}
+
+/* Accent-colored date range */
+.exp-dates {
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+  padding-top: 0.2rem;
+}
+
+.exp-bullets {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exp-bullets li {
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+/* Em dash bullet */
+.exp-bullets li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent-mid);
+}
+
+
+/* ============================================================
+   18. RESUME PILL (accent-styled hero link button)
+   ============================================================
+   Applied as an additional class alongside .link-pill to make
+   the Resume button stand out from the other hero links.
+   ============================================================ */
+
+.link-pill--accent {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-faint);
+}
+
+.link-pill--accent:hover {
+  background: var(--accent);
+  color: var(--paper);
+  border-color: var(--accent);
+}
+
+
+/* ============================================================
+   19. METRICS STRIP (photography page)
+   ============================================================
+   A horizontal row of stats. Each .metric-card holds a large
+   number, a label, and a sub-note. .metric-divider is a 1px
+   vertical line between cards.
+   ============================================================ */
+
+/* Small section heading above the strip */
+.metrics-heading {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 1.25rem;
+}
+
+/* The strip container — flex row, horizontal scroll on mobile */
+.metrics-strip {
+  display: flex;
+  align-items: stretch; /* all cards stretch to same height */
+  gap: 0;
+  background: var(--paper-warm);
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.metrics-strip::-webkit-scrollbar { display: none; }
+
+.metric-card {
+  flex: 1;
+  min-width: 130px; /* prevents cards from getting too narrow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 1.25rem;
+  gap: 0.4rem;
+  transition: background 0.2s;
+}
+
+.metric-card:hover { background: var(--accent-faint); }
+
+/* The big number — uses serif font for impact */
+.metric-value {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.metric-sub {
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  line-height: 1.4;
+}
+
+/* 1px vertical separator between metric cards */
+.metric-divider {
+  width: 1px;
+  background: var(--ink-faint);
+  flex-shrink: 0;
+  align-self: stretch; /* full height of the strip */
+}
+
+.metrics-section { padding-top: 0; }
+
+
+/* ============================================================
+   20. PHOTOGRAPHY HOME — editorial intro
+   ============================================================
+   The Home tab on photography.html has a different feel from
+   the two-column bio format on the homepage:
+   - Large italic pull quote as an opener
+   - Wider body text, looser layout
+   - Instagram as a dark feature card (warm paper bg, not black)
+   ============================================================ */
+
+.photo-opener { padding: 5rem 0 0; }
+
+/* Large opening quote in serif italic */
+.photo-pullquote {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* Oversized decorative quotation mark */
+.photo-pullquote-mark {
+  font-size: 6rem;
+  line-height: 0.6;
+  color: var(--accent);
+  font-family: var(--serif);
+  display: block;
+  margin-bottom: 0.5rem;
+  opacity: 0.4;
+  letter-spacing: 0;
+}
+
+.photo-about { padding: 3rem 0 4rem; }
+
+/* Two columns: body text left, Instagram card right */
+.photo-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Slightly larger body text than the standard bio */
+.photo-about-text {
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  line-height: 1.85;
+  max-width: 580px;
+}
+
+.photo-about-text + .photo-about-text { margin-top: 1rem; }
+
+/* ── Instagram card ──
+   Uses paper-warm (same as metrics strip) instead of black —
+   warm and minimal rather than stark. Sticky so it stays
+   visible as you scroll the text. */
+.photo-ig-card {
+  background: var(--paper-warm);
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: sticky;
+  top: calc(var(--nav-h) + 2rem);
+}
+
+.photo-ig-icon {
+  color: var(--accent); /* accent-colored Instagram icon */
+  line-height: 0;
+}
+
+.photo-ig-handle {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.photo-ig-desc {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+
+/* Text link style — underline via border-bottom */
+.photo-ig-btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-mid);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+  align-self: flex-start;
+}
+
+.photo-ig-btn:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+
+/* ============================================================
+   21. FOOTER
+   ============================================================ */
+
+.footer {
+  padding: 3rem 0;
+  border-top: 1px solid var(--ink-faint);
+  margin-top: 2rem;
+}
+
+/* Three items: name | copyright | links — spread across full width */
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--ink-light);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+
+/* ============================================================
+   22. ANIMATIONS & SCROLL REVEAL
+   ============================================================
+   fadeUp keyframe is used both for:
+   - Hero elements on page load (via CSS animation-delay)
+   - Scroll reveal on cards/items (via IntersectionObserver in main.js)
+   ============================================================ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered hero animations — each element fades up slightly later */
+.hero-eyebrow  { animation: fadeUp 0.6s ease both; }
+.hero-name     { animation: fadeUp 0.6s 0.1s ease both; }
+.hero-location { animation: fadeUp 0.6s 0.18s ease both; }
+.hero-links    { animation: fadeUp 0.6s 0.26s ease both; }
+.hero-photo-wrap { animation: fadeUp 0.7s 0.05s ease both; }
+
+/* Prevents a flash of invisible content on mobile where
+   hover overlays can't trigger — tap still works via :active */
+@media (hover: none) {
+  .project-overlay { opacity: 0 !important; }
+  .gallery-img:active .gallery-overlay { opacity: 1; }
+}
+
+/* Utility class for line breaks that only appear on desktop */
+.br-desktop { display: block; }
+
+
+/* ============================================================
+   23. RESPONSIVE BREAKPOINTS
+   ============================================================
+   900px — tablets and small laptops
+   640px — phones (iPhone and similar)
+   ============================================================ */
+
+@media (max-width: 900px) {
+  /* Hero: stack photo above text */
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-photo { width: 160px; height: 200px; }
+
+  /* Two-col sections (bio, skills, etc.) become single column */
+  .two-col { grid-template-columns: 1fr; gap: 1rem; }
+  .col-label { padding-top: 0; }
+
+  /* Project detail body: sidebar drops below narrative */
+  .pf-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Sidebar becomes a 2-column grid instead of vertical list */
+  .pf-meta {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .pf-meta-block { padding: 0.85rem 1rem 0.85rem 0; }
+
+  /* Gallery drops to 2 columns */
+  .masonry-grid { columns: 2; }
+
+  /* Photo strip drops to 2 columns */
+  .photo-strip { grid-template-columns: repeat(2, 1fr); }
+
+  /* Featured project hero: stats drop below title */
+  .fp-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* Stats become a horizontal row */
+  .fp-stat-pair {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--ink-faint);
+    padding-top: 2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .fp-stat {
+    flex: 1;
+    min-width: 120px;
+    border-bottom: none;
+    border-right: 1px solid var(--ink-faint);
+    padding: 0 1.5rem 0 0;
+  }
+
+  .fp-stat:last-child { border-right: none; }
+
+  /* Story grid collapses to single column with borders between */
+  .fp-story-grid { grid-template-columns: 1fr; gap: 0; }
+  .fp-story-col { padding: 1.75rem 0; border-bottom: 1px solid var(--ink-faint); }
+  .fp-story-col:last-child { border-bottom: none; }
+
+  /* Findings: single column */
+  .fp-findings-bar { grid-template-columns: 1fr; }
+  .fp-finding { border-right: none !important; border-bottom: 1px solid var(--ink-faint) !important; }
+  .fp-finding:last-child { border-bottom: none !important; }
+
+  .fp-pullquote { padding: 2.5rem 1rem; }
+
+  /* Photo about: stacks to single column */
+  .photo-about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .photo-ig-card { position: static; }
+}
+
+@media (max-width: 640px) {
+  /* Slightly shorter nav on phones */
+  :root { --nav-h: 56px; }
+
+  /* Tighter section spacing on phones */
+  .section { padding: 3rem 0; }
+
+  /* Hero adjustments */
+  .hero { padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 3rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-name { font-size: clamp(3rem, 14vw, 4rem); }
+
+  /* Hero photo fills width on small phones */
+  .hero-photo { width: 100%; height: auto; aspect-ratio: 4 / 3; max-width: 340px; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Switch to hamburger nav */
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* Single column gallery */
+  .masonry-grid { columns: 1; }
+
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .project-grid { grid-template-columns: 1fr; }
+
+  /* Experience: stack header vertically */
+  .exp-header { flex-direction: column; gap: 0.3rem; }
+  .exp-dates { font-size: 0.72rem; }
+
+  /* Highlight items: label stacks above value */
+  .highlight-item { grid-template-columns: 1fr; gap: 0.2rem; }
+
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+
+  /* Sticky filter bar tighter on phone */
+  .filter-bar { padding: 0.75rem 0; }
+
+  /* Larger pill tap target on phone */
+  .link-pill { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
+
+  /* Page headers */
+  .page-header { padding-top: calc(var(--nav-h) + 2.5rem); padding-bottom: 2rem; }
+  .page-title { font-size: clamp(2rem, 10vw, 3rem); }
+
+  /* Project metadata: single column */
+  .pf-meta { grid-template-columns: 1fr; }
+  .pf-topbar { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+  /* Featured project */
+  .fp-hero { padding: 3.5rem 0 3rem; }
+  .fp-title { font-size: clamp(2rem, 9vw, 2.75rem); }
+  .fp-embed-iframe { height: 400px; }
+  .fp-pullquote { font-size: 1.35rem; padding: 2rem 0; }
+  .fp-bottom-row { flex-direction: column; align-items: flex-start; }
+  .fp-bottom-meta { flex-wrap: wrap; gap: 0.75rem; }
+
+  /* Photography editorial */
+  .photo-opener { padding-top: 3rem; }
+  .photo-pullquote { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .photo-pullquote-mark { font-size: 4rem; }
+
+  /* Metrics strip */
+  .metric-card { padding: 2rem 1rem; min-width: 110px; }
+  .metric-divider { height: 48px; }
+
+  .br-desktop { display: none; } /* hide desktop-only line breaks */
+}
+
+/* ── Photography placeholder tabs (Coming Soon) ──
+   Centered empty state shown until you decide on categories. */
+.photo-coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 0;
+  gap: 0.85rem;
+  text-align: center;
+}
+
+.photo-coming-soon-text {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  color: var(--ink-mid);
+  font-style: italic;
+}
+
+.photo-coming-soon-sub {
+  font-size: 0.82rem;
+  color: var(--ink-light);
+  letter-spacing: 0.04em;
+}
+
+
+/* ============================================================
+   HOMEPAGE — FEATURED PHOTO TEASER
+   Single full-width image with caption bar below.
+   Replaces the four-thumbnail strip.
+   ============================================================ */
+
+/* Wrapper — no fixed height, image defines its own */
+.photo-feature {
+  margin-top: 1.5rem;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--ink-faint);
+  background: var(--accent-faint);
+  /* Subtle lift on hover */
+  transition: box-shadow 0.25s;
+}
+
+.photo-feature:hover {
+  box-shadow: 0 4px 20px rgba(17,17,16,0.08);
+}
+
+/* Image fills width, natural aspect ratio */
+.photo-feature-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.photo-feature:hover .photo-feature-img img {
+  transform: scale(1.02);
+}
+
+/* Caption bar below the image */
+.photo-feature-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1rem;
+  background: var(--paper-warm);
+  border-top: 1px solid var(--ink-faint);
+}
+
+/* Left side: location tag chip */
+.photo-feature-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  background: var(--accent-faint);
+  border: 1px solid rgba(194,98,42,0.2);
+  padding: 0.15rem 0.5rem;
+  border-radius: 1px;
+}
+
+/* Right side: photo title */
+.photo-feature-title {
+  font-size: 0.78rem;
+  color: var(--ink-light);
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+
+/* ============================================================
+   TRAVEL GUIDES — cards grid
+   ============================================================ */
+
+/* Section intro text above the cards */
+.guides-intro {
+  margin-bottom: 2.5rem;
+  max-width: 560px;
+}
+
+.guides-intro-text {
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+}
+
+/* Grid: 3 columns on desktop, 2 on tablet, 1 on mobile */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* ── Guide card ──
+   Cover image + text body + chevron icon.
+   Cursor pointer + hover lift invite clicks. */
+.guide-card {
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--paper);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  /* Removed from stacking context so panels can flow in the DOM */
+}
+
+.guide-card:hover {
+  border-color: var(--accent-mid);
+  box-shadow: 0 4px 18px rgba(17,17,16,0.08);
+  transform: translateY(-2px);
+}
+
+/* Active (open) card gets accent border */
+.guide-card--open {
+  border-color: var(--accent);
+  box-shadow: 0 4px 18px rgba(194,98,42,0.12);
+}
+
+/* Cover image — fixed height with cover crop */
+.guide-card-img {
+  height: 180px;
+  overflow: hidden;
+  background: var(--accent-faint);
+}
+
+.guide-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.guide-card:hover .guide-card-img img {
+  transform: scale(1.04);
+}
+
+/* Text body */
+.guide-card-body {
+  padding: 1.1rem 1.1rem 0.9rem;
+}
+
+/* Top row: status badge + trip date */
+.guide-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.guide-trip-date {
+  font-size: 0.7rem;
+  color: var(--ink-light);
+  letter-spacing: 0.04em;
+}
+
+.guide-region {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 0.25rem;
+}
+
+.guide-city {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.guide-tagline {
+  font-size: 0.8rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+}
+
+/* Chevron arrow at bottom of card — rotates when open */
+.guide-card-chevron {
+  display: flex;
+  justify-content: center;
+  padding: 0.6rem;
+  color: var(--ink-light);
+  border-top: 1px solid var(--ink-faint);
+  transition: color 0.2s;
+}
+
+.guide-card:hover .guide-card-chevron { color: var(--accent); }
+
+/* Rotate chevron when card is open */
+.guide-card--open .guide-card-chevron svg {
+  transform: rotate(180deg);
+  transition: transform 0.25s;
+}
+
+.guide-card-chevron svg {
+  transition: transform 0.25s;
+}
+
+/* ── Status badges ── */
+.guide-status {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1px;
+}
+
+.guide-status--live {
+  background: rgba(40,167,69,0.1);
+  color: #1d7a38;
+  border: 1px solid rgba(40,167,69,0.25);
+}
+
+.guide-status--soon {
+  background: var(--accent-faint);
+  color: var(--accent);
+  border: 1px solid rgba(194,98,42,0.2);
+}
+
+.guide-status--planning {
+  background: rgba(255,193,7,0.1);
+  color: #856404;
+  border: 1px solid rgba(255,193,7,0.3);
+}
+
+
+/* ============================================================
+   TRAVEL GUIDES — expanded panels
+   Panels sit in the DOM below the cards grid.
+   JS shows/hides them by setting display:block/none.
+   ============================================================ */
+
+.guide-panel {
+  /* Full width below the grid */
+  grid-column: 1 / -1;
+  margin-top: 1.25rem;
+  border: 1px solid var(--accent-mid);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--paper);
+  /* Smooth entrance */
+  animation: fadeUp 0.3s ease both;
+}
+
+.guide-panel-inner {
+  padding: 2.5rem;
+  position: relative;
+}
+
+/* × close button — top right of the panel */
+.guide-panel-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--ink-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.25rem;
+}
+
+.guide-panel-close:hover { color: var(--accent); }
+
+/* Header: location + title left, status badge right */
+.guide-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.guide-panel-region {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.guide-panel-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+/* Hero image — natural aspect ratio, full panel width */
+.guide-panel-hero {
+  width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+  margin-bottom: 2.5rem;
+}
+
+.guide-panel-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Content body */
+.guide-panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 720px;
+}
+
+/* Individual content sections (Overview, Eat & Drink, etc.) */
+.guide-section {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.guide-section:first-child { padding-top: 0; }
+.guide-section:last-child { border-bottom: none; padding-bottom: 0; }
+
+.guide-section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  font-family: var(--sans);
+}
+
+.guide-section-text {
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  line-height: 1.8;
+}
+
+/* Guide lists — standard and tips variants */
+.guide-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.guide-list li {
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.guide-list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent-mid);
+}
+
+/* Tips list uses a lightbulb/star marker */
+.guide-list--tips li::before {
+  content: '↳';
+  color: var(--accent);
+}
+
+/* Photo grid inside the panel — 3 equal columns */
+.guide-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.guide-photo {
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+}
+
+/* Natural aspect ratio for guide photos */
+.guide-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.guide-photo:hover img { transform: scale(1.03); }
+
+
+/* ============================================================
+   RESPONSIVE — guides + featured photo
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .guides-grid { grid-template-columns: repeat(2, 1fr); }
+  .guide-photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .guide-panel-inner { padding: 2rem; }
+}
+
+@media (max-width: 640px) {
+  .guides-grid { grid-template-columns: 1fr; }
+  .guide-photo-grid { grid-template-columns: 1fr; }
+  .guide-panel-inner { padding: 1.5rem; }
+  .guide-panel-header { flex-direction: column; gap: 0.75rem; }
+  .guide-panel-close { top: 1rem; right: 1rem; }
+
+  /* Featured photo caption stacks on very small screens */
+  .photo-feature-caption { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+}
+
+
+/* ============================================================
+   TRAVEL GUIDES — REVISED STYLES
+   Overrides the earlier guide-card rules with:
+   - Fixed image height (all cards same size)
+   - Image inner wrapper for tint overlay
+   - Flag-color city name + card border via inline style
+   - Richer intro section
+   ============================================================ */
+
+/* ── Guide card image — fixed height, cover crop ── */
+.guide-card-img {
+  height: 200px; /* fixed — all cards identical height */
+  overflow: hidden;
+  background: var(--accent-faint);
+  position: relative;
+}
+
+/* Inner wrapper needed so tint overlay can sit above the img */
+.guide-card-img-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.guide-card-img-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cover crop — fills the fixed box */
+  transition: transform 0.5s;
+  display: block;
+}
+
+.guide-card:hover .guide-card-img-inner img {
+  transform: scale(1.05);
+}
+
+/* Subtle flag-color tint layered over the image */
+.guide-card-img-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* doesn't block clicks */
+  transition: opacity 0.3s;
+}
+
+.guide-card:hover .guide-card-img-tint {
+  opacity: 0.6; /* tint intensifies slightly on hover */
+}
+
+/* Active card border picks up the flag color via inline style on chevron border.
+   The card itself gets a left accent bar using the data-color value. */
+.guide-card--open {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* ── Guide intro — editorial heading treatment ── */
+.guides-intro {
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.guides-intro-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.guides-intro-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+
+.guides-intro-heading {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.guides-intro-heading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.guides-intro-sub {
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* Large destination count — right side of intro */
+.guides-intro-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  flex-shrink: 0;
+  padding: 1.25rem 2rem;
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  background: var(--paper-warm);
+}
+
+.guides-count-num {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.guides-count-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .guides-intro-inner { flex-direction: column; align-items: flex-start; }
+  .guides-intro-count { padding: 1rem 1.5rem; align-self: flex-start; }
+  .guide-card-img { height: 160px; }
+}
+
+
+/* ============================================================
+   GUIDE CARDS — FLAG WATERMARK DESIGN
+   No image files needed. The flag is an SVG watermark that
+   fills the top of the card. Card body sits below it with
+   the city name colored from the flag's primary color.
+   ============================================================ */
+
+/* Flag cards use a different layout from image cards —
+   the flag area has a fixed height like the old img box */
+.guide-card--flag {
+  overflow: visible; /* allow flag bg to fill its area cleanly */
+}
+
+/* Flag background container — same fixed height as the old image */
+.guide-flag-bg {
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px 2px 0 0; /* only top corners rounded */
+  /* border matches card border so it flows cleanly */
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+/* The SVG flag — fills the container, faded watermark effect */
+.guide-flag-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Scale up slightly so flag fills area without letterboxing */
+  transform: scale(1.05);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+/* Subtle zoom on card hover — flag breathes */
+.guide-card:hover .guide-flag-svg {
+  transform: scale(1.12);
+}
+
+/* Active (open) card — slight tint on the flag area */
+.guide-card--open .guide-flag-bg {
+  filter: brightness(0.97);
+}
+
+/* Ensure the card body sits cleanly below the flag area */
+.guide-card--flag .guide-card-body {
+  background: var(--paper);
+  position: relative;
+  z-index: 1;
+}
+
+/* City name inherits the flag color via inline style —
+   make it a bit larger and bolder than the default */
+.guide-card--flag .guide-city {
+  font-size: 1.4rem;
+  letter-spacing: -0.025em;
+}
+
+/* Chevron bar — neutral, no flag color needed here */
+.guide-card--flag .guide-card-chevron {
+  background: var(--paper);
+  border-top: 1px solid var(--ink-faint);
+}
+
+
+/* ============================================================
+   GUIDE CARDS V2 — reference-image layout
+   Flag emoji + city name top, region, status badge + date,
+   illustrated scene, tagline + CTA bottom.
+   Each card is an <a> link to Medium.
+   CSS custom properties set per-card via inline style:
+     --gc-color   : primary accent (flag color)
+     --gc-bg      : very light tint for card background
+   ============================================================ */
+
+.guide-card-v2 {
+  display: flex;
+  flex-direction: column;
+  background: var(--gc-bg, var(--paper-warm));
+  border: 1px solid var(--ink-faint);
+  border-radius: 14px;          /* rounded card like reference image */
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+  /* Left accent border using flag color */
+  border-left: 3px solid var(--gc-color, var(--accent));
+}
+
+.guide-card-v2:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(17,17,16,0.1);
+  border-color: var(--gc-color, var(--accent));
+}
+
+/* Top section: flag emoji + city name side by side */
+.gc2-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.25rem 1.25rem 0.35rem;
+}
+
+.gc2-flag {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.gc2-city {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--gc-color, var(--ink));
+  line-height: 1.15;
+}
+
+/* Region label (United States, Europe, etc.) */
+.gc2-region {
+  font-size: 0.78rem;
+  color: var(--ink-light);
+  letter-spacing: 0.04em;
+  padding: 0 1.25rem 0.75rem;
+}
+
+/* Status badge + date row */
+.gc2-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1.25rem 1rem;
+}
+
+/* Status pill — dot + label */
+.gc2-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.28rem 0.65rem;
+  border-radius: 20px;          /* pill shape like reference */
+  border: 1px solid transparent;
+}
+
+.gc2-status--live {
+  background: rgba(40,167,69,0.1);
+  color: #1d7a38;
+  border-color: rgba(40,167,69,0.2);
+}
+
+.gc2-status--soon {
+  background: var(--accent-faint);
+  color: var(--accent);
+  border-color: rgba(194,98,42,0.2);
+}
+
+.gc2-status--planning {
+  background: rgba(255,193,7,0.1);
+  color: #856404;
+  border-color: rgba(255,193,7,0.25);
+}
+
+.gc2-date {
+  font-size: 0.75rem;
+  color: var(--ink-light);
+}
+
+/* Illustrated scene area — fixed height, clips the SVG */
+.gc2-scene {
+  width: calc(100% - 2rem); /* inset from card edges like reference */
+  margin: 0 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 140px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.gc2-scene-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Bottom section: tagline + CTA */
+.gc2-bottom {
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1; /* pushes CTA to bottom when cards are different heights */
+}
+
+.gc2-tagline {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+
+.gc2-cta {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gc-color, var(--accent));
+  letter-spacing: 0.02em;
+  margin-top: auto;
+}
+
+/* Grid: 3 cols desktop → 2 tablet → 1 mobile */
+/* (overrides the old .guides-grid if it was set to 3) */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .guides-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .guides-grid { grid-template-columns: 1fr; }
+  .gc2-scene { height: 120px; }
+}
+
+
+/* ============================================================
+   GUIDE CARDS V2 — REVISED STYLES
+   - gc2-city: switch from DM Serif Display (thin/sharp) to
+     a fuller weight using DM Sans 500 for the city name
+   - All cards: unified neutral background (--paper-warm)
+     with just the left border and scene tint carrying the
+     country color — everything else is consistent
+   ============================================================ */
+
+/* Fuller, rounder city name — DM Sans medium weight */
+.gc2-city {
+  font-family: var(--sans);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  /* color still set per-card via inline style (flag color) */
+}
+
+/* Unified neutral card background — override the per-card --gc-bg */
+.guide-card-v2 {
+  background: var(--paper-warm) !important; /* same cream for all cards */
+}
+
+/* The scene area keeps its illustrated colors (that's where country
+   color lives), but the card body above and below is consistent */
+.gc2-top,
+.gc2-bottom {
+  background: var(--paper-warm);
+}
+
+/* Status pills — keep the same colors, they're subtle enough */
+/* CTA text uses the flag color (--gc-color) — that's the hint of country */
+.gc2-cta {
+  color: var(--gc-color, var(--accent));
+}
+
+/* Left border accent is the country color — keep it */
+/* Card border otherwise stays --ink-faint on non-hover */
+.guide-card-v2 {
+  border-color: var(--ink-faint);
+  border-left-color: var(--gc-color, var(--accent));
+}
+
+/* Hover: just lift + shadow, no full border color change */
+.guide-card-v2:hover {
+  border-color: var(--ink-faint);
+  border-left-color: var(--gc-color, var(--accent));
+  box-shadow: 0 6px 24px rgba(17,17,16,0.09);
+}
+
+
+/* ============================================================
+   FEATURED PROJECT — hero links (moved from bottom to hero)
+   ============================================================ */
+
+/* Link row sitting below the tagline in the hero band */
+.fp-hero-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* Buttons on the warm hero background — same btn-outline/btn-ghost
+   styles apply, they already work on light backgrounds */
+
+/* fp-bottom-meta used standalone (no longer in fp-bottom-row flex) */
+.fp-bottom-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  padding-top: 2rem;
+  border-top: 1px solid var(--ink-faint);
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   FILMSTRIP — horizontal scroll photo strip
+   9:16 aspect ratio (Instagram story format).
+   Frames are small and uniform; the strip scrolls sideways.
+   ============================================================ */
+
+/* Outer scroll container — clips overflow, enables horizontal scroll */
+.filmstrip {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* momentum scroll on iOS */
+  scrollbar-width: none;             /* hide scrollbar Firefox */
+  scroll-snap-type: x mandatory;    /* snaps to each frame */
+  padding-bottom: 2px;               /* prevent clipping of hover shadow */
+  margin-top: 1.25rem;
+  /* Extend slightly beyond the col-content to feel airy */
+  margin-left: -2px;
+}
+
+.filmstrip::-webkit-scrollbar { display: none; } /* hide scrollbar Chrome/Safari */
+
+/* Individual frame — 9:16 ratio, small fixed width */
+.film-frame {
+  flex-shrink: 0;                    /* never compress */
+  width: 90px;                       /* small — keeps strip compact */
+  aspect-ratio: 9 / 16;             /* Instagram story ratio */
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+  scroll-snap-align: start;         /* snaps left edge of each frame */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.film-frame:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(17,17,16,0.12);
+  z-index: 1;
+}
+
+/* Image fills the frame with cover crop */
+.film-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.film-frame:hover img {
+  transform: scale(1.06);
+}
+
+/* Placeholder shown when image is missing */
+.film-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.film-placeholder::after {
+  content: '+';
+  font-size: 1.2rem;
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-weight: 300;
+}
+
+/* On mobile the frames are already small so no changes needed,
+   but allow the strip to bleed to screen edge for a cinematic feel */
+@media (max-width: 640px) {
+  .filmstrip {
+    /* Bleed past the column padding on mobile */
+    margin-right: calc(-1 * var(--side-pad));
+    padding-right: var(--side-pad);
+  }
+
+  .film-frame {
+    width: 80px; /* slightly smaller on very narrow screens */
+  }
+}
+
+
+/* ============================================================
+   TRAVEL GUIDE PAGE — guide-nyc.html and future guide pages
+   ============================================================ */
+
+/* ── Hero section ── */
+.guide-page-hero {
+  padding-top: calc(var(--nav-h) + 3rem);
+  background: var(--paper-warm);
+  border-bottom: 1px solid var(--ink-faint);
+  padding-bottom: 0;
+}
+
+/* Back link breadcrumb */
+.guide-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--ink-light);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+
+.guide-back:hover { color: var(--accent); }
+
+/* Header: title left, meta right */
+.guide-page-header {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 3rem;
+  align-items: start;
+  padding-bottom: 2.5rem;
+}
+
+.guide-page-flag-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.guide-page-flag { font-size: 1.75rem; line-height: 1; }
+
+.guide-page-region {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.guide-page-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+
+.guide-page-subtitle {
+  font-size: 1rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+/* Meta sidebar in header */
+.guide-page-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid var(--ink-faint);
+  padding-left: 2rem;
+}
+
+.guide-page-meta-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.guide-page-meta-item:last-child { border-bottom: none; }
+
+.guide-page-meta-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+  font-weight: 500;
+}
+
+.guide-page-meta-val {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+}
+
+/* Full-width cover photo — sits at the bottom of the hero */
+.guide-page-cover {
+  width: 100%;
+  max-height: 520px;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.guide-page-cover img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Body ── */
+.guide-page-body {
+  padding: 5rem 0;
+}
+
+/* Two-column: content left (wider), sidebar right */
+.guide-page-layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 4rem;
+  align-items: start;
+}
+
+.guide-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Content sections ── */
+.guide-page-section {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.guide-page-section:first-child { padding-top: 0; }
+.guide-page-section:last-child { border-bottom: none; }
+
+.guide-page-section-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--accent-faint);
+}
+
+.guide-page-text {
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  line-height: 1.85;
+  max-width: 620px;
+}
+
+.guide-page-text + .guide-page-text { margin-top: 0.85rem; }
+
+/* Neighborhood cards grid */
+.guide-neighborhood-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.guide-neighborhood {
+  padding: 1rem 1.1rem;
+  background: var(--paper-warm);
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  border-left: 2px solid var(--accent-mid);
+}
+
+.guide-neighborhood-name {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+
+.guide-neighborhood-desc {
+  font-size: 0.8rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+}
+
+/* Photo grids */
+.guide-page-photos {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.guide-page-photo-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 0.6rem;
+}
+
+/* Wide variant: three equal columns */
+.guide-page-photo-grid--wide {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.guide-page-photo {
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+  position: relative;
+}
+
+.guide-page-photo img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.guide-page-photo:hover img { transform: scale(1.03); }
+
+/* Tall first photo in 1.4fr column */
+.guide-page-photo--tall img { height: 100%; min-height: 200px; }
+
+.guide-page-photo-caption {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.6rem;
+  font-size: 0.68rem;
+  color: rgba(250,249,246,0.85);
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* Eat & drink recommendations */
+.guide-recs-list {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.guide-rec {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.guide-rec:last-child { border-bottom: none; }
+
+.guide-rec-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.guide-rec-name {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.guide-rec-tag {
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.guide-rec-note {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+
+/* Tips list */
+.guide-tips-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.guide-tip {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+}
+
+.guide-tip-arrow {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+/* ── Sidebar ── */
+.guide-page-sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.guide-sidebar-card {
+  background: var(--paper-warm);
+  border: 1px solid var(--ink-faint);
+  border-radius: 2px;
+  padding: 1.25rem 1.4rem;
+}
+
+.guide-sidebar-heading {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.guide-sidebar-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.guide-sidebar-fact {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.guide-sidebar-fact:last-child { border-bottom: none; }
+
+.guide-sidebar-fact-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+}
+
+.guide-sidebar-fact-val {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+}
+
+.guide-sidebar-skip {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.guide-sidebar-skip li {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.guide-sidebar-skip li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+  font-size: 0.7rem;
+}
+
+/* Accent card — disclaimer */
+.guide-sidebar-card--accent {
+  background: var(--accent-faint);
+  border-color: rgba(194,98,42,0.2);
+}
+
+.guide-sidebar-note {
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .guide-page-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .guide-page-meta { border-left: none; padding-left: 0; border-top: 1px solid var(--ink-faint); padding-top: 1.5rem; flex-direction: row; flex-wrap: wrap; }
+  .guide-page-meta-item { flex: 1; min-width: 140px; border-bottom: none; border-right: 1px solid var(--ink-faint); padding-right: 1rem; }
+  .guide-page-meta-item:last-child { border-right: none; }
+  .guide-page-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .guide-page-sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+  .guide-sidebar-card { flex: 1; min-width: 200px; }
+  .guide-page-cover img { height: 360px; }
+}
+
+@media (max-width: 640px) {
+  .guide-page-hero { padding-top: calc(var(--nav-h) + 2rem); }
+  .guide-neighborhood-grid { grid-template-columns: 1fr; }
+  .guide-page-photo-grid { grid-template-columns: 1fr 1fr; }
+  .guide-page-photo--tall img { height: 200px; }
+  .guide-page-cover img { height: 260px; }
+  .guide-page-meta { flex-direction: column; }
+  .guide-page-meta-item { border-right: none; border-bottom: 1px solid var(--ink-faint); }
+  .guide-sidebar-card { min-width: 100%; }
+}
+
+
+/* ============================================================
+   GUIDE PAGE — BOROUGHS & HIGHLIGHTS
+   ============================================================ */
+
+/* Each borough block — separated by border */
+.guide-borough {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.guide-borough:last-child { border-bottom: none; padding-bottom: 0; }
+
+.guide-borough-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.guide-borough-name {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.guide-borough-vibe {
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-style: italic;
+}
+
+.guide-borough-desc {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  line-height: 1.75;
+  max-width: 580px;
+  margin-bottom: 1rem;
+}
+
+/* Highlight chips — wrapping row of landmark tags */
+.guide-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.guide-highlight-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--ink-mid);
+  background: var(--paper-warm);
+  border: 1px solid var(--ink-faint);
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;   /* pill shape */
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.guide-highlight-chip:hover {
+  border-color: var(--accent-mid);
+  color: var(--ink);
+}
+
+.guide-highlight-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+
+/* ============================================================
+   GUIDE PAGE — BEST PHOTO SPOTS
+   ============================================================ */
+
+.guide-photo-spots {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Each spot: image left, text right */
+.guide-photo-spot {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.guide-photo-spot:last-child { border-bottom: none; padding-bottom: 0; }
+
+/* Fixed-size thumbnail — 16:9 crop */
+.guide-photo-spot-img {
+  width: 160px;
+  height: 90px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--accent-faint);
+  border: 1px solid var(--ink-faint);
+  flex-shrink: 0;
+}
+
+.guide-photo-spot-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.guide-photo-spot:hover .guide-photo-spot-img img {
+  transform: scale(1.05);
+}
+
+.guide-photo-spot-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.guide-photo-spot-name {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.guide-photo-spot-hood {
+  font-size: 0.75rem;
+  color: var(--ink-light);
+}
+
+.guide-photo-spot-note {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+  margin-bottom: 0.6rem;
+}
+
+/* Meta row: time of day + category tags */
+.guide-photo-spot-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.guide-photo-spot-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-faint);
+  border: 1px solid rgba(194,98,42,0.15);
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+}
+
+
+/* ============================================================
+   GUIDE PAGE — MAP
+   ============================================================ */
+
+.guide-map-section { padding-bottom: 0; }
+
+.guide-map-wrap {
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--ink-faint);
+  background: var(--paper-warm);
+  /* Intrinsic ratio box — 16:9 */
+  position: relative;
+  padding-bottom: 52%; /* slightly less than 56.25% — less tall, more usable */
+  height: 0;
+}
+
+.guide-map-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+
+/* ============================================================
+   GUIDE PAGE — SIDEBAR UPDATES
+   ============================================================ */
+
+/* "Don't miss" list — positive framing, checkmark bullets */
+.guide-sidebar-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.guide-sidebar-list li {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  padding-left: 1.1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.guide-sidebar-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* "Mistakes to avoid" — uses ! arrow styling from guide-tips-list */
+.guide-tip-arrow {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  min-width: 14px;
+  text-align: center;
+}
+
+
+/* ============================================================
+   RESPONSIVE — new guide sections
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .guide-borough-header { flex-direction: column; gap: 0.25rem; }
+
+  .guide-photo-spot {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .guide-photo-spot-img {
+    width: 100%;
+    height: 160px;
+  }
+
+  .guide-map-wrap { padding-bottom: 70%; }
+}
+
+
+/* ============================================================
+   GUIDE PAGE — HERO DIVIDER (replaces full-width cover photo)
+   A thin accent line with a warm-to-white gradient fade,
+   separating the hero band from the body cleanly.
+   ============================================================ */
+
+.guide-hero-divider {
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--accent-faint) 0%,
+    var(--accent-mid)   30%,
+    var(--accent)       50%,
+    var(--accent-mid)   70%,
+    var(--accent-faint) 100%
+  );
+  opacity: 0.5;
+  margin-top: 3rem;
+}
+
+
+/* ============================================================
+   GUIDE PAGE — EAT CATEGORIES
+   Grouped by type (Restaurant, Pizza, Bagel) with an
+   emoji icon + category name as a mini-heading above
+   each group's rec list.
+   ============================================================ */
+
+.guide-eat-category {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.guide-eat-category:first-of-type {
+  margin-top: 1.25rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.guide-eat-category-label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.guide-eat-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.guide-eat-category-name {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+
+/* ============================================================
+   COST METER — dollar sign rating out of four
+   Use .cost-dollar--filled for active dollars,
+   .cost-dollar--empty for inactive ones.
+   Examples:
+     NYC ($$$$):     4 filled, 0 empty
+     Portugal ($$$): 3 filled, 1 empty
+     Peru ($$):      2 filled, 2 empty
+   ============================================================ */
+
+.cost-meter {
+  display: inline-flex;
+  gap: 0.15rem;
+  align-items: center;
+}
+
+.cost-dollar {
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: var(--sans);
+  line-height: 1;
+}
+
+.cost-dollar--filled {
+  color: var(--accent);
+}
+
+.cost-dollar--empty {
+  color: var(--ink-faint);
+}

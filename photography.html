@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photography — Nick Celotto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Nick Celotto</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="photography.html" class="active">Photography</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="photography.html">Photography</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <p class="hero-eyebrow">Visual Work</p>
+      <h1 class="page-title">Photography</h1>
+      <p class="page-subtitle">Documenting the world with intention — and writing up the places worth returning to.</p>
+    </div>
+  </section>
+
+  <!-- TAB BAR
+       Three tabs: Home (intro + metrics), Favorites (gallery),
+       Travel Guides (expandable destination cards).
+       JS handles switching via data-view / id="view-{key}". -->
+  <div class="filter-bar">
+    <div class="container">
+      <button class="tab-btn active" data-view="home">Home</button>
+      <button class="tab-btn" data-view="favorites">Favorites</button>
+      <button class="tab-btn" data-view="guides">Travel Guides</button>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       HOME TAB — editorial intro + metrics
+       ════════════════════════════════════════ -->
+  <div id="view-home" class="tab-view">
+
+    <section class="photo-opener">
+      <div class="container">
+        <blockquote class="photo-pullquote">
+          <span class="photo-pullquote-mark">"</span>
+          Photography is how I slow down<br class="br-desktop"/> and pay attention.
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="photo-about">
+      <div class="container">
+        <div class="photo-about-grid">
+
+          <div class="photo-about-main">
+            <p class="photo-about-text">The same discipline that makes a good photograph makes good analysis — ask better questions before you start, and resist the urge to reach conclusions before you've really looked. I started shooting to develop that muscle deliberately, and it's changed how I approach data work too.</p>
+            <p class="photo-about-text">I shoot primarily on the streets of New York. My focus right now is light, geometry, and the unintentional compositions a city creates just by existing. I'm growing this practice publicly — every post is a commitment to ship something, not just collect frames on a hard drive.</p>
+          </div>
+
+          <!-- Instagram card — warm paper-warm background -->
+          <div class="photo-about-aside">
+            <div class="photo-ig-card">
+              <div class="photo-ig-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </div>
+              <p class="photo-ig-handle">@celottovision</p>
+              <p class="photo-ig-desc">Follow along as the account grows. New work posted regularly.</p>
+              <a href="https://www.instagram.com/celottovision" class="photo-ig-btn" target="_blank">Follow on Instagram →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics strip
+         ★ UPDATE: Change each <span class="metric-value"> to your real number.
+         Change <span class="metric-sub"> for the supporting note. -->
+    <section class="metrics-section">
+      <div class="container">
+        <p class="metrics-heading">By the numbers</p>
+        <div class="metrics-strip">
+
+          <div class="metric-card">
+            <span class="metric-value">0</span>
+            <span class="metric-label">Followers</span>
+            <span class="metric-sub">@celottovision</span>
+          </div>
+          <div class="metric-divider"></div>
+
+          <div class="metric-card">
+            <span class="metric-value">0</span>
+            <span class="metric-label">Total Views</span>
+            <span class="metric-sub">Across all posts</span>
+          </div>
+          <div class="metric-divider"></div>
+
+          <div class="metric-card">
+            <span class="metric-value">0</span>
+            <span class="metric-label">Total Likes</span>
+            <span class="metric-sub">Across all posts</span>
+          </div>
+          <div class="metric-divider"></div>
+
+          <div class="metric-card">
+            <span class="metric-value">0</span>
+            <span class="metric-label">Posts</span>
+            <span class="metric-sub">And counting</span>
+          </div>
+          <div class="metric-divider"></div>
+
+          <div class="metric-card">
+            <span class="metric-value">—</span>
+            <span class="metric-label">Best Post Reach</span>
+            <span class="metric-sub">Coming soon</span>
+          </div>
+          <div class="metric-divider"></div>
+
+          <div class="metric-card">
+            <span class="metric-value">—</span>
+            <span class="metric-label">Avg. Engagement</span>
+            <span class="metric-sub">Per post</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /view-home -->
+
+
+  <!-- ════════════════════════════════════════
+       FAVORITES TAB — best shots gallery
+       Add photos by copying a .masonry-item block
+       and changing src + alt.
+       ════════════════════════════════════════ -->
+  <div id="view-favorites" class="tab-view" style="display:none;">
+    <section class="section gallery-section">
+      <div class="container">
+        <div class="masonry-grid">
+
+          <div class="masonry-item">
+            <div class="gallery-img">
+              <img src="assets/vessel.JPG" alt="The Vessel, Hudson Yards" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+            </div>
+          </div>
+
+          <!-- ★ Add your favorites below — copy the block above, change src + alt -->
+          <div class="masonry-item">
+            <div class="gallery-img">
+              <img src="assets/fav2.jpg" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="gallery-img">
+              <img src="assets/fav3.jpg" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="gallery-img">
+              <img src="assets/fav4.jpg" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="gallery-img">
+              <img src="assets/fav5.jpg" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="gallery-img">
+              <img src="assets/fav6.jpg" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div><!-- /view-favorites -->
+
+
+  <!-- ════════════════════════════════════════
+       TRAVEL GUIDES TAB
+       Each card is a link to a Medium article.
+       ★ TO ADD A NEW DESTINATION: copy a card,
+         update the href, emoji, colors, and text.
+       ★ TO LINK TO MEDIUM: replace href="#" with
+         your full Medium article URL.
+       ════════════════════════════════════════ -->
+  <div id="view-guides" class="tab-view" style="display:none;">
+    <section class="section">
+      <div class="container">
+        <div class="guides-grid">
+
+          <!-- ── NEW YORK CITY ── -->
+          <a class="guide-card-v2" href="guide-nyc.html"
+             style="--gc-color:#002868; --gc-bg:#eef1f8; --gc-scene-a:#002868; --gc-scene-b:#B22234;">
+            <div class="gc2-top">
+              <span class="gc2-flag">🇺🇸</span>
+              <h3 class="gc2-city">New York City</h3>
+            </div>
+            <p class="gc2-region">United States</p>
+            <div class="gc2-badges">
+              <span class="gc2-status gc2-status--live">
+                <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+                Guide Live
+              </span>
+              <span class="gc2-date">Lived here</span>
+            </div>
+            <!-- Illustrated scene: NYC skyline suggestion -->
+            <div class="gc2-scene" style="background: linear-gradient(160deg, #c9d6f0 0%, #a8bbdf 50%, #7a9cc9 100%);">
+              <svg class="gc2-scene-svg" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+                <!-- Sky gradient overlay -->
+                <defs>
+                  <linearGradient id="sky-nyc" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#7a9cc9" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#c9d6f0" stop-opacity="0.1"/>
+                  </linearGradient>
+                </defs>
+                <rect width="280" height="120" fill="url(#sky-nyc)"/>
+                <!-- Buildings: varied heights -->
+                <rect x="0"   y="60" width="22" height="60" rx="1" fill="#002868" opacity="0.5"/>
+                <rect x="25"  y="30" width="18" height="90" rx="1" fill="#002868" opacity="0.6"/>
+                <rect x="46"  y="50" width="14" height="70" rx="1" fill="#002868" opacity="0.45"/>
+                <rect x="63"  y="20" width="20" height="100" rx="1" fill="#002868" opacity="0.65"/>
+                <rect x="86"  y="45" width="16" height="75" rx="1" fill="#002868" opacity="0.5"/>
+                <rect x="105" y="35" width="22" height="85" rx="1" fill="#002868" opacity="0.55"/>
+                <rect x="130" y="55" width="15" height="65" rx="1" fill="#002868" opacity="0.45"/>
+                <rect x="148" y="25" width="24" height="95" rx="1" fill="#002868" opacity="0.6"/>
+                <rect x="175" y="48" width="18" height="72" rx="1" fill="#002868" opacity="0.5"/>
+                <rect x="196" y="38" width="20" height="82" rx="1" fill="#002868" opacity="0.55"/>
+                <rect x="220" y="58" width="16" height="62" rx="1" fill="#002868" opacity="0.45"/>
+                <rect x="240" y="42" width="22" height="78" rx="1" fill="#002868" opacity="0.5"/>
+                <rect x="264" y="52" width="16" height="68" rx="1" fill="#002868" opacity="0.45"/>
+                <!-- Ground -->
+                <rect y="115" width="280" height="5" fill="#002868" opacity="0.3"/>
+                <!-- Stars -->
+                <circle cx="40"  cy="12" r="1.2" fill="#fff" opacity="0.7"/>
+                <circle cx="120" cy="8"  r="1"   fill="#fff" opacity="0.6"/>
+                <circle cx="200" cy="15" r="1.5" fill="#fff" opacity="0.8"/>
+                <circle cx="250" cy="6"  r="1"   fill="#fff" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="gc2-bottom">
+              <p class="gc2-tagline">The city I know best — neighborhoods, food, and the spots most guides miss.</p>
+              <span class="gc2-cta">Read on Medium →</span>
+            </div>
+          </a>
+
+          <!-- ── DALLAS, TX ── -->
+          <a class="guide-card-v2" href="guide-dallas.html"
+             style="--gc-color:#BF0A30; --gc-bg:#f7eef0; --gc-scene-a:#BF0A30; --gc-scene-b:#002868;">
+            <div class="gc2-top">
+              <span class="gc2-flag">🇺🇸</span>
+              <h3 class="gc2-city">Dallas, TX</h3>
+            </div>
+            <p class="gc2-region">United States</p>
+            <div class="gc2-badges">
+              <span class="gc2-status gc2-status--live">
+                <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+                Guide Live
+              </span>
+              <span class="gc2-date">Lived here</span>
+            </div>
+            <!-- Texas landscape: flat horizon, big sky -->
+            <div class="gc2-scene" style="background: linear-gradient(160deg, #f7c98a 0%, #e8a85a 40%, #d4784a 100%);">
+              <svg class="gc2-scene-svg" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="sky-dal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#d4784a" stop-opacity="0.5"/>
+                    <stop offset="100%" stop-color="#f7c98a" stop-opacity="0.1"/>
+                  </linearGradient>
+                </defs>
+                <rect width="280" height="120" fill="url(#sky-dal)"/>
+                <!-- Flat Dallas skyline -->
+                <rect x="60"  y="55" width="20" height="65" rx="1" fill="#BF0A30" opacity="0.55"/>
+                <rect x="83"  y="40" width="16" height="80" rx="1" fill="#BF0A30" opacity="0.6"/>
+                <rect x="102" y="62" width="24" height="58" rx="1" fill="#BF0A30" opacity="0.45"/>
+                <rect x="129" y="45" width="18" height="75" rx="1" fill="#BF0A30" opacity="0.55"/>
+                <rect x="150" y="58" width="22" height="62" rx="1" fill="#BF0A30" opacity="0.5"/>
+                <rect x="175" y="48" width="16" height="72" rx="1" fill="#BF0A30" opacity="0.5"/>
+                <rect x="194" y="65" width="20" height="55" rx="1" fill="#BF0A30" opacity="0.45"/>
+                <!-- Reunion Tower sphere -->
+                <circle cx="100" cy="38" r="8" fill="#BF0A30" opacity="0.5"/>
+                <rect x="97" y="38" width="6" height="24" fill="#BF0A30" opacity="0.5"/>
+                <!-- Ground / plains -->
+                <rect y="112" width="280" height="8" fill="#8B4513" opacity="0.3"/>
+                <!-- Sun -->
+                <circle cx="240" cy="28" r="18" fill="#FFD700" opacity="0.25"/>
+              </svg>
+            </div>
+            <div class="gc2-bottom">
+              <p class="gc2-tagline">Lived here long enough to find the good stuff — the real neighborhoods, not the tourist version.</p>
+              <span class="gc2-cta">Read on Medium →</span>
+            </div>
+          </a>
+
+          <!-- ── PORTUGAL ── -->
+          <a class="guide-card-v2" href="guide-portugal.html"
+             style="--gc-color:#006600; --gc-bg:#eef4ee; --gc-scene-a:#006600; --gc-scene-b:#C60B1E;">
+            <div class="gc2-top">
+              <span class="gc2-flag">🇵🇹</span>
+              <h3 class="gc2-city">Portugal</h3>
+            </div>
+            <p class="gc2-region">Europe</p>
+            <div class="gc2-badges">
+              <span class="gc2-status gc2-status--soon">
+                <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+                Coming Soon
+              </span>
+              <span class="gc2-date">May 2026</span>
+            </div>
+            <!-- Lisbon hills + ocean scene -->
+            <div class="gc2-scene" style="background: linear-gradient(160deg, #c8e6f5 0%, #a8cce8 40%, #7baed4 100%);">
+              <svg class="gc2-scene-svg" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="sky-pt" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#7baed4" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#c8e6f5" stop-opacity="0.1"/>
+                  </linearGradient>
+                </defs>
+                <rect width="280" height="120" fill="url(#sky-pt)"/>
+                <!-- Rolling hills -->
+                <ellipse cx="60"  cy="110" rx="80"  ry="40" fill="#006600" opacity="0.35"/>
+                <ellipse cx="180" cy="115" rx="100" ry="35" fill="#006600" opacity="0.3"/>
+                <ellipse cx="270" cy="110" rx="60"  ry="30" fill="#006600" opacity="0.25"/>
+                <!-- Terracotta buildings on hill -->
+                <rect x="40" y="72" width="14" height="22" rx="1" fill="#C60B1E" opacity="0.45"/>
+                <rect x="57" y="68" width="12" height="26" rx="1" fill="#C60B1E" opacity="0.5"/>
+                <rect x="72" y="75" width="10" height="19" rx="1" fill="#C60B1E" opacity="0.4"/>
+                <!-- Castle suggestion -->
+                <rect x="105" y="50" width="30" height="35" rx="1" fill="#C60B1E" opacity="0.35"/>
+                <rect x="103" y="46" width="8"  height="10" fill="#C60B1E" opacity="0.4"/>
+                <rect x="127" y="46" width="8"  height="10" fill="#C60B1E" opacity="0.4"/>
+                <!-- Ocean -->
+                <rect y="100" width="280" height="20" fill="#006080" opacity="0.25"/>
+                <!-- Sun -->
+                <circle cx="235" cy="22" r="14" fill="#FFD700" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="gc2-bottom">
+              <p class="gc2-tagline">Lisbon, Porto, and beyond — guide in progress after my trip this year.</p>
+              <span class="gc2-cta">Guide coming soon</span>
+            </div>
+          </a>
+
+          <!-- ── PERU ── -->
+          <a class="guide-card-v2" href="guide-peru.html"
+             style="--gc-color:#D91023; --gc-bg:#f7edef; --gc-scene-a:#D91023; --gc-scene-b:#4a7c3f;">
+            <div class="gc2-top">
+              <span class="gc2-flag">🇵🇪</span>
+              <h3 class="gc2-city">Peru</h3>
+            </div>
+            <p class="gc2-region">South America</p>
+            <div class="gc2-badges">
+              <span class="gc2-status gc2-status--planning">
+                <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+                Planning
+              </span>
+              <span class="gc2-date">September 2026</span>
+            </div>
+            <!-- Andes + Machu Picchu scene -->
+            <div class="gc2-scene" style="background: linear-gradient(160deg, #b8d4e8 0%, #8fb8d4 35%, #6a9abf 100%);">
+              <svg class="gc2-scene-svg" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="sky-pe" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#6a9abf" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#b8d4e8" stop-opacity="0.1"/>
+                  </linearGradient>
+                </defs>
+                <rect width="280" height="120" fill="url(#sky-pe)"/>
+                <!-- Mountain range -->
+                <polygon points="0,120 40,45 80,70 120,30 160,60 200,20 240,55 280,40 280,120" fill="#4a7c3f" opacity="0.45"/>
+                <polygon points="0,120 30,65 70,85 110,50 150,75 190,38 230,65 270,52 280,120" fill="#3d6635" opacity="0.35"/>
+                <!-- Snow caps -->
+                <polygon points="120,30 130,45 110,45" fill="#fff" opacity="0.6"/>
+                <polygon points="200,20 212,38 188,38" fill="#fff" opacity="0.6"/>
+                <!-- Terraces suggestion -->
+                <rect x="80"  y="88" width="40" height="6" rx="1" fill="#D91023" opacity="0.35"/>
+                <rect x="85"  y="96" width="35" height="6" rx="1" fill="#D91023" opacity="0.3"/>
+                <rect x="90"  y="104" width="30" height="6" rx="1" fill="#D91023" opacity="0.25"/>
+                <!-- Mist -->
+                <rect y="108" width="280" height="12" fill="#fff" opacity="0.15"/>
+              </svg>
+            </div>
+            <div class="gc2-bottom">
+              <p class="gc2-tagline">Machu Picchu, Cusco, and the Sacred Valley — guide planned for after the trip.</p>
+              <span class="gc2-cta">Guide coming soon</span>
+            </div>
+          </a>
+
+          <!-- ── NORWAY ── -->
+          <a class="guide-card-v2" href="guide-norway.html"
+             style="--gc-color:#EF2B2D; --gc-bg:#f7eeed; --gc-scene-a:#EF2B2D; --gc-scene-b:#002868;">
+            <div class="gc2-top">
+              <span class="gc2-flag">🇳🇴</span>
+              <h3 class="gc2-city">Norway</h3>
+            </div>
+            <p class="gc2-region">Scandinavia</p>
+            <div class="gc2-badges">
+              <span class="gc2-status gc2-status--planning">
+                <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+                Planning
+              </span>
+              <span class="gc2-date">February 2027</span>
+            </div>
+            <!-- Northern lights + fjord scene — matches reference image -->
+            <div class="gc2-scene" style="background: linear-gradient(180deg, #0d1b3e 0%, #1a3a5c 40%, #2d5a6e 70%, #3d7a7a 100%);">
+              <svg class="gc2-scene-svg" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="aurora1" x1="0.3" y1="0" x2="0.7" y2="1">
+                    <stop offset="0%" stop-color="#00e5a0" stop-opacity="0.7"/>
+                    <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.1"/>
+                  </linearGradient>
+                  <linearGradient id="aurora2" x1="0.6" y1="0" x2="0.4" y2="1">
+                    <stop offset="0%" stop-color="#00e5a0" stop-opacity="0.5"/>
+                    <stop offset="100%" stop-color="#7b2fff" stop-opacity="0.05"/>
+                  </linearGradient>
+                </defs>
+                <!-- Stars -->
+                <circle cx="20"  cy="10" r="1.2" fill="#fff" opacity="0.9"/>
+                <circle cx="55"  cy="6"  r="1"   fill="#fff" opacity="0.8"/>
+                <circle cx="95"  cy="14" r="1.5" fill="#fff" opacity="1"/>
+                <circle cx="140" cy="5"  r="1"   fill="#fff" opacity="0.7"/>
+                <circle cx="175" cy="12" r="1.2" fill="#fff" opacity="0.9"/>
+                <circle cx="220" cy="7"  r="1"   fill="#fff" opacity="0.8"/>
+                <circle cx="260" cy="15" r="1.5" fill="#fff" opacity="0.9"/>
+                <circle cx="38"  cy="22" r="0.8" fill="#fff" opacity="0.6"/>
+                <circle cx="200" cy="20" r="0.8" fill="#fff" opacity="0.6"/>
+                <!-- Aurora ribbons -->
+                <path d="M30,8 Q80,35 140,18 Q190,5 250,25" fill="none" stroke="url(#aurora1)" stroke-width="14" stroke-linecap="round" opacity="0.75"/>
+                <path d="M10,20 Q70,45 130,28 Q180,15 260,40" fill="none" stroke="url(#aurora2)" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+                <path d="M50,12 Q110,38 170,22 Q220,10 275,30" fill="none" stroke="#00e5a0" stroke-width="5" stroke-linecap="round" opacity="0.4"/>
+                <!-- Snow-capped mountains -->
+                <polygon points="0,120 35,62 70,88 110,50 150,78 195,42 240,70 280,55 280,120" fill="#1a2a4a" opacity="0.85"/>
+                <!-- Snow on peaks -->
+                <polygon points="35,62 46,74 24,74" fill="#dde8f5" opacity="0.7"/>
+                <polygon points="110,50 123,65 97,65" fill="#dde8f5" opacity="0.7"/>
+                <polygon points="195,42 208,58 182,58" fill="#dde8f5" opacity="0.7"/>
+                <!-- Fjord water reflection -->
+                <rect y="108" width="280" height="12" fill="#1a3a5c" opacity="0.6"/>
+                <path d="M0,110 Q70,106 140,110 Q210,114 280,110" fill="none" stroke="#00e5a0" stroke-width="1.5" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="gc2-bottom">
+              <p class="gc2-tagline">Fjords, northern lights, and winter hiking — on the planning board for early next year.</p>
+              <span class="gc2-cta">Guide coming soon</span>
+            </div>
+          </a>
+
+        </div><!-- /guides-grid -->
+      </div>
+    </section>
+  </div><!-- /view-guides -->
+
+  <!-- LIGHTBOX (used by Favorites gallery) -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <button class="lightbox-nav prev" id="lightboxPrev">‹</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    <button class="lightbox-nav next" id="lightboxNext">›</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Nick Celotto</p>
+      <p class="footer-copy">© 2026 · nickcelotto.com</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/nickcelotto" target="_blank">LinkedIn</a>
+        <a href="https://github.com/nickcelotto" target="_blank">GitHub</a>
+        <a href="https://www.instagram.com/celottovision" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
