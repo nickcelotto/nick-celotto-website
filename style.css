@@ -3753,3 +3753,136 @@ a { color: inherit; text-decoration: none; }
 .cost-dollar--empty {
   color: var(--ink-faint);
 }
+
+
+/* ============================================================
+   GUIDE CARDS — MINIMAL TEXT-ONLY DESIGN
+   No illustration, no left border, no background tint.
+   Just flag, city name, region, status, tagline, and CTA.
+   All cards share the same neutral look — clean and consistent.
+   ============================================================ */
+
+.guide-card-min {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--paper);
+  border: 1px solid var(--ink-faint);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.guide-card-min:hover {
+  border-color: var(--ink-light);
+  box-shadow: 0 4px 16px rgba(17,17,16,0.07);
+  transform: translateY(-2px);
+}
+
+/* Upcoming cards (coming soon / planning) — slightly muted */
+.guide-card-min--upcoming {
+  background: var(--paper-warm);
+  opacity: 0.82;
+}
+
+.guide-card-min--upcoming:hover {
+  opacity: 1;
+}
+
+/* Top row: flag emoji left, status badge right */
+.gcm-flag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.gcm-flag {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+/* Status badges */
+.gcm-status {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.6rem;
+  border-radius: 20px;
+  border: 1px solid transparent;
+}
+
+.gcm-status--live {
+  background: rgba(40,167,69,0.08);
+  color: #1d7a38;
+  border-color: rgba(40,167,69,0.2);
+}
+
+.gcm-status--soon {
+  background: var(--accent-faint);
+  color: var(--accent);
+  border-color: rgba(194,98,42,0.2);
+}
+
+.gcm-status--planning {
+  background: rgba(255,193,7,0.08);
+  color: #856404;
+  border-color: rgba(255,193,7,0.25);
+}
+
+/* City name — uses DM Sans medium, larger and grounded */
+.gcm-city {
+  font-family: var(--sans);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* Region + context line */
+.gcm-region {
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+
+/* Tagline */
+.gcm-tagline {
+  font-size: 0.83rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  flex: 1; /* pushes CTA to bottom */
+}
+
+/* CTA text — accent color for live, muted for upcoming */
+.gcm-cta {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin-top: 0.5rem;
+}
+
+.gcm-cta--muted {
+  color: var(--ink-light);
+  font-weight: 400;
+}
+
+
+/* Disabled guide cards — not yet clickable, cursor shows it */
+.guide-card-min--disabled {
+  cursor: not-allowed;
+  pointer-events: none; /* prevents all clicks */
+}
+
+/* On touch devices, also suppress the tap highlight */
+.guide-card-min--disabled:active {
+  transform: none;
+  box-shadow: none;
+}
