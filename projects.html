@@ -68,11 +68,11 @@
               <span class="project-tag secondary">Excel</span>
             </div>
             <h2 class="fp-title">NYC Rental Market<br/><em>Dashboard</em></h2>
-            <p class="fp-tagline">Analyzing NYC rental data to uncover pricing trends, neighborhood differences, and key drivers of housing costs.</p>
+            <p class="fp-tagline">Analyzing NYC rental market trends from 2015 to 2026 — uncovering the full impact of COVID-19 on long-term rent levels using Zillow data, PostgreSQL, and Tableau.</p>
             <!-- Links sit right in the hero, below the tagline -->
             <div class="fp-hero-links">
-              <a href="#" class="btn-outline" target="_blank">View on Tableau Public →</a>
-              <a href="#" class="btn-ghost" target="_blank">GitHub Repo</a>
+              <a href="https://public.tableau.com/app/profile/nicholas.celotto/viz/NYCRentMarketAnalysis/Dashboard" class="btn-outline" target="_blank">View on Tableau Public →</a>
+              <a href="https://github.com/nickcelotto/nyc-rent-analysis" class="btn-ghost" target="_blank">GitHub Repo</a>
             </div>
           </div>
 
@@ -80,16 +80,16 @@
           <div class="fp-hero-right">
             <div class="fp-stat-pair">
               <div class="fp-stat">
-                <span class="fp-stat-val">18%</span>
-                <span class="fp-stat-label">Regional underperformance uncovered</span>
+                <span class="fp-stat-val">+52.9%</span>
+                <span class="fp-stat-label">Total rent growth from 2015 to 2026</span>
               </div>
               <div class="fp-stat">
-                <span class="fp-stat-val">~0</span>
-                <span class="fp-stat-label">Hours to produce weekly report (was several)</span>
+                <span class="fp-stat-val">+16.5%</span>
+                <span class="fp-stat-label">Single-year jump in 2022 — largest on record</span>
               </div>
               <div class="fp-stat">
-                <span class="fp-stat-val">50k</span>
-                <span class="fp-stat-label">Rows of sales data analyzed</span>
+                <span class="fp-stat-val">+27.6%</span>
+                <span class="fp-stat-label">Post-COVID premium vs pre-COVID average</span>
               </div>
             </div>
           </div>
@@ -117,21 +117,12 @@
         <div class="fp-embed-wrap">
           <iframe
             class="fp-embed-iframe"
-            src=""
+            src="https://public.tableau.com/views/NYCRentMarketAnalysis/Dashboard?:showVizHome=no&:embed=true"
             frameborder="0"
             allowfullscreen
-            title="Sales Performance Dashboard — Tableau"
-            style="display:none;"
+            title="NYC Rental Market Analysis — Tableau"
+            style="display:block;"
           ></iframe>
-          <!-- Remove this placeholder once you add your Tableau URL above -->
-          <div class="fp-embed-placeholder" id="embedPlaceholder">
-            <div class="fp-embed-placeholder-inner">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              <p>Tableau dashboard embed goes here.</p>
-              <p class="fp-embed-placeholder-sub">See the comment above for setup instructions.<br/>One URL change and it's live.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -150,50 +141,47 @@
         <div class="fp-story-grid">
           <div class="fp-story-col">
             <h3 class="fp-story-heading">The Problem</h3>
-            <p class="fp-story-text">Sales leadership had access to raw CRM exports but no reliable way to track performance across regions, reps, and product categories in real time. Quarterly reviews relied on manually updated spreadsheets — slow to produce and prone to version conflicts.</p>
-            <p class="fp-story-text">The ask was simple: make the data trustworthy and accessible. The answer was a single dashboard that anyone on the team could open on Monday morning and immediately understand.</p>
+            <p class="fp-story-text">NYC rent data is publicly available but rarely analyzed in a way that tells a coherent story. The Zillow ZORI dataset comes as a wide-format CSV with 139 columns — one per month — making trends invisible without transformation. The goal was to clean, reshape, and analyze the data end-to-end to answer one question: what actually happened to NYC rents before, during, and after COVID?</p>
           </div>
           <div class="fp-story-col">
             <h3 class="fp-story-heading">The Approach</h3>
-            <p class="fp-story-text">I started in SQL — auditing raw data, cleaning duplicates, standardizing region labels, and writing the aggregation queries that would power the views. The data work came first because a beautiful dashboard built on dirty data is worse than no dashboard at all.</p>
-            <p class="fp-story-text">In Tableau, I designed around the questions leadership actually asked in stand-ups. Parameters let users toggle between monthly and quarterly views without needing separate sheets. Calculated fields handled rolling averages and YTD comparisons cleanly.</p>
+            <p class="fp-story-text">I used Python to unpivot the raw Zillow data from wide to long format and classify each month into one of three periods: Pre-COVID, COVID, and Post-COVID. I loaded the cleaned data into PostgreSQL and wrote five SQL queries using window functions — including LAG() for year-over-year change and a trailing 12-month rolling average using ROWS BETWEEN. The findings were then visualized in Tableau with four KPI cards and three charts.</p>
           </div>
           <div class="fp-story-col">
             <h3 class="fp-story-heading">What It Found</h3>
-            <p class="fp-story-text">The Northeast region underperformed its Q3 target by 18% — despite having the highest raw lead volume. That was the signal: not a pipeline problem, a conversion problem. That finding alone made the whole project worth building.</p>
-            <p class="fp-story-text">Two product categories drove 71% of revenue. The top 20% of reps closed 65% of deals. These patterns were always in the data — they just needed to be surfaced in a way people would actually look at.</p>
+            <p class="fp-story-text">The COVID rent dip was real but short-lived — rents fell 2.3% in 2020 and bottomed out in mid-2021. What followed was extraordinary: 2022 saw a 16.5% single-year jump, the largest in the dataset by a wide margin. By February 2026 the average NYC metro rent reached $3,258 — 52.9% above 2015 levels. The market stabilized at this new elevated level, with post-COVID rents averaging 27.6% above pre-COVID.</p>
           </div>
         </div>
 
         <!-- Centered italic pull quote -->
         <blockquote class="fp-pullquote">
-          "The data was always there. The dashboard just made it impossible to ignore."
+          "Rents didn't just spike after COVID — they stabilized at a permanently higher level. That's the real story."
         </blockquote>
 
         <!-- 2×2 key findings grid -->
         <div class="fp-findings-bar">
           <div class="fp-finding">
             <span class="fp-finding-arrow">↗</span>
-            <span class="fp-finding-text">Northeast: highest leads, worst conversion — a coaching problem, not a pipeline problem</span>
+            <span class="fp-finding-text">NYC rents rose 52.9% from 2015 to 2026 — from $2,153 to $3,258/month</span>
           </div>
           <div class="fp-finding">
             <span class="fp-finding-arrow">↗</span>
-            <span class="fp-finding-text">2 of 5 product lines drove 71% of total revenue</span>
+            <span class="fp-finding-text">2022 saw a +16.5% single-year jump — the largest in the dataset — as post-COVID demand surged back</span>
           </div>
           <div class="fp-finding">
             <span class="fp-finding-arrow">↗</span>
-            <span class="fp-finding-text">Top 20% of reps responsible for 65% of closed deals</span>
+            <span class="fp-finding-text">The COVID dip was temporary — rents fully recovered within 18 months and never looked back</span>
           </div>
           <div class="fp-finding">
             <span class="fp-finding-arrow">↗</span>
-            <span class="fp-finding-text">Weekly report time reduced from several hours to near-zero</span>
+            <span class="fp-finding-text">Post-COVID average rent is 27.6% higher than pre-COVID — a permanent structural shift in the market</span>
           </div>
         </div>
 
         <!-- Inline meta: tools / timeline / status -->
         <div class="fp-bottom-meta">
-          <span>Tableau · PostgreSQL · Excel</span>
-          <span>3 weeks</span>
+          <span>Tableau · PostgreSQL · Python · Excel</span>
+          <span>Zillow ZORI · 2015–2026</span>
           <span class="pf-status pf-status--live">Live</span>
         </div>
 
