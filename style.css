@@ -3184,7 +3184,7 @@ a { color: inherit; text-decoration: none; }
 
 .guide-page-photo-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.6rem;
 }
 
@@ -3199,14 +3199,34 @@ a { color: inherit; text-decoration: none; }
   background: var(--accent-faint);
   border: 1px solid var(--ink-faint);
   position: relative;
+  height: 400px; /* fixed row height on the container */
+}
+
+/* Wide grid — no fixed height, natural dimensions */
+.guide-page-photo-grid--wide .guide-page-photo {
+  height: 400px;
 }
 
 .guide-page-photo img {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
   transition: transform 0.4s;
+}
+
+/* Wide grid variant — show photos at natural dimensions */
+.guide-page-photo-grid--wide .guide-page-photo img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Tall first photo — same as others, just wider column */
+.guide-page-photo--tall img {
+  height: 100%;
+  object-fit: cover;
 }
 
 .guide-page-photo:hover img { transform: scale(1.03); }
