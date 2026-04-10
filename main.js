@@ -242,7 +242,7 @@ if (lightbox) {
 // ============================================================
 
 const revealEls = document.querySelectorAll(
-  '.skill-card, .project-card, .masonry-item, .project-full, .metric-card, .exp-item, .guide-card, .guide-card-v2'
+  '.skill-card, .project-card, .masonry-item, .project-full, .metric-card, .exp-item, .guide-card, .guide-card-v2, .guide-card-min'
 );
 
 if ('IntersectionObserver' in window && revealEls.length > 0) {
