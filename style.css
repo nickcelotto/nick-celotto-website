@@ -4315,3 +4315,146 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.75rem;
   color: var(--ink-mid);
 }
+
+
+/* ============================================================
+   TRAVEL PAGE — TIMELINE (Option 5)
+   ============================================================ */
+
+.travel-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 0.5rem;
+  border-left: 2px solid var(--ink-faint);
+  margin-left: 0.75rem;
+}
+
+.travel-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  position: relative;
+}
+
+.travel-timeline-item:last-child { padding-bottom: 0; }
+
+.ttl-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  border: 2px solid var(--paper-warm);
+  flex-shrink: 0;
+  margin-left: -6.5px;
+  margin-top: 4px;
+}
+
+.travel-timeline-item--done .ttl-dot {
+  background: var(--accent);
+}
+
+.ttl-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.ttl-flag {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.ttl-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+}
+
+.ttl-city {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.ttl-date {
+  font-size: 0.75rem;
+  color: var(--ink-light);
+}
+
+.ttl-badge {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.ttl-badge--live {
+  background: rgba(194,98,42,0.12);
+  color: var(--accent);
+  border: 1px solid rgba(194,98,42,0.25);
+}
+
+.ttl-badge--soon {
+  background: var(--ink-faint);
+  color: var(--ink-light);
+  border: 1px solid var(--ink-faint);
+}
+
+
+/* ============================================================
+   TRAVEL PAGE — DESTINATION CARDS STRIP (Option 6)
+   ============================================================ */
+
+.travel-dest-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.travel-dest-card {
+  border: 1px solid var(--ink-faint);
+  border-radius: 6px;
+  padding: 1rem;
+  background: var(--paper-warm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.tdc-flag {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.tdc-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.tdc-city {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.tdc-date {
+  font-size: 0.72rem;
+  color: var(--ink-light);
+}
+
+@media (max-width: 640px) {
+  .travel-dest-strip { grid-template-columns: repeat(2, 1fr); }
+  .travel-timeline { margin-left: 0.5rem; }
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Photography — Nick Celotto</title>
+  <title>Travel — Nick Celotto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -17,7 +17,7 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="photography.html" class="active">Photography</a></li>
+      <li><a href="travel.html" class="active">Travel</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -26,15 +26,15 @@
   <div class="nav-mobile-menu" id="mobileMenu">
     <a href="index.html">Home</a>
     <a href="projects.html">Projects</a>
-    <a href="photography.html">Photography</a>
+    <a href="travel.html">Travel</a>
   </div>
 
   <!-- PAGE HEADER -->
   <section class="page-header">
     <div class="container">
-      <p class="hero-eyebrow">Visual Work</p>
-      <h1 class="page-title">Photography</h1>
-      <p class="page-subtitle">Documenting the world with intention and writing up the places worth returning to.</p>
+      <p class="hero-eyebrow">Travel & Photography</p>
+      <h1 class="page-title">Travel</h1>
+      <p class="page-subtitle">Documenting the places I go, the photos I take, and the things worth remembering.</p>
     </div>
   </section>
 
@@ -44,8 +44,8 @@
        JS handles switching via data-view / id="view-{key}". -->
   <div class="filter-bar">
     <div class="container">
-      <button class="tab-btn active" data-view="home">Home</button>
-      <button class="tab-btn" data-view="favorites">Favorites</button>
+      <button class="tab-btn active" data-view="home">About</button>
+      <button class="tab-btn" data-view="favorites">Photos</button>
       <button class="tab-btn" data-view="guides">Travel Journal</button>
     </div>
   </div>
@@ -56,33 +56,86 @@
        ════════════════════════════════════════ -->
   <div id="view-home" class="tab-view">
 
+    <!-- Pull quote -->
     <section class="photo-opener">
       <div class="container">
         <blockquote class="photo-pullquote">
           <span class="photo-pullquote-mark">"</span>
-          Photography is how I slow down<br class="br-desktop"/> and pay attention.
+          Traveling is how I get out of my own head<br class="br-desktop"/> and into the world.
         </blockquote>
       </div>
     </section>
 
+    <!-- About + stats card -->
     <section class="photo-about">
       <div class="container">
         <div class="photo-about-grid">
 
           <div class="photo-about-main">
-            <p class="photo-about-text">The same discipline that makes a good photograph makes good analysis. Ask better questions before you start, and resist the urge to reach conclusions before you've really looked. I started shooting to develop that muscle deliberately, and it's changed how I approach data work too.</p>
-            <p class="photo-about-text">I shoot primarily on the streets of New York. My focus right now is light, geometry, and the unintentional compositions a city creates just by existing. I'm growing this practice publicly. Every post is a commitment to ship something, not just collect frames on a hard drive.</p>
+            <p class="photo-about-text">I started traveling solo in 2026 and haven't stopped planning since. There's something about navigating a new place on your own — figuring out transit, finding the good spots, getting genuinely lost — that changes how you think. I come back from every trip seeing things differently.</p>
+            <p class="photo-about-text">I document everything. Day by day itineraries, real costs, honest impressions. Not as a travel blogger, just because I like having the record and other people find it useful. Every journal entry here is a place I actually went, not somewhere I researched from a desk.</p>
           </div>
 
-          <!-- Instagram card — warm paper-warm background -->
+          <!-- Timeline on the right -->
           <div class="photo-about-aside">
-            <div class="photo-ig-card">
-              <div class="photo-ig-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <p style="font-family:var(--serif); font-size:1rem; color:var(--ink); margin-bottom:1rem;">2026 trips</p>
+            <div class="travel-timeline" style="margin-bottom:0;">
+
+              <div class="travel-timeline-item">
+                <div class="ttl-dot" style="background:var(--accent);"></div>
+                <div class="ttl-content">
+                  <span class="ttl-flag">🇵🇹</span>
+                  <div class="ttl-info">
+                    <span class="ttl-city">Portugal</span>
+                    <span class="ttl-date">May · 11 days</span>
+                  </div>
+                </div>
               </div>
-              <p class="photo-ig-handle">@celottovision</p>
-              <p class="photo-ig-desc">Follow along as the account grows. New work posted regularly.</p>
-              <a href="https://www.instagram.com/celottovision" class="photo-ig-btn" target="_blank">Follow on Instagram →</a>
+
+              <div class="travel-timeline-item">
+                <div class="ttl-dot"></div>
+                <div class="ttl-content">
+                  <span class="ttl-flag">🇺🇸</span>
+                  <div class="ttl-info">
+                    <span class="ttl-city">Newport</span>
+                    <span class="ttl-date">May · 3 days</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="travel-timeline-item">
+                <div class="ttl-dot"></div>
+                <div class="ttl-content">
+                  <span class="ttl-flag">🇨🇦</span>
+                  <div class="ttl-info">
+                    <span class="ttl-city">Montreal</span>
+                    <span class="ttl-date">Jul · 4 days</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="travel-timeline-item">
+                <div class="ttl-dot"></div>
+                <div class="ttl-content">
+                  <span class="ttl-flag">🇵🇪</span>
+                  <div class="ttl-info">
+                    <span class="ttl-city">Peru</span>
+                    <span class="ttl-date">Sep · 9 days</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="travel-timeline-item">
+                <div class="ttl-dot"></div>
+                <div class="ttl-content">
+                  <span class="ttl-flag">🏳️</span>
+                  <div class="ttl-info">
+                    <span class="ttl-city">TBD</span>
+                    <span class="ttl-date">Fall 2026 · 3 days</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -90,44 +143,6 @@
       </div>
     </section>
 
-    <!-- Metrics strip
-         ★ UPDATE: Change each <span class="metric-value"> to your real number.
-         Change <span class="metric-sub"> for the supporting note. -->
-    <section class="metrics-section">
-      <div class="container">
-        <p class="metrics-heading">By the numbers</p>
-        <div class="metrics-strip">
-
-          <div class="metric-card">
-            <span class="metric-value">28</span>
-            <span class="metric-label">Followers</span>
-            <span class="metric-sub">@celottovision</span>
-          </div>
-          <div class="metric-divider"></div>
-
-          <div class="metric-card">
-            <span class="metric-value">3</span>
-            <span class="metric-label">Posts</span>
-            <span class="metric-sub">And counting</span>
-          </div>
-          <div class="metric-divider"></div>
-
-          <div class="metric-card">
-            <span class="metric-value">2</span>
-            <span class="metric-label">Countries Reached</span>
-            <span class="metric-sub">Across all posts</span>
-          </div>
-          <div class="metric-divider"></div>
-
-          <div class="metric-card">
-            <span class="metric-value">17</span>
-            <span class="metric-label">Most Liked Post</span>
-            <span class="metric-sub">Personal best</span>
-          </div>
-
-        </div>
-      </div>
-    </section>
 
   </div><!-- /view-home -->
 
@@ -199,19 +214,6 @@
     <section class="section">
       <div class="container">
         <div class="guides-grid">
-
-          <!-- ── NEW YORK CITY ── -->
-          <a class="guide-card-min" href="guide-nyc.html">
-            <div class="gcm-flag-row">
-              <span class="gcm-flag">🇺🇸</span>
-              <span class="gcm-status gcm-status--live">Live</span>
-            </div>
-            <h3 class="gcm-city">New York City</h3>
-            <p class="gcm-region">United States · Home base</p>
-            <p class="gcm-tagline">The New York I’d show someone visiting for the first time.</p>
-            <span class="gcm-cta">Read the guide →</span>
-          </a>
-
           <!-- ── PORTUGAL ──
                ★ TO ACTIVATE: change <div> to <a href="guide-portugal.html">
                  and remove the guide-card-min--upcoming class -->
@@ -227,16 +229,16 @@
           </div>
 
                     <!-- ── BERMUDA ──
-               ★ TO ACTIVATE: change <div> to <a href="guide-bermuda.html">
+               ★ TO ACTIVATE: change <div> to <a href="guide-newport.html">
                  and remove the guide-card-min--upcoming class -->
           <div class="guide-card-min guide-card-min--upcoming guide-card-min--disabled">
             <div class="gcm-flag-row">
-              <span class="gcm-flag">🇧🇲</span>
+              <span class="gcm-flag">🇺🇸</span>
               <span class="gcm-status gcm-status--soon">Upcoming</span>
             </div>
-            <h3 class="gcm-city">Bermuda</h3>
-            <p class="gcm-region">Atlantic · May 2026</p>
-            <p class="gcm-tagline">Pink sand beaches and pastel buildings — a long weekend with family.</p>
+            <h3 class="gcm-city">Newport</h3>
+            <p class="gcm-region">Rhode Island · May 2026</p>
+            <p class="gcm-tagline">Gilded Age mansions, The Cliff Walk, and the best seafood on the East Coast — a long weekend with family.</p>
             <span class="gcm-cta gcm-cta--muted">Guide coming soon</span>
           </div>
 
@@ -266,6 +268,21 @@
             <p class="gcm-region">South America · September 2026</p>
             <p class="gcm-tagline">Machu Picchu, Cusco, and the Sacred Valley — guide coming after the trip.</p>
             <span class="gcm-cta gcm-cta--muted">Guide coming soon</span>
+          </div>
+
+
+          <!-- ── FALL WEEKEND ──
+               ★ TO ACTIVATE: update city/region/tagline and change <div> to <a href="guide-X.html">
+                 once the destination is decided -->
+          <div class="guide-card-min guide-card-min--upcoming guide-card-min--disabled">
+            <div class="gcm-flag-row">
+              <span class="gcm-flag">🏳️</span>
+              <span class="gcm-status gcm-status--planning">Planning</span>
+            </div>
+            <h3 class="gcm-city">TBD</h3>
+            <p class="gcm-region">TBD · Fall 2026</p>
+            <p class="gcm-tagline">Somewhere for a long weekend in the fall — destination still being decided.</p>
+            <span class="gcm-cta gcm-cta--muted">In planning</span>
           </div>
 
         </div><!-- /guides-grid -->
