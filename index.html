@@ -17,7 +17,7 @@
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="travel.html">Travel</a></li>
+      <!-- ★ UNCOMMENT TO RESTORE TRAVEL: <li><a href="travel.html">Travel</a></li> -->
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -26,7 +26,7 @@
   <div class="nav-mobile-menu" id="mobileMenu">
     <a href="index.html">Home</a>
     <a href="projects.html">Projects</a>
-    <a href="travel.html">Travel</a>
+    <!-- ★ UNCOMMENT TO RESTORE TRAVEL: <a href="travel.html">Travel</a> -->
   </div>
 
   <!-- HERO -->
@@ -263,49 +263,6 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- PHOTOGRAPHY TEASER — horizontal scroll filmstrip
-       9:16 aspect ratio (Instagram story format), uniform across all frames.
-       ★ HOW TO UPDATE: add or remove .film-frame divs.
-         Change src= to your own photos. Add as many as you like —
-         the strip scrolls horizontally to fit them all. -->
-  <section class="section photo-teaser-section">
-    <div class="container two-col">
-      <div class="col-label">
-        <span class="label-tag">Travel</span>
-      </div>
-      <div class="col-content">
-        <h2 class="section-heading">Places<br/><em>I've been.</em></h2>
-
-        <!-- Filmstrip — scrolls horizontally, each frame is 9:16 -->
-        <div class="filmstrip" role="list">
-          <div class="film-frame" role="listitem">
-            <img src="assets/vessel.JPG" alt="The Vessel, NYC"
-                 onerror="this.parentElement.classList.add('film-placeholder')" />
-          </div>
-          <div class="film-frame" role="listitem">
-            <img src="assets/Building.png" alt=""
-                 onerror="this.parentElement.classList.add('film-placeholder')" />
-          </div>
-          <div class="film-frame" role="listitem">
-            <img src="assets/Cherry Blossom.jpg" alt=""
-                 onerror="this.parentElement.classList.add('film-placeholder')" />
-          </div>
-          <div class="film-frame" role="listitem">
-            <img src="assets/manhattanbridge.jpg" alt=""
-                 onerror="this.parentElement.classList.add('film-placeholder')" />
-          </div>
-          <div class="film-frame" role="listitem">
-            <img src="assets/car.png" alt=""
-                 onerror="this.parentElement.classList.add('film-placeholder')" />
-          </div>
-        </div>
-
-        <a href="travel.html?tab=guides" class="cta-link" style="margin-top: 1.5rem; display: inline-block;">See the travel journal →</a>
-      </div>
-    </div>
-  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
