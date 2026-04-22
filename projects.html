@@ -17,7 +17,7 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
-      <li><a href="travel.html">Travel</a></li>
+      <li><a href="photography.html">Photography</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -26,7 +26,7 @@
   <div class="nav-mobile-menu" id="mobileMenu">
     <a href="index.html">Home</a>
     <a href="projects.html">Projects</a>
-    <a href="travel.html">Travel</a>
+    <a href="photography.html">Photography</a>
   </div>
 
   <!-- ── PAGE HEADER ── -->
@@ -200,54 +200,53 @@
     <section class="section">
       <div class="container projects-list">
 
-        <!-- PROJECT 2: Customer Churn -->
+        <!-- PROJECT 2: Global Travel Analysis -->
         <article class="project-full" id="project2">
           <div class="pf-topbar">
             <div class="pf-title-group">
               <div class="pf-tags">
                 <span class="project-tag">Python</span>
-                <span class="project-tag secondary">pandas</span>
-                <span class="project-tag secondary">Seaborn</span>
+                <span class="project-tag secondary">SQL</span>
+                <span class="project-tag secondary">Excel</span>
               </div>
-              <h2 class="pf-title">Sales Performance Analysis</h2>
+              <h2 class="pf-title">Global Travel Analysis Dashboard</h2>
             </div>
             <div class="pf-links">
-              <a href="#" class="btn-outline" target="_blank">View Notebook →</a>
-              <a href="#" class="btn-ghost" target="_blank">GitHub</a>
+              <a href="https://github.com/nickcelotto/global-travel-analysis" class="btn-outline" target="_blank">View on GitHub →</a>
             </div>
           </div>
           <div class="pf-image">
-            <img src="assets/project2.jpg" alt="Customer Churn Analysis" onerror="this.parentElement.classList.add('img-placeholder-lg')" />
+            <img src="assets/travel-analysis-dashboard.png" alt="Global Travel Analysis Dashboard" onerror="this.parentElement.classList.add('img-placeholder-lg')" />
           </div>
           <div class="pf-body">
             <div class="pf-narrative">
               <div class="pf-block">
                 <h3 class="pf-block-label">The Problem</h3>
-                <p class="pf-text">Customer churn is one of the most expensive problems in subscription businesses — it's far cheaper to retain a customer than acquire a new one. This project used IBM's public Telco dataset to identify which customer characteristics and behaviors most strongly predict churn, surfacing actionable segments for a retention team to target.</p>
+                <p class="pf-text">Travel is one of the largest discretionary expenses people make, yet most travelers have little insight into where their money actually goes or how their spending compares across destinations and trip types. This project analyzes 65 trips across 6 continents to uncover patterns in travel costs, budget accuracy, and satisfaction — asking the question: what actually makes a trip worth the money?</p>
               </div>
               <div class="pf-block">
                 <h3 class="pf-block-label">Approach</h3>
-                <p class="pf-text">Exploratory data analysis in pandas across customer attributes — after cleaning (nulls, categorical encoding, TotalCharges dtype fix), I used Matplotlib and Seaborn to visualize churn rates across contract type, tenure, payment method, and service bundle. The goal was a communicable story, not a black-box model.</p>
+                <p class="pf-text">Built the dataset from scratch using Python with realistic cost structures by region, traveler type, and season. Cleaned and validated the data in pandas, then loaded it into PostgreSQL for deeper querying. Built an interactive Excel dashboard with pivot tables, a dynamic slicer, and 5 KPI cards that update when filtering by traveler type.</p>
               </div>
               <div class="pf-block">
                 <h3 class="pf-block-label">Key Findings</h3>
                 <ul class="pf-findings">
-                  <li>Month-to-month customers churned at 3× the rate of annual subscribers — by far the strongest predictor.</li>
-                  <li>Churn dropped sharply after 12 months of tenure; early-stage customers are the highest-priority retention target.</li>
-                  <li>Electronic check payers churned at nearly 2× the rate of auto-pay customers.</li>
-                  <li>Service bundles reduced churn; premium add-ons without a contract did not.</li>
+                  <li>Oceania is the most expensive continent at $809/day — nearly 3× the cost of Asia ($305/day), the most affordable.</li>
+                  <li>95% of trips came in under budget — travelers consistently overestimate what they'll spend.</li>
+                  <li>Higher spend does not guarantee higher satisfaction — correlation between total cost and satisfaction score is only 0.26.</li>
+                  <li>Accommodation and flights consume 58% of every trip on average; food accounts for 21%.</li>
+                  <li>Spring is the most expensive season to travel — winter offers 22% better value.</li>
                 </ul>
               </div>
               <div class="pf-block">
                 <h3 class="pf-block-label">Impact</h3>
-                <p class="pf-text">Clear prioritization framework: focus retention on month-to-month customers in year one paying by electronic check — 22% of the base, disproportionate share of churn.</p>
+                <p class="pf-text">A reusable analytical framework for evaluating travel value — showing that budget travelers in Asia achieve satisfaction scores nearly as high as luxury travelers at a fraction of the cost, and that the season of travel has a larger effect on price than the destination type.</p>
               </div>
             </div>
             <div class="pf-meta">
-              <div class="pf-meta-block"><span class="pf-meta-label">Tools</span><span class="pf-meta-val">Python, pandas, Matplotlib, Seaborn, Jupyter</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Dataset</span><span class="pf-meta-val">IBM Telco Customer Churn (~7k rows)</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Techniques</span><span class="pf-meta-val">EDA, churn segmentation, cohort comparison</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Timeline</span><span class="pf-meta-val">2 weeks</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Tools</span><span class="pf-meta-val">Python, pandas, PostgreSQL, Excel</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Dataset</span><span class="pf-meta-val">Generated — 65 trips, 27 fields, 6 traveler types</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Techniques</span><span class="pf-meta-val">Data generation, EDA, SQL aggregations, pivot tables, dynamic dashboard</span></div>
               <div class="pf-meta-block"><span class="pf-meta-label">Status</span><span class="pf-meta-val pf-status pf-status--complete">Complete</span></div>
             </div>
           </div>
