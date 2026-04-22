@@ -123,6 +123,7 @@
             title="NYC Rental Market Analysis — Tableau"
             style="display:block;"
           ></iframe>
+        </div>
       </div>
     </div>
 
@@ -252,107 +253,7 @@
           </div>
         </article>
 
-        <div class="project-separator"></div>
 
-        <!-- PROJECT 3: E-Commerce SQL -->
-        <article class="project-full" id="project3">
-          <div class="pf-topbar">
-            <div class="pf-title-group">
-              <div class="pf-tags">
-                <span class="project-tag">SQL</span>
-                <span class="project-tag secondary">PostgreSQL</span>
-              </div>
-              <h2 class="pf-title">Personal Finance Spending Analysis</h2>
-            </div>
-            <div class="pf-links">
-              <a href="#" class="btn-outline" target="_blank">View on GitHub →</a>
-            </div>
-          </div>
-          <div class="pf-image">
-            <img src="assets/project3.jpg" alt="E-Commerce SQL Analysis" onerror="this.parentElement.classList.add('img-placeholder-lg')" />
-          </div>
-          <div class="pf-body">
-            <div class="pf-narrative">
-              <div class="pf-block">
-                <h3 class="pf-block-label">The Problem</h3>
-                <p class="pf-text">E-commerce businesses generate enormous transactional data but often lack the query infrastructure to answer strategic questions: who are the most valuable customers, are they being retained, and which products belong together? This project built that analytical layer from scratch.</p>
-              </div>
-              <div class="pf-block">
-                <h3 class="pf-block-label">Approach</h3>
-                <p class="pf-text">Three analysis areas in PostgreSQL: CLV segmentation, cohort-based retention, and product affinity. Every query is documented with a plain-English explanation. No ORMs, no Python wrappers — demonstrating that complex business questions can be answered cleanly in SQL alone.</p>
-              </div>
-              <div class="pf-block">
-                <h3 class="pf-block-label">Key Findings</h3>
-                <ul class="pf-findings">
-                  <li>Top 20% of customers drove 68% of revenue — stronger Pareto than typical benchmarks.</li>
-                  <li>Month-1 retention 38%; stabilized at ~22% by month 3, minimal drop-off beyond.</li>
-                  <li>Highest product affinity pair: 4.2× lift above random — strong bundling candidate.</li>
-                  <li>Promotion-acquired customers had lower CLV despite higher initial order values.</li>
-                </ul>
-              </div>
-              <div class="pf-block">
-                <h3 class="pf-block-label">Impact</h3>
-                <p class="pf-text">Reusable query library — drop in any transactional dataset and the CLV and cohort analyses run with minimal modification.</p>
-              </div>
-            </div>
-            <div class="pf-meta">
-              <div class="pf-meta-block"><span class="pf-meta-label">Tools</span><span class="pf-meta-val">PostgreSQL, DBeaver</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Dataset</span><span class="pf-meta-val">Synthetic e-commerce schema</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Techniques</span><span class="pf-meta-val">CTEs, window functions, cohort analysis, market basket / lift</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Timeline</span><span class="pf-meta-val">2 weeks</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Status</span><span class="pf-meta-val pf-status pf-status--complete">Complete</span></div>
-            </div>
-          </div>
-        </article>
-
-        <div class="project-separator"></div>
-
-        <!-- PROJECT 4: Budget Tracker -->
-        <article class="project-full" id="project4">
-          <div class="pf-topbar">
-            <div class="pf-title-group">
-              <div class="pf-tags">
-                <span class="project-tag">Excel</span>
-                <span class="project-tag secondary">Power Query</span>
-              </div>
-              <h2 class="pf-title">Budget vs. Actuals Tracker</h2>
-            </div>
-            <div class="pf-links">
-              <a href="#" class="btn-outline" target="_blank">Download File →</a>
-            </div>
-          </div>
-          <div class="pf-image img-placeholder-lg"></div>
-          <div class="pf-body">
-            <div class="pf-narrative">
-              <div class="pf-block">
-                <h3 class="pf-block-label">The Problem</h3>
-                <p class="pf-text">Finance teams in mid-size organizations often track budget vs. actuals in fragmented, manually updated spreadsheets that are slow to reconcile and easy to break. This project built a clean, dynamic Excel model that automates variance calculations and surfaces issues at a glance.</p>
-              </div>
-              <div class="pf-block">
-                <h3 class="pf-block-label">Approach</h3>
-                <p class="pf-text">Strict separation of data input, calculation, and presentation layers. Power Query for ingestion; structured tables with named ranges feed a variance calculation sheet; conditional formatting flags over-budget items automatically in the dashboard layer.</p>
-              </div>
-              <div class="pf-block">
-                <h3 class="pf-block-label">Key Features</h3>
-                <ul class="pf-findings">
-                  <li>Automated variance flags — no manual highlighting.</li>
-                  <li>Dynamic pivot summary with department and period slicers.</li>
-                  <li>Rolling year-end forecast from actuals entered to date.</li>
-                </ul>
-              </div>
-              <div class="pf-block">
-                <h3 class="pf-block-label">Impact</h3>
-                <p class="pf-text">Demonstrates that well-structured Excel is still a powerful analytical tool in environments where BI platforms aren't available — and that the model is maintainable by anyone, not just its original builder.</p>
-              </div>
-            </div>
-            <div class="pf-meta">
-              <div class="pf-meta-block"><span class="pf-meta-label">Tools</span><span class="pf-meta-val">Excel, Power Query, Pivot Tables</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Techniques</span><span class="pf-meta-val">Named ranges, dynamic arrays, conditional formatting, rolling forecasts</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Timeline</span><span class="pf-meta-val">1 week</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Status</span><span class="pf-meta-val pf-status pf-status--complete">Complete</span></div>
-            </div>
-          </div>
-        </article>
 
       </div>
     </section>
