@@ -4458,3 +4458,113 @@ a { color: inherit; text-decoration: none; }
   .travel-dest-strip { grid-template-columns: repeat(2, 1fr); }
   .travel-timeline { margin-left: 0.5rem; }
 }
+
+
+/* ── CONTACT SECTION ────────────────────────────────────── */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.contact-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+  transition: color 0.2s;
+  gap: 1rem;
+}
+
+.contact-link:hover { color: var(--accent); }
+
+.contact-link-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  min-width: 80px;
+}
+
+.contact-link-val {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+
+.contact-link:hover .contact-link-val { color: var(--accent); }
+
+
+/* ── EDUCATION CARD ─────────────────────────────────────── */
+.edu-card {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--ink-faint);
+  border-left: 3px solid var(--accent);
+  background: var(--paper-warm);
+}
+
+.edu-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.edu-main {
+  flex: 1;
+}
+
+.edu-school {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.edu-degree {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  line-height: 1.5;
+  margin-bottom: 0.2rem;
+}
+
+.edu-cert {
+  font-size: 0.75rem;
+  color: var(--ink-mid);
+  letter-spacing: 0.04em;
+}
+
+.edu-year {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.edu-year-val {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.edu-year-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 560px) {
+  .edu-card { flex-wrap: wrap; gap: 1rem; }
+  .edu-year { align-items: flex-start; }
+}
