@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — Nick Celotto</title>
+  <title>Projects - Nick Celotto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -17,7 +17,7 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
-      <!-- ★ UNCOMMENT TO RESTORE TRAVEL: <li><a href="travel.html">Travel</a></li> -->
+      <li><a href="travel.html">Travel</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -26,7 +26,7 @@
   <div class="nav-mobile-menu" id="mobileMenu">
     <a href="index.html">Home</a>
     <a href="projects.html">Projects</a>
-    <!-- ★ UNCOMMENT TO RESTORE TRAVEL: <a href="travel.html">Travel</a> -->
+    <a href="travel.html">Travel</a>
   </div>
 
   <!-- ── PAGE HEADER ── -->
@@ -34,7 +34,7 @@
     <div class="container">
       <p class="hero-eyebrow">Data Analytics</p>
       <h1 class="page-title">Projects</h1>
-      <p class="page-subtitle">End-to-end analytical work — the problem, the process, and what it produced.</p>
+      <p class="page-subtitle">End-to-end analytical work - the problem, the process, and what it produced.</p>
     </div>
   </section>
 
@@ -51,7 +51,7 @@
 
 
   <!-- ════════════════════════════════════════════════════
-       FEATURED PROJECT — editorial / magazine layout
+       FEATURED PROJECT - editorial / magazine layout
        ════════════════════════════════════════════════════ -->
   <div id="view-featured" class="tab-view">
 
@@ -68,7 +68,7 @@
               <span class="project-tag secondary">Excel</span>
             </div>
             <h2 class="fp-title">NYC Rental Market<br/><em>Dashboard</em></h2>
-            <p class="fp-tagline">Analyzing NYC rental market trends from 2015 to 2026 — uncovering the full impact of COVID-19 on long-term rent levels using Zillow data, PostgreSQL, and Tableau.</p>
+            <p class="fp-tagline">Analyzing NYC rental market trends from 2015 to 2026 - uncovering the full impact of COVID-19 on long-term rent levels using Zillow data, PostgreSQL, and Tableau.</p>
             <!-- Links sit right in the hero, below the tagline -->
             <div class="fp-hero-links">
               <a href="https://public.tableau.com/app/profile/nicholas.celotto/viz/NYCRentMarketAnalysis/Dashboard" class="btn-outline" target="_blank">View on Tableau Public →</a>
@@ -85,7 +85,7 @@
               </div>
               <div class="fp-stat">
                 <span class="fp-stat-val">+16.5%</span>
-                <span class="fp-stat-label">Single-year jump in 2022 — largest on record</span>
+                <span class="fp-stat-label">Single-year jump in 2022 - largest on record</span>
               </div>
               <div class="fp-stat">
                 <span class="fp-stat-val">+27.6%</span>
@@ -102,7 +102,7 @@
          ★ TO ADD YOUR DASHBOARD:
          1. Publish to Tableau Public (public.tableau.com)
          2. Click Share → Embed Code on your published viz
-         3. Copy the URL from the iframe src — looks like:
+         3. Copy the URL from the iframe src - looks like:
             https://public.tableau.com/views/WorkbookName/SheetName
          4. Paste it into the src below, appending:
             ?:showVizHome=no&:embed=true
@@ -112,7 +112,7 @@
       <div class="container">
         <div class="fp-embed-label">
           <span class="fp-embed-eyebrow">Live Dashboard</span>
-          <span class="fp-embed-note">Interactive — hover, filter, and explore directly below</span>
+          <span class="fp-embed-note">Interactive - hover, filter, and explore directly below</span>
         </div>
         <div class="fp-embed-wrap">
           <iframe
@@ -120,14 +120,14 @@
             src="https://public.tableau.com/views/NYCRentMarketAnalysis/Dashboard?:showVizHome=no&:embed=true"
             frameborder="0"
             allowfullscreen
-            title="NYC Rental Market Analysis — Tableau"
+            title="NYC Rental Market Analysis - Tableau"
             style="display:block;"
           ></iframe>
         </div>
       </div>
     </div>
 
-    <!-- NARRATIVE — chapter label, three columns, pull quote, findings, links -->
+    <!-- NARRATIVE - chapter label, three columns, pull quote, findings, links -->
     <div class="fp-narrative-section">
       <div class="container">
 
@@ -142,40 +142,40 @@
         <div class="fp-story-grid">
           <div class="fp-story-col">
             <h3 class="fp-story-heading">The Problem</h3>
-            <p class="fp-story-text">NYC rent data is publicly available but rarely analyzed in a way that tells a coherent story. The Zillow ZORI dataset comes as a wide-format CSV with 139 columns — one per month — making trends invisible without transformation. The goal was to clean, reshape, and analyze the data end-to-end to answer one question: what actually happened to NYC rents before, during, and after COVID?</p>
+            <p class="fp-story-text">NYC rent data is publicly available but rarely analyzed in a way that tells a coherent story. The Zillow ZORI dataset comes as a wide-format CSV with 139 columns - one per month - making trends invisible without transformation. The goal was to clean, reshape, and analyze the data end-to-end to answer one question: what actually happened to NYC rents before, during, and after COVID?</p>
           </div>
           <div class="fp-story-col">
             <h3 class="fp-story-heading">The Approach</h3>
-            <p class="fp-story-text">I used Python to unpivot the raw Zillow data from wide to long format and classify each month into one of three periods: Pre-COVID, COVID, and Post-COVID. I loaded the cleaned data into PostgreSQL and wrote five SQL queries using window functions — including LAG() for year-over-year change and a trailing 12-month rolling average using ROWS BETWEEN. The findings were then visualized in Tableau with four KPI cards and three charts.</p>
+            <p class="fp-story-text">I used Python to unpivot the raw Zillow data from wide to long format and classify each month into one of three periods: Pre-COVID, COVID, and Post-COVID. I loaded the cleaned data into PostgreSQL and wrote five SQL queries using window functions - including LAG() for year-over-year change and a trailing 12-month rolling average using ROWS BETWEEN. The findings were then visualized in Tableau with four KPI cards and three charts.</p>
           </div>
           <div class="fp-story-col">
             <h3 class="fp-story-heading">What It Found</h3>
-            <p class="fp-story-text">The COVID rent dip was real but short-lived — rents fell 2.3% in 2020 and bottomed out in mid-2021. What followed was extraordinary: 2022 saw a 16.5% single-year jump, the largest in the dataset by a wide margin. By February 2026 the average NYC metro rent reached $3,258 — 52.9% above 2015 levels. The market stabilized at this new elevated level, with post-COVID rents averaging 27.6% above pre-COVID.</p>
+            <p class="fp-story-text">The COVID rent dip was real but short-lived - rents fell 2.3% in 2020 and bottomed out in mid-2021. What followed was extraordinary: 2022 saw a 16.5% single-year jump, the largest in the dataset by a wide margin. By February 2026 the average NYC metro rent reached $3,258 - 52.9% above 2015 levels. The market stabilized at this new elevated level, with post-COVID rents averaging 27.6% above pre-COVID.</p>
           </div>
         </div>
 
         <!-- Centered italic pull quote -->
         <blockquote class="fp-pullquote">
-          "Rents didn't just spike after COVID — they stabilized at a permanently higher level. That's the real story."
+          "Rents didn't just spike after COVID - they stabilized at a permanently higher level. That's the real story."
         </blockquote>
 
         <!-- 2×2 key findings grid -->
         <div class="fp-findings-bar">
           <div class="fp-finding">
             <span class="fp-finding-arrow">↗</span>
-            <span class="fp-finding-text">NYC rents rose 52.9% from 2015 to 2026 — from $2,153 to $3,258/month</span>
+            <span class="fp-finding-text">NYC rents rose 52.9% from 2015 to 2026 - from $2,153 to $3,258/month</span>
           </div>
           <div class="fp-finding">
             <span class="fp-finding-arrow">↗</span>
-            <span class="fp-finding-text">2022 saw a +16.5% single-year jump — the largest in the dataset — as post-COVID demand surged back</span>
+            <span class="fp-finding-text">2022 saw a +16.5% single-year jump - the largest in the dataset - as post-COVID demand surged back</span>
           </div>
           <div class="fp-finding">
             <span class="fp-finding-arrow">↗</span>
-            <span class="fp-finding-text">The COVID dip was temporary — rents fully recovered within 18 months and never looked back</span>
+            <span class="fp-finding-text">The COVID dip was temporary - rents fully recovered within 18 months and never looked back</span>
           </div>
           <div class="fp-finding">
             <span class="fp-finding-arrow">↗</span>
-            <span class="fp-finding-text">Post-COVID average rent is 27.6% higher than pre-COVID — a permanent structural shift in the market</span>
+            <span class="fp-finding-text">Post-COVID average rent is 27.6% higher than pre-COVID - a permanent structural shift in the market</span>
           </div>
         </div>
 
@@ -223,7 +223,7 @@
             <div class="pf-narrative">
               <div class="pf-block">
                 <h3 class="pf-block-label">The Problem</h3>
-                <p class="pf-text">Travel is one of the largest discretionary expenses people make, yet most travelers have little insight into where their money actually goes or how their spending compares across destinations and trip types. This project analyzes 65 trips across 6 continents to uncover patterns in travel costs, budget accuracy, and satisfaction — asking the question: what actually makes a trip worth the money?</p>
+                <p class="pf-text">Travel is one of the largest discretionary expenses people make, yet most travelers have little insight into where their money actually goes or how their spending compares across destinations and trip types. This project analyzes 65 trips across 6 continents to uncover patterns in travel costs, budget accuracy, and satisfaction - asking the question: what actually makes a trip worth the money?</p>
               </div>
               <div class="pf-block">
                 <h3 class="pf-block-label">Approach</h3>
@@ -232,21 +232,21 @@
               <div class="pf-block">
                 <h3 class="pf-block-label">Key Findings</h3>
                 <ul class="pf-findings">
-                  <li>Oceania is the most expensive continent at $809/day — nearly 3× the cost of Asia ($305/day), the most affordable.</li>
-                  <li>95% of trips came in under budget — travelers consistently overestimate what they'll spend.</li>
-                  <li>Higher spend does not guarantee higher satisfaction — correlation between total cost and satisfaction score is only 0.26.</li>
+                  <li>Oceania is the most expensive continent at $809/day - nearly 3× the cost of Asia ($305/day), the most affordable.</li>
+                  <li>95% of trips came in under budget - travelers consistently overestimate what they'll spend.</li>
+                  <li>Higher spend does not guarantee higher satisfaction - correlation between total cost and satisfaction score is only 0.26.</li>
                   <li>Accommodation and flights consume 58% of every trip on average; food accounts for 21%.</li>
-                  <li>Spring is the most expensive season to travel — winter offers 22% better value.</li>
+                  <li>Spring is the most expensive season to travel - winter offers 22% better value.</li>
                 </ul>
               </div>
               <div class="pf-block">
                 <h3 class="pf-block-label">Impact</h3>
-                <p class="pf-text">A reusable analytical framework for evaluating travel value — showing that budget travelers in Asia achieve satisfaction scores nearly as high as luxury travelers at a fraction of the cost, and that the season of travel has a larger effect on price than the destination type.</p>
+                <p class="pf-text">A reusable analytical framework for evaluating travel value - showing that budget travelers in Asia achieve satisfaction scores nearly as high as luxury travelers at a fraction of the cost, and that the season of travel has a larger effect on price than the destination type.</p>
               </div>
             </div>
             <div class="pf-meta">
               <div class="pf-meta-block"><span class="pf-meta-label">Tools</span><span class="pf-meta-val">Python, pandas, PostgreSQL, Excel</span></div>
-              <div class="pf-meta-block"><span class="pf-meta-label">Dataset</span><span class="pf-meta-val">Generated — 65 trips, 27 fields, 6 traveler types</span></div>
+              <div class="pf-meta-block"><span class="pf-meta-label">Dataset</span><span class="pf-meta-val">Generated - 65 trips, 27 fields, 6 traveler types</span></div>
               <div class="pf-meta-block"><span class="pf-meta-label">Techniques</span><span class="pf-meta-val">Data generation, EDA, SQL aggregations, pivot tables, dynamic dashboard</span></div>
               <div class="pf-meta-block"><span class="pf-meta-label">Status</span><span class="pf-meta-val pf-status pf-status--complete">Complete</span></div>
             </div>

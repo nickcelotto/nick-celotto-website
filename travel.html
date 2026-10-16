@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Travel — Nick Celotto</title>
+  <title>Travel - Nick Celotto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -32,271 +33,844 @@
   <!-- PAGE HEADER -->
   <section class="page-header">
     <div class="container">
-      <p class="hero-eyebrow">Travel & Photography</p>
+      <p class="hero-eyebrow">Adventures</p>
       <h1 class="page-title">Travel</h1>
-      <p class="page-subtitle">Documenting the places I go, the photos I take, and the things worth remembering.</p>
     </div>
   </section>
 
+  <!-- Airmail stripe - thin accent bar under the header. -->
+  <div class="airmail-bar"></div>
+
   <!-- TAB BAR
-       Three tabs: Home (intro + metrics), Favorites (gallery),
-       Travel Guides (expandable destination cards).
+       Five tabs: About, Journal, Gallery, Map, Gear.
        JS handles switching via data-view / id="view-{key}". -->
   <div class="filter-bar">
     <div class="container">
       <button class="tab-btn active" data-view="home">About</button>
-      <button class="tab-btn" data-view="favorites">Photos</button>
-      <button class="tab-btn" data-view="guides">Travel Journal</button>
+      <button class="tab-btn" data-view="guides">Journal</button>
+      <button class="tab-btn" data-view="gallery">Gallery</button>
+      <button class="tab-btn" data-view="map">Map</button>
+      <button class="tab-btn" data-view="gear">Gear</button>
     </div>
   </div>
 
 
   <!-- ════════════════════════════════════════
-       HOME TAB — editorial intro + metrics
+       HOME TAB - editorial intro + metrics
        ════════════════════════════════════════ -->
   <div id="view-home" class="tab-view">
 
-    <!-- Pull quote -->
-    <section class="photo-opener">
-      <div class="container">
-        <blockquote class="photo-pullquote">
-          <span class="photo-pullquote-mark">"</span>
-          Traveling is how I get out of my own head<br class="br-desktop"/> and into the world.
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- About + stats card -->
-    <section class="photo-about">
-      <div class="container">
-        <div class="photo-about-grid">
-
-          <div class="photo-about-main">
-            <p class="photo-about-text">I started traveling solo in 2026 and haven't stopped planning since. There's something about navigating a new place on your own — figuring out transit, finding the good spots, getting genuinely lost — that changes how you think. I come back from every trip seeing things differently.</p>
-            <p class="photo-about-text">I document everything. Day by day itineraries, real costs, honest impressions. Not as a travel blogger, just because I like having the record and other people find it useful. Every journal entry here is a place I actually went, not somewhere I researched from a desk.</p>
+    <!-- HERO - matches the reference site's two-column hero.
+         ★ TO UPDATE: swap assets/pfp.jpg for a real photo. -->
+    <section class="travel-hero">
+      <div class="container travel-hero-inner">
+        <div class="hero-left">
+          <p class="hero-eyebrow">Adventures</p>
+          <h1 class="hero-title">Documenting<br/>the trips<br/>as I <em>go.</em></h1>
+          <p class="hero-desc">A record of every place I've been, every photo I've taken, and everything worth remembering. Real costs, honest impressions, day by day.</p>
+          <button class="hero-cta" data-goto-tab="guides">
+            Read the journal
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="hero-right">
+          <div class="hero-img-wrap">
+            <img src="assets/travel_pfp.jpg" alt="Nick Celotto" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
           </div>
-
-          <!-- Timeline on the right -->
-          <div class="photo-about-aside">
-            <p style="font-family:var(--serif); font-size:1rem; color:var(--ink); margin-bottom:1rem;">2026 trips</p>
-            <div class="travel-timeline" style="margin-bottom:0;">
-
-              <div class="travel-timeline-item">
-                <div class="ttl-dot" style="background:var(--accent);"></div>
-                <div class="ttl-content">
-                  <span class="ttl-flag">🇵🇹</span>
-                  <div class="ttl-info">
-                    <span class="ttl-city">Portugal</span>
-                    <span class="ttl-date">May · 11 days</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="travel-timeline-item">
-                <div class="ttl-dot"></div>
-                <div class="ttl-content">
-                  <span class="ttl-flag">🇺🇸</span>
-                  <div class="ttl-info">
-                    <span class="ttl-city">Newport</span>
-                    <span class="ttl-date">May · 3 days</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="travel-timeline-item">
-                <div class="ttl-dot"></div>
-                <div class="ttl-content">
-                  <span class="ttl-flag">🇨🇦</span>
-                  <div class="ttl-info">
-                    <span class="ttl-city">Montreal</span>
-                    <span class="ttl-date">Jul · 4 days</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="travel-timeline-item">
-                <div class="ttl-dot"></div>
-                <div class="ttl-content">
-                  <span class="ttl-flag">🇵🇪</span>
-                  <div class="ttl-info">
-                    <span class="ttl-city">Peru</span>
-                    <span class="ttl-date">Sep · 9 days</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="travel-timeline-item">
-                <div class="ttl-dot"></div>
-                <div class="ttl-content">
-                  <span class="ttl-flag">🏳️</span>
-                  <div class="ttl-info">
-                    <span class="ttl-city">TBD</span>
-                    <span class="ttl-date">Fall 2026 · 3 days</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
 
+    <!-- Marquee - infinite scroll ticker. Content is duplicated once
+         in the HTML so the -50% translateX loop is seamless.
+         ★ TO UPDATE: add/edit lines, keeping the list duplicated. -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span class="marquee-item"><span class="marquee-dot"></span>Booked the flight before I had a real reason to.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Solo doesn't mean alone.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Got lost. Didn't fix it right away.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>The best meal so far had no menu.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Every city looks different before 7am.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Came for the landmark, stayed for the block behind it.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Still learning the camera. Bringing it anyway.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Always make time for a sunset.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Walk everywhere, snack constantly.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Friends make the best itinerary.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Booked the flight before I had a real reason to.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Solo doesn't mean alone.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Got lost. Didn't fix it right away.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>The best meal so far had no menu.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Every city looks different before 7am.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Came for the landmark, stayed for the block behind it.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Still learning the camera. Bringing it anyway.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Always make time for a sunset.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Walk everywhere, snack constantly.</span>
+        <span class="marquee-item"><span class="marquee-dot"></span>Friends make the best itinerary.</span>
+      </div>
+    </div>
+
+    <!-- FEATURED TRIP - matches the reference site's image+content
+         layout instead of the flag/stat card used before.
+         ★ TO UPDATE: swap the photo, num, eyebrow, title, dates,
+           desc, tags, and the link (same "remove --disabled, add
+           href" pattern as the stamp cards) whenever a new trip
+           takes the top spot. -->
+    <section class="section section--featured">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-eyebrow">Most recent</p>
+            <h2 class="section-title">Featured Trip</h2>
+          </div>
+          <button class="section-link" data-goto-tab="guides">
+            All trips
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="featured-wrap">
+          <div class="featured-image">
+            <img src="assets/portugal-featured.svg" alt="Portugal" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+          </div>
+          <div class="featured-content">
+            <div>
+              <p class="featured-eyebrow">🇵🇹 Europe · Solo · 8 days</p>
+              <h2 class="featured-title">Portugal</h2>
+              <p class="featured-dates">May 1 - May 8, 2026</p>
+              <div class="featured-tags">
+                <span class="featured-tag">Lisbon</span>
+                <span class="featured-tag">Sintra</span>
+                <span class="featured-tag">Madeira</span>
+                <span class="featured-tag">Solo</span>
+              </div>
+              <a href="guide-portugal.html" class="btn-accent">
+                Read the journal
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMING UP - matches the reference site's teaser section.
+         Wired to the same countdown mechanism as before via
+         data-countdown-target - main.js handles the rest.
+         ★ TO UPDATE FOR THE NEXT TRIP: swap the flag, destination,
+           and data-countdown-target (YYYY-MM-DD). -->
+    <section class="section teaser-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-eyebrow">On the horizon</p>
+            <h2 class="section-title">Coming Up</h2>
+          </div>
+        </div>
+        <div class="teaser-grid">
+          <div class="teaser-card">
+            <div class="teaser-body">
+              <div class="teaser-flag">🇹🇷</div>
+              <div class="teaser-text">
+                <div class="teaser-dest">Turkey</div>
+                <div class="teaser-meta" data-countdown-target="2026-10-22">Oct 22 - 27, 2026 · 6 days · Solo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECENT SHOTS - matches the reference site's photo grid.
+         ★ TO UPDATE: replace the src on each <img> with a real photo. -->
+    <section class="section photos-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-eyebrow">From the camera</p>
+            <h2 class="section-title">Best Shots</h2>
+          </div>
+          <button class="section-link" data-goto-tab="gallery">
+            Full gallery
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="photos-grid">
+          <div class="photo-item">
+            <img src="assets/portugal/fanal-tree.jpg" alt="Fog and an old tree in Fanal Forest, Madeira" loading="lazy" />
+          </div>
+          <div class="photo-item">
+            <img src="assets/chicago/chicago-bean.jpg" alt="The Bean, Millennium Park" loading="lazy" />
+          </div>
+          <div class="photo-item">
+            <img src="assets/portugal/sintra-moorish.jpg" alt="On the walls of the Moorish Castle, Sintra" loading="lazy" />
+          </div>
+          <div class="photo-item">
+            <img src="assets/portugal/lisbon-sunset.jpg" alt="Sunset over Lisbon rooftops" loading="lazy" />
+          </div>
+          <div class="photo-item">
+            <img src="assets/chicago/chicago-theatre.jpg" alt="The Chicago Theatre sign" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
 
   </div><!-- /view-home -->
 
 
   <!-- ════════════════════════════════════════
-       FAVORITES TAB — best shots gallery
-       Add photos by copying a .masonry-item block
-       and changing src + alt.
+       JOURNAL TAB - matches the reference site's journal-card
+       grid (replaces the earlier postage-stamp cards).
        ════════════════════════════════════════ -->
-  <div id="view-favorites" class="tab-view" style="display:none;">
-    <section class="section gallery-section">
+  <div id="view-guides" class="tab-view" style="display:none;">
+    <section class="section" style="padding-top:2.5rem;">
       <div class="container">
-        <div class="masonry-grid">
 
-          <div class="masonry-item">
-            <div class="gallery-img">
-              <img src="assets/vessel.JPG" alt="The Vessel, Hudson Yards" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
-              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+        <div class="journal-grid">
+
+          <!-- Portugal - live and linked to guide-portugal.html. -->
+          <a href="guide-portugal.html" class="journal-card">
+            <div class="journal-card-img">
+              <img src="assets/portugal-featured.svg" alt="Portugal" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
             </div>
-          </div>
-
-          <!-- ★ Add your favorites below — copy the block above, change src + alt -->
-          <div class="masonry-item">
-            <div class="gallery-img">
-              <img src="assets/Building.png" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
-              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+            <div class="journal-card-body">
+              <div class="journal-card-top">
+                <span class="journal-card-flag">🇵🇹</span>
+                <span class="journal-card-region">Europe</span>
+              </div>
+              <h3 class="journal-card-dest">Portugal</h3>
+              <p class="journal-card-meta">May 1 - May 8, 2026 · 8 days · Solo</p>
+              <div class="journal-card-footer">
+                <span class="journal-card-read">Read the journal →</span>
+              </div>
             </div>
-          </div>
+          </a>
 
-          <div class="masonry-item">
-            <div class="gallery-img">
-              <img src="assets/Cherry Blossom.jpg" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
-              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+          <!-- Chicago - live and linked to guide-chicago.html. -->
+          <a href="guide-chicago.html" class="journal-card">
+            <div class="journal-card-img">
+              <img src="assets/chicago-featured.svg" alt="Chicago" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
             </div>
-          </div>
-
-          <div class="masonry-item">
-            <div class="gallery-img">
-              <img src="assets/manhattanbridge.jpg" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
-              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+            <div class="journal-card-body">
+              <div class="journal-card-top">
+                <span class="journal-card-flag">🇺🇸</span>
+                <span class="journal-card-region">US</span>
+              </div>
+              <h3 class="journal-card-dest">Chicago</h3>
+              <p class="journal-card-meta">Aug 14 - 16, 2026 · 3 days · Friends</p>
+              <div class="journal-card-footer">
+                <span class="journal-card-read">Read the journal →</span>
+              </div>
             </div>
-          </div>
+          </a>
 
-          <div class="masonry-item">
-            <div class="gallery-img">
-              <img src="assets/car.png" alt="" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
-              <div class="gallery-overlay"><span class="gallery-tag">Favorites</span></div>
+          <!-- Dallas - live and linked to guide-dallas.html. -->
+          <a href="guide-dallas.html" class="journal-card">
+            <div class="journal-card-img">
+              <img src="assets/dallas-featured.svg" alt="Dallas" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
             </div>
-          </div>
+            <div class="journal-card-body">
+              <div class="journal-card-top">
+                <span class="journal-card-flag">🇺🇸</span>
+                <span class="journal-card-region">US</span>
+              </div>
+              <h3 class="journal-card-dest">Dallas</h3>
+              <p class="journal-card-meta">Sept 11 - 14, 2026 · 4 days · Friends</p>
+              <div class="journal-card-footer">
+                <span class="journal-card-read">Read the journal →</span>
+              </div>
+            </div>
+          </a>
 
-          <!-- ★ Add more photos here as your gallery grows.
-               Copy a .masonry-item block, change src + alt. -->
+          <!-- ★ TO ADD A NEW TRIP: duplicate the .journal-card block
+               above once its guide page exists. -->
 
         </div>
       </div>
     </section>
-  </div><!-- /view-favorites -->
+  </div><!-- /view-guides -->
 
 
   <!-- ════════════════════════════════════════
-       TRAVEL GUIDES TAB
-       Each card is a link to a Medium article.
-       ★ TO ADD A NEW DESTINATION: copy a card,
-         update the href, emoji, colors, and text.
-       ★ TO LINK TO MEDIUM: replace href="#" with
-         your full Medium article URL.
+       GALLERY TAB - one section per trip, each using the site's
+       existing masonry-grid / gallery-img / lightbox system, so
+       no new JS was needed - main.js already re-scans for
+       .gallery-img on every tab switch and wires up the lightbox.
+       ★ TO ADD PHOTOS: replace the src on any <img> with a real
+         file path. Until then the onerror fallback shows a plain
+         "Add photo" placeholder.
        ════════════════════════════════════════ -->
-  <div id="view-guides" class="tab-view" style="display:none;">
-    <section class="section">
+  <div id="view-gallery" class="tab-view" style="display:none;">
+    <section class="section gallery-section">
       <div class="container">
-        <div class="guides-grid">
-          <!-- ── PORTUGAL ──
-               ★ TO ACTIVATE: change <div> to <a href="guide-portugal.html">
-                 and remove the guide-card-min--upcoming class -->
-          <div class="guide-card-min guide-card-min--upcoming guide-card-min--disabled">
-            <div class="gcm-flag-row">
-              <span class="gcm-flag">🇵🇹</span>
-              <span class="gcm-status gcm-status--soon">Upcoming</span>
-            </div>
-            <h3 class="gcm-city">Portugal</h3>
-            <p class="gcm-region">Europe · May 2026</p>
-            <p class="gcm-tagline">Lisbon, Madeira, and the Algarve — 11 days solo. Journal coming after the trip.</p>
-            <span class="gcm-cta gcm-cta--muted">Guide coming soon</span>
+
+        <!-- Trip filter chips: built by main.js from the .gallery-trip-section blocks below. -->
+        <div class="gallery-filter" id="galleryFilter" role="group" aria-label="Filter gallery by trip"></div>
+
+        <!-- PORTUGAL
+             ★ TO ADD A NEW TRIP: duplicate this whole .gallery-trip-section
+               block, change data-trip, the flag/title/date, and swap the photos.
+               Keep it to your best 6 to 8 frames. A filter chip appears automatically. -->
+        <div class="gallery-trip-section" data-trip="portugal">
+          <div class="gallery-trip-header">
+            <span class="gallery-trip-flag">🇵🇹</span>
+            <h2 class="gallery-trip-title">Portugal</h2>
+            <span class="gallery-trip-date">May 2026</span>
           </div>
 
-                    <!-- ── BERMUDA ──
-               ★ TO ACTIVATE: change <div> to <a href="guide-newport.html">
-                 and remove the guide-card-min--upcoming class -->
-          <div class="guide-card-min guide-card-min--upcoming guide-card-min--disabled">
-            <div class="gcm-flag-row">
-              <span class="gcm-flag">🇺🇸</span>
-              <span class="gcm-status gcm-status--soon">Upcoming</span>
+          <div class="masonry-grid">
+
+            <div class="masonry-item">
+              <div class="gallery-img tall">
+                <img src="assets/portugal/lisbon-sunset.jpg" alt="Sunset over Lisbon" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Lisbon</span></div>
+              </div>
             </div>
-            <h3 class="gcm-city">Newport</h3>
-            <p class="gcm-region">Rhode Island · May 2026</p>
-            <p class="gcm-tagline">Gilded Age mansions, The Cliff Walk, and the best seafood on the East Coast — a long weekend with family.</p>
-            <span class="gcm-cta gcm-cta--muted">Guide coming soon</span>
+
+            <div class="masonry-item">
+              <div class="gallery-img tall">
+                <img src="assets/portugal/madeira-sunrise.jpg" alt="Sunrise at Madeira airport" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Madeira</span></div>
+              </div>
+            </div>
+
+            <div class="masonry-item">
+              <div class="gallery-img tall">
+                <img src="assets/portugal/lisbon-arch.jpg" alt="Rua Augusta Arch, Lisbon" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Lisbon</span></div>
+              </div>
+            </div>
+
+            <div class="masonry-item">
+              <div class="gallery-img tall">
+                <img src="assets/portugal/fanal-tree.jpg" alt="Fanal Forest, Madeira" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Madeira</span></div>
+              </div>
+            </div>
+
+            <div class="masonry-item">
+              <div class="gallery-img">
+                <img src="assets/portugal/funchal-night.jpg" alt="Funchal at night" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Madeira</span></div>
+              </div>
+            </div>
+
+            <div class="masonry-item">
+              <div class="gallery-img tall">
+                <img src="assets/portugal/sintra-moorish.jpg" alt="Moorish Castle, Sintra" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Sintra</span></div>
+              </div>
+            </div>
+
+            <div class="masonry-item">
+              <div class="gallery-img tall">
+                <img src="assets/portugal/sintra-pena.jpg" alt="Pena Palace, Sintra" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Sintra</span></div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <!-- CHICAGO -->
+        <div class="gallery-trip-section" data-trip="chicago">
+          <div class="gallery-trip-header">
+            <span class="gallery-trip-flag">🇺🇸</span>
+            <h2 class="gallery-trip-title">Chicago</h2>
+            <span class="gallery-trip-date">August 2026</span>
           </div>
 
-          <!-- ── MONTREAL ──
-               ★ TO ACTIVATE: change <div> to <a href="guide-montreal.html">
-                 and remove the guide-card-min--upcoming class -->
-          <div class="guide-card-min guide-card-min--upcoming guide-card-min--disabled">
-            <div class="gcm-flag-row">
-              <span class="gcm-flag">🇨🇦</span>
-              <span class="gcm-status gcm-status--soon">Upcoming</span>
+          <div class="masonry-grid">
+
+            <div class="masonry-item">
+              <div class="gallery-img">
+                <img src="assets/chicago/chicago-wrigley.jpg" alt="Wrigley Field" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Wrigley Field</span></div>
+              </div>
             </div>
-            <h3 class="gcm-city">Montreal</h3>
-            <p class="gcm-region">Canada · July 2026</p>
-            <p class="gcm-tagline">Food, culture, and architecture — 3 days solo in one of North America's best cities.</p>
-            <span class="gcm-cta gcm-cta--muted">Guide coming soon</span>
-          </div>
 
-          <!-- ── PERU ──
-               ★ TO ACTIVATE: change <div> to <a href="guide-peru.html">
-                 and remove the guide-card-min--upcoming class -->
-          <div class="guide-card-min guide-card-min--upcoming guide-card-min--disabled">
-            <div class="gcm-flag-row">
-              <span class="gcm-flag">🇵🇪</span>
-              <span class="gcm-status gcm-status--soon">Upcoming</span>
+            <div class="masonry-item">
+              <div class="gallery-img">
+                <img src="assets/chicago/chicago-bean.jpg" alt="The Bean, Millennium Park" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Millennium Park</span></div>
+              </div>
             </div>
-            <h3 class="gcm-city">Peru</h3>
-            <p class="gcm-region">South America · September 2026</p>
-            <p class="gcm-tagline">Machu Picchu, Cusco, and the Sacred Valley — guide coming after the trip.</p>
-            <span class="gcm-cta gcm-cta--muted">Guide coming soon</span>
-          </div>
 
-
-          <!-- ── FALL WEEKEND ──
-               ★ TO ACTIVATE: update city/region/tagline and change <div> to <a href="guide-X.html">
-                 once the destination is decided -->
-          <div class="guide-card-min guide-card-min--upcoming guide-card-min--disabled">
-            <div class="gcm-flag-row">
-              <span class="gcm-flag">🏳️</span>
-              <span class="gcm-status gcm-status--planning">Planning</span>
+            <div class="masonry-item">
+              <div class="gallery-img">
+                <img src="assets/chicago/chicago-theatre.jpg" alt="The Chicago Theatre" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">The Loop</span></div>
+              </div>
             </div>
-            <h3 class="gcm-city">TBD</h3>
-            <p class="gcm-region">TBD · Fall 2026</p>
-            <p class="gcm-tagline">Somewhere for a long weekend in the fall — destination still being decided.</p>
-            <span class="gcm-cta gcm-cta--muted">In planning</span>
-          </div>
 
-        </div><!-- /guides-grid -->
+            <div class="masonry-item">
+              <div class="gallery-img">
+                <img src="assets/chicago/chicago-f1-painting.jpg" alt="F1 painting at F1 Arcade" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">F1 Arcade</span></div>
+              </div>
+            </div>
+
+            <div class="masonry-item">
+              <div class="gallery-img">
+                <img src="assets/chicago/chicago-f1-bar.jpg" alt="The bar at F1 Arcade" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">F1 Arcade</span></div>
+              </div>
+            </div>
+
+            <div class="masonry-item">
+              <div class="gallery-img">
+                <img src="assets/chicago/chicago-millennium-monument.jpg" alt="Millennium Monument, Millennium Park" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Millennium Park</span></div>
+              </div>
+            </div>
+
+            <div class="masonry-item">
+              <div class="gallery-img">
+                <img src="assets/chicago/chicago-crown-fountain.jpg" alt="Crown Fountain, Millennium Park" onerror="this.parentElement.classList.add('img-placeholder-gallery')" />
+                <div class="gallery-overlay"><span class="gallery-tag">Millennium Park</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
-  </div><!-- /view-guides -->
+  </div><!-- /view-gallery -->
 
-  <!-- LIGHTBOX (used by Favorites gallery) -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose">×</button>
-    <button class="lightbox-nav prev" id="lightboxPrev">‹</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
-    <button class="lightbox-nav next" id="lightboxNext">›</button>
-  </div>
+
+  <!-- ════════════════════════════════════════
+       MAP TAB - real Leaflet map, colored by country/state rather
+       than pinned. Lazy-initialized by main.js the first time this
+       tab is opened (see main.js section 9).
+       ★ TO ADD A PLACE: add an entry to the `TRAVEL_PLACES` array
+         in main.js (name/flag/type/code/meta/journal), plus a
+         matching .map-trip-item row below in the sidebar.
+       ════════════════════════════════════════ -->
+  <div id="view-map" class="tab-view" style="display:none;">
+    <div class="map-layout">
+
+      <div id="travelMap"></div>
+
+      <div class="map-sidebar">
+        <div class="map-sidebar-header">
+          <p class="hero-eyebrow" style="margin-bottom:0.3rem;">The record</p>
+          <h2 class="map-sidebar-title">Where I've Been</h2>
+        </div>
+
+        <!-- Completion rings - numbers/ring fill are set by
+             main.js (section 10) from TRAVEL_PLACES, not hardcoded
+             here. Just keep the category field accurate on each
+             place and these update themselves. -->
+        <div class="map-stats">
+          <div class="map-stat-ring-wrap">
+            <div class="map-stat-ring-svg-wrap">
+              <svg class="map-stat-ring" viewBox="0 0 64 64">
+                <circle class="map-stat-ring-track" cx="32" cy="32" r="27"/>
+                <circle class="map-stat-ring-fill" id="ringCountriesFill" cx="32" cy="32" r="27"/>
+              </svg>
+              <span class="map-stat-ring-num" id="numCountries">0</span>
+            </div>
+            <span class="map-stat-ring-label">Countries</span>
+            <span class="map-stat-ring-sub" id="subCountries">of 195</span>
+          </div>
+          <div class="map-stat-ring-wrap">
+            <div class="map-stat-ring-svg-wrap">
+              <svg class="map-stat-ring" viewBox="0 0 64 64">
+                <circle class="map-stat-ring-track" cx="32" cy="32" r="27"/>
+                <circle class="map-stat-ring-fill" id="ringStatesFill" cx="32" cy="32" r="27"/>
+              </svg>
+              <span class="map-stat-ring-num" id="numStates">0</span>
+            </div>
+            <span class="map-stat-ring-label">US States</span>
+            <span class="map-stat-ring-sub" id="subStates">of 50</span>
+          </div>
+        </div>
+
+        <!-- ★ TO ADD A PLACE: add a .map-trip-item row here (in the
+             right section below), AND a matching entry to the
+             TRAVEL_PLACES array in main.js. The id must match. -->
+        <div class="map-trips-list">
+
+          <p class="map-trips-heading">Countries</p>
+
+          <div class="map-trip-item" id="sidebar-dr">
+            <span class="map-trip-flag">🇩🇴</span>
+            <div class="map-trip-info"><span class="map-trip-name">Dominican Republic</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-ireland">
+            <span class="map-trip-flag">🇮🇪</span>
+            <div class="map-trip-info"><span class="map-trip-name">Ireland</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-jamaica">
+            <span class="map-trip-flag">🇯🇲</span>
+            <div class="map-trip-info"><span class="map-trip-name">Jamaica</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-portugal">
+            <span class="map-trip-flag">🇵🇹</span>
+            <div class="map-trip-info"><span class="map-trip-name">Portugal</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-spain">
+            <span class="map-trip-flag">🇪🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Spain</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-uk">
+            <span class="map-trip-flag">🇬🇧</span>
+            <div class="map-trip-info"><span class="map-trip-name">United Kingdom</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-usa">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">USA</span></div>
+          </div>
+
+          <p class="map-trips-heading" style="margin-top:1.25rem;">US States</p>
+
+          <div class="map-trip-item" id="sidebar-california">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">California</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-connecticut">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Connecticut</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-florida">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Florida</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-illinois">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Illinois</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-kentucky">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Kentucky</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-massachusetts">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Massachusetts</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-new-hampshire">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">New Hampshire</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-new-jersey">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">New Jersey</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-new-york">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">New York</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-pennsylvania">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Pennsylvania</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-rhode-island">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Rhode Island</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-south-carolina">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">South Carolina</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-texas">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Texas</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-vermont">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Vermont</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-virginia">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Virginia</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-west-virginia">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">West Virginia</span></div>
+          </div>
+
+          <p class="map-trips-heading" style="margin-top:1.25rem;">British Territories</p>
+
+          <div class="map-trip-item" id="sidebar-bermuda">
+            <span class="map-trip-flag">🇧🇲</span>
+            <div class="map-trip-info"><span class="map-trip-name">Bermuda</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-bvi">
+            <span class="map-trip-flag">🇻🇬</span>
+            <div class="map-trip-info"><span class="map-trip-name">British Virgin Islands</span></div>
+          </div>
+
+          <p class="map-trips-heading" style="margin-top:1.25rem;">US Territories</p>
+
+          <div class="map-trip-item" id="sidebar-puerto-rico">
+            <span class="map-trip-flag">🇵🇷</span>
+            <div class="map-trip-info"><span class="map-trip-name">Puerto Rico</span></div>
+          </div>
+
+          <div class="map-trip-item" id="sidebar-usvi">
+            <span class="map-trip-flag">🇻🇮</span>
+            <div class="map-trip-info"><span class="map-trip-name">US Virgin Islands</span></div>
+          </div>
+
+          <p class="map-trips-heading" style="margin-top:1.25rem;">Dutch Territories</p>
+
+          <div class="map-trip-item" id="sidebar-aruba">
+            <span class="map-trip-flag">🇦🇼</span>
+            <div class="map-trip-info"><span class="map-trip-name">Aruba</span></div>
+          </div>
+
+          <p class="map-trips-heading" style="margin-top:1.25rem;">Federal District</p>
+
+          <div class="map-trip-item" id="sidebar-dc">
+            <span class="map-trip-flag">🇺🇸</span>
+            <div class="map-trip-info"><span class="map-trip-name">Washington, DC</span></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /view-map -->
+
+
+  <!-- ════════════════════════════════════════
+       GEAR TAB - ported from the real gear list.
+       ★ TO ADD/EDIT: duplicate a .gear-card block. Cards are
+         text-only for now; to add a photo later, put a
+         <div class="gear-card-img"><img ...></div> above
+         the .gear-card-body.
+       ════════════════════════════════════════ -->
+  <div id="view-gear" class="tab-view" style="display:none;">
+
+    <!-- 01 · CAMERA -->
+    <section class="section" style="padding-top:3rem;">
+      <div class="container">
+        <div class="gear-section-header">
+          <span class="gear-section-num">01</span>
+          <div>
+            <p class="gear-section-eyebrow">What I shoot with</p>
+            <h2 class="gear-section-title">Camera</h2>
+          </div>
+        </div>
+        <div class="gear-grid">
+
+          <div class="gear-card" style="grid-column: 1 / -1;">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Body</span>
+              <h3 class="gear-card-name">Fujifilm X100VI</h3>
+              <p class="gear-card-sub">Fixed-lens compact · 40MP</p>
+              <p class="gear-card-desc">The workhorse. A fixed 23mm lens forces a simpler way of shooting, and the color science is good enough straight out of camera that editing is barely necessary.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · BAGS -->
+    <section class="section" style="background: var(--surface); padding-top:3rem;">
+      <div class="container">
+        <div class="gear-section-header">
+          <span class="gear-section-num">02</span>
+          <div>
+            <p class="gear-section-eyebrow">How I carry it</p>
+            <h2 class="gear-section-title">Bags</h2>
+          </div>
+        </div>
+        <div class="gear-grid gear-grid--2">
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Carry-on</span>
+              <h3 class="gear-card-name">Carry-on Suitcase</h3>
+              <p class="gear-card-sub">Cabin size · Hard or soft shell</p>
+              <p class="gear-card-desc">A standard carry-on that fits in the overhead bin. Clothes, shoes, and anything that doesn't need to be within reach during the day. Currently scoping an upgrade - this may change.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Day bag · Personal item</span>
+              <h3 class="gear-card-name">Nordace Siena Pro 17</h3>
+              <p class="gear-card-sub">Backpack · ~20L</p>
+              <p class="gear-card-desc">Goes everywhere with me on travel days and every day of exploring. Fits the camera body, a water bottle, laptop, and a full day's worth of stuff. The dedicated camera compartment is the reason this bag works so well.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · CAMERA ACCESSORIES -->
+    <section class="section" style="padding-top:3rem;">
+      <div class="container">
+        <div class="gear-section-header">
+          <span class="gear-section-num">03</span>
+          <div>
+            <p class="gear-section-eyebrow">Camera extras</p>
+            <h2 class="gear-section-title">Camera Accessories</h2>
+          </div>
+        </div>
+        <div class="gear-grid">
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Storage · Photos</span>
+              <h3 class="gear-card-name">SD Card · 256GB V30</h3>
+              <p class="gear-card-desc">The main card. 256GB is enough headroom to shoot freely for a full trip without stressing about space.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Storage · Photos</span>
+              <h3 class="gear-card-name">SD Card · 128GB V30</h3>
+              <p class="gear-card-desc">The backup card. Swapped in when the 256GB fills up, or kept separate on longer trips so everything isn't on one card.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Transfer</span>
+              <h3 class="gear-card-name">SD Card Reader</h3>
+              <p class="gear-card-sub">USB-C</p>
+              <p class="gear-card-desc">Offloads photos to the MacBook each evening. Fast read speeds matter when you're moving a lot of files.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Carry</span>
+              <h3 class="gear-card-name">Peak Design City Sling (2L)</h3>
+              <p class="gear-card-desc">For days when the full backpack is overkill. Just enough room for the camera and the essentials, worn across the body and out of the way.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Power</span>
+              <h3 class="gear-card-name">Batteries ×4</h3>
+              <p class="gear-card-sub">1× Fujifilm · 3× third-party</p>
+              <p class="gear-card-desc">Four batteries total. The Fujifilm one is the main battery, three third-party backups. A full shooting day can burn through more than one, so extras stay in the bag at all times.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Power</span>
+              <h3 class="gear-card-name">Battery Charger</h3>
+              <p class="gear-card-sub">Single slot</p>
+              <p class="gear-card-desc">Charges one battery at a time overnight. Not the fastest way to top off the whole kit, but simple and reliable.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · TECH & TRAVEL ESSENTIALS -->
+    <section class="section" style="background: var(--surface); padding-top:3rem; padding-bottom:3.5rem;">
+      <div class="container">
+        <div class="gear-section-header">
+          <span class="gear-section-num">04</span>
+          <div>
+            <p class="gear-section-eyebrow">Everything else</p>
+            <h2 class="gear-section-title">Tech &amp; Travel Essentials</h2>
+          </div>
+        </div>
+        <div class="gear-grid gear-grid--4">
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Tech</span>
+              <h3 class="gear-card-name">MacBook</h3>
+              <p class="gear-card-desc">For offloading cards, editing photos and footage, and staying on top of anything work-related on longer trips.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Tech</span>
+              <h3 class="gear-card-name">AirPods</h3>
+              <p class="gear-card-desc">Flights, trains, editing on the go. ANC makes a long-haul feel manageable. Never travel without them.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Power</span>
+              <h3 class="gear-card-name">Universal Travel Adapter</h3>
+              <p class="gear-card-desc">Works in most countries. The one thing you really cannot forget on an international trip - everything else can be bought locally.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Power</span>
+              <h3 class="gear-card-name">Power Bank</h3>
+              <p class="gear-card-desc">For long travel days and anywhere the outlet situation is uncertain. Keeps the phone and AirPods topped up on the move.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Hydration</span>
+              <h3 class="gear-card-name">Hydro Flask</h3>
+              <p class="gear-card-desc">Keeps water cold all day - matters more than you'd think when you're walking 20,000 steps in the heat. Refill at airports to skip the plastic bottles.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Protection</span>
+              <h3 class="gear-card-name">Backpack Rain Cover</h3>
+              <p class="gear-card-desc">Slips over the Nordace when it starts raining. Camera gear, MacBook, and everything else stays dry. Lives at the bottom of the bag.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Sleep</span>
+              <h3 class="gear-card-name">Sleep Mask</h3>
+              <p class="gear-card-desc">Overnight flights and hostel rooms with thin curtains. Small and weightless - genuinely one of the better quality-of-life items to bring.</p>
+            </div>
+          </div>
+
+          <div class="gear-card">
+            <div class="gear-card-body">
+              <span class="gear-card-category">Security</span>
+              <h3 class="gear-card-name">Padlock</h3>
+              <p class="gear-card-desc">For hostel lockers. Most hostels provide lockers but not locks - bring your own and you're covered anywhere.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /view-gear -->
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -311,6 +885,15 @@
     </div>
   </footer>
 
+  <!-- Lightbox: shown by main.js when a Gallery photo is clicked -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

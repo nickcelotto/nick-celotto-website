@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dallas - Nick Celotto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Nick Celotto</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="travel.html" class="active">Travel</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="travel.html">Travel</a>
+  </div>
+
+
+  <!-- ════════════════════════
+       HERO
+       ════════════════════════ -->
+  <div class="guide-page-hero">
+    <div class="container">
+
+      <a href="travel.html?tab=guides" class="guide-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Travel Journal
+      </a>
+
+
+      <div class="guide-page-header">
+        <div class="guide-page-title-group">
+          <div class="guide-page-flag-row">
+            <span class="guide-page-flag">🇺🇸</span>
+            <span class="guide-page-region">US · South</span>
+          </div>
+          <h1 class="guide-page-title">Dallas</h1>
+        </div>
+        <div class="guide-page-meta">
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Dates</span>
+            <span class="guide-page-meta-val">Sept 11 – Sept 14, 2026</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Type</span>
+            <span class="guide-page-meta-val">Friends</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Stops</span>
+            <span class="guide-page-meta-val">Dallas · Frisco · University Park · Carrollton · North Richland Hills</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Status</span>
+            <span class="guide-status guide-status--live" style="font-size:0.72rem;">Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- In this journal - magazine-style contents strip -->
+      <nav class="guide-toc">
+        <span class="guide-toc-label">In this journal</span>
+        <a href="#where">Where I visited</a>
+        <a href="#daybyday">Day by day</a>
+      </nav>
+
+    </div>
+    <div class="guide-hero-divider"></div>
+  </div>
+
+
+  <!-- ════════════════════════
+       BODY
+       ════════════════════════ -->
+  <div class="guide-page-body">
+    <div class="container">
+      <div class="guide-page-layout">
+
+        <!-- ══════════════════════════════
+             MAIN CONTENT
+             ══════════════════════════════ -->
+        <div class="guide-page-content">
+
+          <!-- WHERE I VISITED -->
+          <div class="guide-page-section" id="where">
+            <h2 class="guide-page-section-title">Where I visited</h2>
+
+            <div class="journal-stays">
+
+              <div class="journal-stay">
+                <div class="journal-stay-destination">Frisco</div>
+                <div class="journal-stay-meta-row">
+                  <span class="journal-stay-dates">Sept 11, 13 – 14 · 2 nights</span>
+                  <span class="journal-stay-hostel">Friend's house</span>
+                </div>
+                <p class="journal-stay-desc">A college friend's home base - dinner with his family, a Friday night football game, and a last breakfast before flying home.</p>
+                <div class="journal-stay-tags">
+                  <span class="journal-stay-tag">🏈 Varsity football game</span>
+                  <span class="journal-stay-tag">🌮 Taco Joint</span>
+                  <span class="journal-stay-tag">🍳 Starwood Diner</span>
+                </div>
+              </div>
+
+              <div class="journal-stay">
+                <div class="journal-stay-destination">University Park, Carrollton &amp; North Richland Hills</div>
+                <div class="journal-stay-meta-row">
+                  <span class="journal-stay-dates">Sept 12 · 1 night</span>
+                  <span class="journal-stay-hostel">Friend's house</span>
+                </div>
+                <p class="journal-stay-desc">A full day of Dallas football and food - The Star, an SMU tailgate, Korean dinner, and pickleball into the early morning.</p>
+                <div class="journal-stay-tags">
+                  <span class="journal-stay-tag">🌟 The Star</span>
+                  <span class="journal-stay-tag">🏈 SMU tailgate</span>
+                  <span class="journal-stay-tag">🥟 Hanshin Pocha</span>
+                  <span class="journal-stay-tag">🥒 Pickleball</span>
+                </div>
+              </div>
+
+              <div class="journal-stay">
+                <div class="journal-stay-destination">Dallas <span style="font-weight:400; color:var(--ink-light); font-size:0.8rem;">(day trip)</span></div>
+                <div class="journal-stay-meta-row">
+                  <span class="journal-stay-dates">Sept 13 · based back in Frisco</span>
+                </div>
+                <p class="journal-stay-desc">Church, shopping, and dinner with friends around the city.</p>
+                <div class="journal-stay-tags">
+                  <span class="journal-stay-tag">⛪ Watermark Community Church</span>
+                  <span class="journal-stay-tag">🛍️ The Galleria</span>
+                  <span class="journal-stay-tag">🥞 Original Pancake House</span>
+                  <span class="journal-stay-tag">🍔 In-N-Out</span>
+                  <span class="journal-stay-tag">🍗 Yorienn Chicken</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- DAY BY DAY -->
+          <div class="guide-page-section" id="daybyday">
+            <h2 class="guide-page-section-title">Day by day</h2>
+
+            <div class="journal-track">
+              <div class="plane-tracker" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path style="fill:var(--accent)" d="M12 2 L15 9 L22 12 L15 13.5 L14 21 L12 17 L10 21 L9 13.5 L2 12 L9 9 Z"/>
+                </svg>
+              </div>
+
+            <div class="journal-day">
+              <div class="journal-day-header">
+                <span class="journal-day-label">Day 1</span>
+                <span class="journal-day-date">Friday, September 11</span>
+                <span class="journal-day-location">Frisco</span>
+              </div>
+              <div class="journal-day-body">
+                <p class="journal-day-text">Flew out at 12:30pm and landed in Dallas by 3:15. Got to a friend's place by 4, then dinner at Taco Joint with him, another friend, and his mom. Spent the evening at a varsity football game where his sister was cheerleading. Asleep around 1am.</p>
+                <!-- ★ Add photo: <div class="journal-day-photo"><img src="assets/dallas/dayN.jpg" alt="" /><p class="journal-day-photo-caption">Caption</p></div> -->
+              </div>
+            </div>
+
+            <div class="journal-day">
+              <div class="journal-day-header">
+                <span class="journal-day-label">Day 2</span>
+                <span class="journal-day-date">Saturday, September 12</span>
+                <span class="journal-day-location">Frisco → North Richland Hills</span>
+              </div>
+              <div class="journal-day-body">
+                <p class="journal-day-text">Started at The Star with a friend around 10, then tailgated an SMU game that afternoon with a few friends. Dinner was Korean food at Hanshin Pocha with another group of friends, followed by a late round of pickleball. Didn't get to bed until 5:30am - a long one, but a good one.</p>
+                <!-- ★ Add photo: <div class="journal-day-photo"><img src="assets/dallas/dayN.jpg" alt="" /><p class="journal-day-photo-caption">Caption</p></div> -->
+              </div>
+            </div>
+
+            <div class="journal-day">
+              <div class="journal-day-header">
+                <span class="journal-day-label">Day 3</span>
+                <span class="journal-day-date">Sunday, September 13</span>
+                <span class="journal-day-location">Dallas</span>
+              </div>
+              <div class="journal-day-body">
+                <p class="journal-day-text">Breakfast with a friend at Original Pancake House in the morning, then church with him at Watermark Community Church. Lunch with another friend out at the Galleria - In-N-Out, easily the highlight of the day food-wise - and dinner later with friends at Yorienn Chicken. Back to my friend's place in Frisco and asleep by 11:30.</p>
+                <!-- ★ Add photo: <div class="journal-day-photo"><img src="assets/dallas/dayN.jpg" alt="" /><p class="journal-day-photo-caption">Caption</p></div> -->
+              </div>
+            </div>
+
+            <div class="journal-day">
+              <div class="journal-day-header">
+                <span class="journal-day-label">Day 4</span>
+                <span class="journal-day-date">Monday, September 14</span>
+                <span class="journal-day-location">Frisco → New York</span>
+              </div>
+              <div class="journal-day-body">
+                <p class="journal-day-text">One last breakfast with a friend at Starwood Diner before heading to the airport. Flew out at 11am and landed back in New York by 3:15. Four days, a lot of friends, not enough sleep.</p>
+              </div>
+            </div>
+
+            </div><!-- /journal-track -->
+
+          </div><!-- /day by day section -->
+
+          <!-- MAP -->
+          <div class="guide-page-section guide-map-section">
+            <h2 class="guide-page-section-title">Map</h2>
+            <p class="guide-page-text" style="margin-bottom:1.25rem;">Frisco, University Park, Carrollton, and North Richland Hills, all around the Dallas-Fort Worth area.</p>
+            <div class="guide-map-wrap">
+              <iframe
+                class="guide-map-iframe"
+                src="https://maps.google.com/maps?q=Dallas,+TX&z=9&output=embed"
+                allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Dallas map">
+              </iframe>
+            </div>
+          </div>
+
+        </div><!-- /guide-page-content -->
+
+
+        <!-- ══════════════════════════════
+             SIDEBAR
+             ══════════════════════════════ -->
+        <aside class="guide-page-sidebar">
+
+          <div class="guide-sidebar-card">
+            <h3 class="guide-sidebar-heading">Trip at a glance</h3>
+            <div class="guide-sidebar-facts">
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Dates</span>
+                <span class="guide-sidebar-fact-val">Sept 11 – Sept 14, 2026</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Type</span>
+                <span class="guide-sidebar-fact-val">Friends</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Stops</span>
+                <span class="guide-sidebar-fact-val">Dallas · Frisco · University Park · Carrollton · North Richland Hills</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Language</span>
+                <span class="guide-sidebar-fact-val">English</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Time zone</span>
+                <span class="guide-sidebar-fact-val">CDT · UTC-5</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-sidebar-card">
+            <h3 class="guide-sidebar-heading">What it cost</h3>
+            <div class="guide-sidebar-facts">
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Flights</span>
+                <span class="guide-sidebar-fact-val">$412.80</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Stays</span>
+                <span class="guide-sidebar-fact-val">$0.00</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Local transport</span>
+                <span class="guide-sidebar-fact-val">$0.00</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Food</span>
+                <span class="guide-sidebar-fact-val">$91.24</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Extras</span>
+                <span class="guide-sidebar-fact-val">$12.00</span>
+              </div>
+              <div class="guide-sidebar-fact" style="border-top:1px solid var(--ink-faint);padding-top:0.6rem;margin-top:0.25rem;">
+                <span class="guide-sidebar-fact-label" style="font-weight:500;">Total</span>
+                <span class="guide-sidebar-fact-val" style="font-weight:500;color:var(--accent);">$516.04</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-sidebar-card">
+            <h3 class="guide-sidebar-heading">Getting around</h3>
+            <div class="guide-sidebar-facts">
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Everywhere</span>
+                <span class="guide-sidebar-fact-val">Rides from friends</span>
+              </div>
+            </div>
+          </div>
+
+        </aside><!-- /sidebar -->
+
+      </div><!-- /guide-page-layout -->
+    </div><!-- /container -->
+  </div><!-- /guide-page-body -->
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Nick Celotto</p>
+      <p class="footer-copy">© 2026 · nickcelotto.com</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/nickcelotto" target="_blank">LinkedIn</a>
+        <a href="https://github.com/nickcelotto" target="_blank">GitHub</a>
+        <a href="https://www.instagram.com/celottovision" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

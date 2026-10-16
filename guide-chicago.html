@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chicago - Nick Celotto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Nick Celotto</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="travel.html" class="active">Travel</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="travel.html">Travel</a>
+  </div>
+
+
+  <!-- ════════════════════════
+       HERO
+       ════════════════════════ -->
+  <div class="guide-page-hero">
+    <div class="container">
+
+      <a href="travel.html?tab=guides" class="guide-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Travel Journal
+      </a>
+
+
+      <div class="guide-page-header">
+        <div class="guide-page-title-group">
+          <div class="guide-page-flag-row">
+            <span class="guide-page-flag">🇺🇸</span>
+            <span class="guide-page-region">US · Midwest</span>
+          </div>
+          <h1 class="guide-page-title">Chicago</h1>
+        </div>
+        <div class="guide-page-meta">
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Dates</span>
+            <span class="guide-page-meta-val">Aug 14 – Aug 16, 2026</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Type</span>
+            <span class="guide-page-meta-val">Friends</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Stops</span>
+            <span class="guide-page-meta-val">Wheaton · Chicago</span>
+          </div>
+          <div class="guide-page-meta-item">
+            <span class="guide-page-meta-label">Status</span>
+            <span class="guide-status guide-status--live" style="font-size:0.72rem;">Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- In this journal - magazine-style contents strip -->
+      <nav class="guide-toc">
+        <span class="guide-toc-label">In this journal</span>
+        <a href="#where">Where I visited</a>
+        <a href="#daybyday">Day by day</a>
+      </nav>
+
+    </div>
+    <div class="guide-hero-divider"></div>
+  </div>
+
+
+  <!-- ════════════════════════
+       BODY
+       ════════════════════════ -->
+  <div class="guide-page-body">
+    <div class="container">
+      <div class="guide-page-layout">
+
+        <!-- ══════════════════════════════
+             MAIN CONTENT
+             ══════════════════════════════ -->
+        <div class="guide-page-content">
+
+          <!-- WHERE I VISITED -->
+          <div class="guide-page-section" id="where">
+            <h2 class="guide-page-section-title">Where I visited</h2>
+
+            <div class="journal-stays">
+
+              <div class="journal-stay">
+                <div class="journal-stay-destination">Wheaton</div>
+                <div class="journal-stay-meta-row">
+                  <span class="journal-stay-dates">Aug 14 – 15 · 2 nights</span>
+                  <span class="journal-stay-hostel">Friend's house</span>
+                </div>
+                <p class="journal-stay-desc">A college friend's home base for both nights - explored Wheaton College and downtown Wheaton.</p>
+                <div class="journal-stay-tags">
+                  <span class="journal-stay-tag">🎓 Wheaton College</span>
+                  <span class="journal-stay-tag">🏙️ Downtown Wheaton</span>
+                </div>
+              </div>
+
+              <div class="journal-stay">
+                <div class="journal-stay-destination">Chicago</div>
+                <div class="journal-stay-meta-row">
+                  <span class="journal-stay-dates">Aug 15 and 16 · day trips</span>
+                  <span class="journal-stay-hostel">Based in Wheaton</span>
+                </div>
+                <p class="journal-stay-desc">The city itself - the Bean, Wrigley Field, and the Riverwalk.</p>
+                <div class="journal-stay-tags">
+                  <span class="journal-stay-tag">🫘 The Bean</span>
+                  <span class="journal-stay-tag">⚾ Wrigley Field</span>
+                  <span class="journal-stay-tag">🌊 Riverwalk</span>
+                  <span class="journal-stay-tag">🏛️ Chicago Cultural Center</span>
+                  <span class="journal-stay-tag">🏎️ F1 Arcade</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- DAY BY DAY -->
+          <div class="guide-page-section" id="daybyday">
+            <h2 class="guide-page-section-title">Day by day</h2>
+
+            <div class="journal-track">
+              <div class="plane-tracker" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path style="fill:var(--accent)" d="M12 2 L15 9 L22 12 L15 13.5 L14 21 L12 17 L10 21 L9 13.5 L2 12 L9 9 Z"/>
+                </svg>
+              </div>
+
+            <div class="journal-day">
+              <div class="journal-day-header">
+                <span class="journal-day-label">Day 1</span>
+                <span class="journal-day-date">Friday, August 14</span>
+                <span class="journal-day-location">Wheaton</span>
+              </div>
+              <div class="journal-day-body">
+                <p class="journal-day-text">Flew out at 4:10pm and landed in Chicago by 6. Got to a friend's place a little after 8:30, then wandered Wheaton College once it had cleared out for the night - a campus feels different when it's basically empty. Asleep by midnight, a short trip already off to a good start.</p>
+                <!-- ★ Add photo: <div class="journal-day-photo"><img src="assets/chicago/dayN.jpg" alt="" /><p class="journal-day-photo-caption">Caption</p></div> -->
+              </div>
+            </div>
+
+            <div class="journal-day">
+              <div class="journal-day-header">
+                <span class="journal-day-label">Day 2</span>
+                <span class="journal-day-date">Saturday, August 15</span>
+                <span class="journal-day-location">Wheaton → Chicago</span>
+              </div>
+              <div class="journal-day-body">
+                <p class="journal-day-text">Drove into the city around 11 and grabbed lunch at Devil Dawgs before spending the afternoon on foot - the Riverwalk, the obligatory photo at the Bean, and a stop through the Chicago Cultural Center. Dinner was deep dish at Gino's East, which lived up to the hype, then back to Wheaton for a walk through downtown before calling it a night around 11:15.</p>
+                <div class="journal-day-photo-row">
+                  <div class="journal-day-photo journal-day-photo--portrait"><img src="assets/chicago/chicago-riverwalk.jpg" alt="Along the Chicago Riverwalk" loading="lazy" /><p class="journal-day-photo-caption">Along the Chicago Riverwalk</p></div>
+                  <div class="journal-day-photo journal-day-photo--portrait"><img src="assets/chicago/chicago-river.jpg" alt="Buildings along the Chicago River" loading="lazy" /><p class="journal-day-photo-caption">The Chicago River</p></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="journal-day">
+              <div class="journal-day-header">
+                <span class="journal-day-label">Day 3</span>
+                <span class="journal-day-date">Sunday, August 16</span>
+                <span class="journal-day-location">Chicago → New Haven</span>
+              </div>
+              <div class="journal-day-body">
+                <p class="journal-day-text">Took the train into the city in the morning and had lunch at Dove's Luncheonette. Spent the early afternoon making one last round through Chicago - Wrigley Field, one more look at the Bean, and a stop at F1 Arcade - before catching the train back to the airport by 3:30. Flew out at 7:40 and landed in New Haven around 10:30. Short trip, but a good one.</p>
+                <div class="journal-day-photo-row">
+                  <div class="journal-day-photo journal-day-photo--portrait"><img src="assets/chicago/chicago-wrigley.jpg" alt="Wrigley Field marquee" loading="lazy" /><p class="journal-day-photo-caption">Wrigley Field</p></div>
+                  <div class="journal-day-photo journal-day-photo--portrait"><img src="assets/chicago/chicago-bean.jpg" alt="Looking at Cloud Gate in Millennium Park" loading="lazy" /><p class="journal-day-photo-caption">The Bean, Millennium Park</p></div>
+                  <div class="journal-day-photo journal-day-photo--portrait"><img src="assets/chicago/chicago-theatre.jpg" alt="The Chicago Theatre sign" loading="lazy" /><p class="journal-day-photo-caption">The Chicago Theatre</p></div>
+                </div>
+              </div>
+            </div>
+
+            </div><!-- /journal-track -->
+
+          </div><!-- /day by day section -->
+
+          <!-- MAP -->
+          <div class="guide-page-section guide-map-section">
+            <h2 class="guide-page-section-title">Map</h2>
+            <p class="guide-page-text" style="margin-bottom:1.25rem;">Wheaton, a Chicago suburb, and downtown Chicago itself.</p>
+            <div class="guide-map-wrap">
+              <iframe
+                class="guide-map-iframe"
+                src="https://maps.google.com/maps?q=Chicago,+IL&z=9&output=embed"
+                allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Chicago map">
+              </iframe>
+            </div>
+          </div>
+
+        </div><!-- /guide-page-content -->
+
+
+        <!-- ══════════════════════════════
+             SIDEBAR
+             ══════════════════════════════ -->
+        <aside class="guide-page-sidebar">
+
+          <div class="guide-sidebar-card">
+            <h3 class="guide-sidebar-heading">Trip at a glance</h3>
+            <div class="guide-sidebar-facts">
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Dates</span>
+                <span class="guide-sidebar-fact-val">Aug 14 – Aug 16, 2026</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Type</span>
+                <span class="guide-sidebar-fact-val">Friends</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Stops</span>
+                <span class="guide-sidebar-fact-val">Wheaton · Chicago</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Language</span>
+                <span class="guide-sidebar-fact-val">English</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Time zone</span>
+                <span class="guide-sidebar-fact-val">CDT · UTC-5</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-sidebar-card">
+            <h3 class="guide-sidebar-heading">What it cost</h3>
+            <div class="guide-sidebar-facts">
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Flights</span>
+                <span class="guide-sidebar-fact-val">$282.44</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Stays</span>
+                <span class="guide-sidebar-fact-val">$0.00</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Local transport</span>
+                <span class="guide-sidebar-fact-val">$11.75</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Food</span>
+                <span class="guide-sidebar-fact-val">$134.35</span>
+              </div>
+              <div class="guide-sidebar-fact" style="border-top:1px solid var(--ink-faint);padding-top:0.6rem;margin-top:0.25rem;">
+                <span class="guide-sidebar-fact-label" style="font-weight:500;">Total</span>
+                <span class="guide-sidebar-fact-val" style="font-weight:500;color:var(--accent);">$428.54</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-sidebar-card">
+            <h3 class="guide-sidebar-heading">Getting around</h3>
+            <div class="guide-sidebar-facts">
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Wheaton</span>
+                <span class="guide-sidebar-fact-val">Friend's car</span>
+              </div>
+              <div class="guide-sidebar-fact">
+                <span class="guide-sidebar-fact-label">Chicago</span>
+                <span class="guide-sidebar-fact-val">Metra + CTA + walking</span>
+              </div>
+            </div>
+          </div>
+
+        </aside><!-- /sidebar -->
+
+      </div><!-- /guide-page-layout -->
+    </div><!-- /container -->
+  </div><!-- /guide-page-body -->
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Nick Celotto</p>
+      <p class="footer-copy">© 2026 · nickcelotto.com</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/nickcelotto" target="_blank">LinkedIn</a>
+        <a href="https://github.com/nickcelotto" target="_blank">GitHub</a>
+        <a href="https://www.instagram.com/celottovision" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

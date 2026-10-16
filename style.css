@@ -1,5 +1,5 @@
 /* ============================================================
-   NICK CELOTTO — PORTFOLIO STYLESHEET
+   NICK CELOTTO - PORTFOLIO STYLESHEET
    
    TABLE OF CONTENTS:
    1.  Reset & CSS Variables
@@ -15,13 +15,13 @@
    11. Filter/Tab Bar (sticky bar below page header)
    12. Tab System (show/hide views via JS)
    13. Project Detail Cards (Other Projects view)
-   14. Featured Project — editorial layout
+   14. Featured Project - editorial layout
    15. Photo Strip (homepage teaser)
    16. Gallery Page (masonry grid + lightbox)
    17. Experience Section (homepage)
    18. Resume Pill (accent-colored hero button)
    19. Metrics Strip (photography page)
-   20. Photography Home — editorial intro
+   20. Photography Home - editorial intro
    21. Footer
    22. Animations & Scroll Reveal
    23. Responsive Breakpoints
@@ -32,7 +32,7 @@
    1. RESET & CSS VARIABLES
    ============================================================
    box-sizing: border-box means padding and border are included
-   in an element's width/height — avoids layout math headaches.
+   in an element's width/height - avoids layout math headaches.
    CSS custom properties (--variables) are defined on :root so
    they're available everywhere in the file.
    ============================================================ */
@@ -44,22 +44,29 @@
   --ink: #111110;           /* near-black for headings and strong text */
   --ink-mid: #555550;       /* body text, descriptions */
   --ink-light: #999990;     /* captions, labels, secondary text */
-  --ink-faint: #e8e6e0;     /* borders, dividers, very subtle lines */
+  --ink-faint: #e6e6e6;     /* borders, dividers, very subtle lines */
 
   /* ── Background colors ── */
-  --paper: #faf9f6;         /* page background — warm off-white, not pure white */
-  --paper-warm: #f3f1eb;    /* slightly deeper warm tone for cards, strips */
+  --paper: #ffffff;         /* page background - clean white */
+  --paper-warm: #ffffff;    /* same white - kept as a separate variable so
+                                a subtle surface distinction (or dark mode)
+                                can be reintroduced later without a find/
+                                replace across the whole file */
+  --surface: #f7f7f6;       /* barely-there neutral fill for cards that
+                                need to read as a distinct block against
+                                the white page (not a return to beige -
+                                this is a near-neutral gray) */
 
-  /* ── Accent — warm terracotta/amber ──
+  /* ── Accent - warm terracotta/amber ──
      Used on: labels, italic headings, icons, buttons, links,
      tag backgrounds, stat numbers, quote marks, arrow symbols. */
   --accent: #c2622a;        /* main accent, full saturation */
   --accent-hover: #a84e1e;  /* darker shade for hover states */
   --accent-faint: #f5e8de;  /* very light tint for backgrounds/hover fills */
-  --accent-mid: #d9845a;    /* mid tone — used in dark-bg contexts */
+  --accent-mid: #d9845a;    /* mid tone - used in dark-bg contexts */
 
   /* ── Legacy tag variables (kept for compatibility) ── */
-  --tag-bg: #eeecea;
+  --tag-bg: #eeeeee;
   --tag-color: #555550;
 
   /* ── Typography ── */
@@ -67,10 +74,10 @@
   --sans: 'DM Sans', system-ui, sans-serif;    /* all body text, UI labels */
 
   /* ── Layout ── */
-  --nav-h: 64px;            /* nav bar height — used to offset sticky elements */
+  --nav-h: 64px;            /* nav bar height - used to offset sticky elements */
   --max-w: 1100px;          /* max content width, centered on large screens */
   --side-pad: clamp(1.25rem, 5vw, 3rem); /* responsive horizontal padding */
-  /* clamp(min, preferred, max) — shrinks on small screens, caps on large */
+  /* clamp(min, preferred, max) - shrinks on small screens, caps on large */
 }
 
 html { scroll-behavior: smooth; } /* makes anchor links (#section) animate */
@@ -91,11 +98,11 @@ body {
 
 /* Images are block by default (removes inline bottom gap).
    width: 100% makes them fill their container.
-   height: auto preserves natural aspect ratio — no cropping.
+   height: auto preserves natural aspect ratio - no cropping.
    Individual containers override this where a fixed crop is needed. */
 img { display: block; width: 100%; height: auto; }
 
-/* Remove default link styling — we'll style each context manually */
+/* Remove default link styling - we'll style each context manually */
 a { color: inherit; text-decoration: none; }
 
 
@@ -111,7 +118,7 @@ a { color: inherit; text-decoration: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--nav-h);
-  background: rgba(250, 249, 246, 0.94); /* slightly transparent so blur shows */
+  background: rgba(255, 255, 255, 0.94); /* slightly transparent so blur shows */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);   /* Safari prefix */
   border-bottom: 1px solid var(--ink-faint);
@@ -122,7 +129,7 @@ a { color: inherit; text-decoration: none; }
   z-index: 1000;
 }
 
-/* Logo text — uses serif font, slightly smaller than headings */
+/* Logo text - uses serif font, slightly smaller than headings */
 .nav-logo {
   font-family: var(--serif);
   font-size: 1.2rem;
@@ -147,7 +154,7 @@ a { color: inherit; text-decoration: none; }
   position: relative; /* needed for the ::after underline pseudo-element */
 }
 
-/* Animated underline on hover/active — grows from left using width transition */
+/* Animated underline on hover/active - grows from left using width transition */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -167,7 +174,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%; /* triggers the underline animation */
 }
 
-/* Hamburger button — hidden on desktop, shown on mobile via media query */
+/* Hamburger button - hidden on desktop, shown on mobile via media query */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -186,7 +193,7 @@ a { color: inherit; text-decoration: none; }
   transition: all 0.25s;
 }
 
-/* Mobile dropdown — hidden until JS adds class "open" */
+/* Mobile dropdown - hidden until JS adds class "open" */
 .nav-mobile-menu {
   display: none;
   position: fixed;
@@ -254,7 +261,7 @@ a { color: inherit; text-decoration: none; }
 
 .section { padding: 5rem 0; }
 
-/* Horizontal rule between sections — constrained to content width */
+/* Horizontal rule between sections - constrained to content width */
 .section-divider {
   height: 1px;
   background: var(--ink-faint);
@@ -318,7 +325,7 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--ink-faint);
 }
 
-/* Override the global img rule — portrait photo needs cover crop */
+/* Override the global img rule - portrait photo needs cover crop */
 .hero-photo img {
   width: 100%;
   height: 100%;
@@ -349,7 +356,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 1rem;
 }
 
-/* Large name — the biggest type on the page */
+/* Large name - the biggest type on the page */
 .hero-name {
   font-family: var(--serif);
   font-size: clamp(3.5rem, 8vw, 6rem);
@@ -531,7 +538,7 @@ a { color: inherit; text-decoration: none; }
 
 .project-overlay span {
   font-size: 0.85rem;
-  color: #faf9f6;
+  color: #ffffff;
   letter-spacing: 0.04em;
 }
 
@@ -622,7 +629,7 @@ a { color: inherit; text-decoration: none; }
   padding: 1rem 0;
   position: sticky;
   top: var(--nav-h);
-  background: rgba(250, 249, 246, 0.97);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(8px);
   z-index: 100;
   overflow-x: auto;
@@ -635,7 +642,7 @@ a { color: inherit; text-decoration: none; }
 .filter-bar .container {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: nowrap;       /* single row — scrolls instead of wrapping */
+  flex-wrap: nowrap;       /* single row - scrolls instead of wrapping */
   min-width: max-content;  /* prevents container from shrinking below content */
 }
 
@@ -643,8 +650,8 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    12. TAB SYSTEM
    ============================================================
-   .tab-btn — the clickable buttons in the filter bar.
-   .tab-view — the content panels shown/hidden by main.js.
+   .tab-btn - the clickable buttons in the filter bar.
+   .tab-view - the content panels shown/hidden by main.js.
    JS reads data-view="key" on buttons and matches to id="view-{key}".
    ============================================================ */
 
@@ -669,15 +676,15 @@ a { color: inherit; text-decoration: none; }
   border-color: var(--ink-faint);
 }
 
-/* Active tab — accent border and background */
+/* Active tab - accent border and background */
 .tab-btn.active {
   color: var(--accent);
   border-color: var(--accent);
   background: var(--accent-faint);
 }
 
-/* Tab view containers — toggled between display:none and display:'' by JS */
-.tab-view { /* no default styles needed — JS handles visibility */ }
+/* Tab view containers - toggled between display:none and display:'' by JS */
+.tab-view { /* no default styles needed - JS handles visibility */ }
 
 /* Legacy filter buttons (kept in case any page still uses .filter-btn) */
 .filter-btn {
@@ -776,7 +783,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: auto;
   display: block;
-  object-fit: unset; /* no forced crop — respects natural aspect ratio */
+  object-fit: unset; /* no forced crop - respects natural aspect ratio */
 }
 
 /* ── Body: narrative (wider) + sticky sidebar ── */
@@ -822,7 +829,7 @@ a { color: inherit; text-decoration: none; }
 
 .pf-text + .pf-text { margin-top: 0.85rem; }
 
-/* Key findings list — uses ↗ arrows instead of bullets */
+/* Key findings list - uses ↗ arrows instead of bullets */
 .pf-findings {
   list-style: none;
   padding: 0;
@@ -840,7 +847,7 @@ a { color: inherit; text-decoration: none; }
   max-width: 600px;
 }
 
-/* The ↗ arrow — positioned absolutely to the left of each list item */
+/* The ↗ arrow - positioned absolutely to the left of each list item */
 .pf-findings li::before {
   content: '↗';
   position: absolute;
@@ -978,7 +985,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   14. FEATURED PROJECT — editorial layout
+   14. FEATURED PROJECT - editorial layout
    ============================================================
    Unlike the Other Projects cards, the Featured Project uses a
    magazine-style layout:
@@ -992,7 +999,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Hero band ──
    Uses paper-warm background (same as the metrics strip) rather
-   than dark — keeps the page light and minimal. */
+   than dark - keeps the page light and minimal. */
 .fp-hero {
   background: var(--paper-warm);
   border-bottom: 1px solid var(--ink-faint);
@@ -1009,7 +1016,7 @@ a { color: inherit; text-decoration: none; }
 
 .fp-tags { margin-bottom: 1.25rem; }
 
-/* Tags inside the hero band — slightly darker tint to read on warm bg */
+/* Tags inside the hero band - slightly darker tint to read on warm bg */
 .fp-tags .project-tag {
   background: var(--accent-faint);
   border-color: rgba(194, 98, 42, 0.25);
@@ -1022,7 +1029,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-light);
 }
 
-/* Large serif title — the <em> part renders in accent color */
+/* Large serif title - the <em> part renders in accent color */
 .fp-title {
   font-family: var(--serif);
   font-size: clamp(2.5rem, 5vw, 4rem);
@@ -1121,7 +1128,7 @@ a { color: inherit; text-decoration: none; }
   position: relative;
 }
 
-/* The actual Tableau iframe — adjust height here to fit your dashboard */
+/* The actual Tableau iframe - adjust height here to fit your dashboard */
 .fp-embed-iframe {
   width: 100%;
   height: 850px;
@@ -1310,7 +1317,7 @@ a { color: inherit; text-decoration: none; }
   margin-top: 1.5rem;
 }
 
-/* Square thumbnails — aspect-ratio enforces 1:1 crop */
+/* Square thumbnails - aspect-ratio enforces 1:1 crop */
 .photo-thumb {
   border-radius: 2px;
   overflow: hidden;
@@ -1340,6 +1347,26 @@ a { color: inherit; text-decoration: none; }
 
 .gallery-section { padding-top: 3rem; }
 
+.gallery-trip-section { margin-bottom: 3.5rem; }
+.gallery-trip-section:last-child { margin-bottom: 0; }
+
+.gallery-trip-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.gallery-trip-flag { font-size: 1.5rem; }
+.gallery-trip-title { font-size: 1.5rem; }
+.gallery-trip-date {
+  font-size: 0.78rem;
+  color: var(--ink-light);
+  margin-left: auto;
+}
+
 /* columns: 3 creates a 3-column masonry layout.
    break-inside: avoid on items prevents images from splitting. */
 .masonry-grid {
@@ -1355,7 +1382,7 @@ a { color: inherit; text-decoration: none; }
 
 .masonry-item.hidden { display: none; } /* used by JS filter */
 
-/* Gallery image container — no fixed height, lets image define its own */
+/* Gallery image container - no fixed height, lets image define its own */
 .gallery-img {
   position: relative; /* needed for .gallery-overlay absolute positioning */
   border-radius: 2px;
@@ -1376,7 +1403,7 @@ a { color: inherit; text-decoration: none; }
 
 .gallery-img:hover img { transform: scale(1.03); }
 
-/* Optional forced-crop classes — add .tall or .wide to .gallery-img
+/* Optional forced-crop classes - add .tall or .wide to .gallery-img
    if you want to override natural aspect ratio for a specific photo */
 .gallery-img.tall { aspect-ratio: 2 / 3; }
 .gallery-img.tall img { height: 100%; object-fit: cover; }
@@ -1389,7 +1416,10 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: center;
   min-height: 200px;
+  background: var(--surface);
 }
+
+.img-placeholder-gallery img { display: none; }
 
 .img-placeholder-gallery::after {
   content: 'Add photo';
@@ -1398,7 +1428,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--sans);
 }
 
-/* Dark overlay with category tag — fades in on hover */
+/* Dark overlay with category tag - fades in on hover */
 .gallery-overlay {
   position: absolute;
   inset: 0;
@@ -1417,8 +1447,8 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(250, 249, 246, 0.95);
-  border: 1px solid rgba(250, 249, 246, 0.5);
+  color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 0.2rem 0.5rem;
   border-radius: 1px;
   background: rgba(194, 98, 42, 0.35); /* subtle accent tint */
@@ -1440,7 +1470,7 @@ a { color: inherit; text-decoration: none; }
 
 .lightbox.open { display: flex; }
 
-/* The enlarged image — constrained to viewport, maintains aspect ratio */
+/* The enlarged image - constrained to viewport, maintains aspect ratio */
 .lightbox-img {
   max-width: 88vw;
   max-height: 88vh;
@@ -1450,12 +1480,12 @@ a { color: inherit; text-decoration: none; }
   border-radius: 2px;
 }
 
-/* × close button — top right corner */
+/* × close button - top right corner */
 .lightbox-close {
   position: absolute;
   top: 1.25rem; right: 1.5rem;
   font-size: 2.2rem;
-  color: rgba(250,249,246,0.65);
+  color: rgba(255, 255, 255,0.65);
   background: none;
   border: none;
   cursor: pointer;
@@ -1472,7 +1502,7 @@ a { color: inherit; text-decoration: none; }
   top: 50%;
   transform: translateY(-50%);
   font-size: 2.5rem;
-  color: rgba(250,249,246,0.5);
+  color: rgba(255, 255, 255,0.5);
   background: none;
   border: none;
   cursor: pointer;
@@ -1597,7 +1627,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 1.25rem;
 }
 
-/* The strip container — flex row, horizontal scroll on mobile */
+/* The strip container - flex row, horizontal scroll on mobile */
 .metrics-strip {
   display: flex;
   align-items: stretch; /* all cards stretch to same height */
@@ -1627,7 +1657,7 @@ a { color: inherit; text-decoration: none; }
 
 .metric-card:hover { background: var(--accent-faint); }
 
-/* The big number — uses serif font for impact */
+/* The big number - uses serif font for impact */
 .metric-value {
   font-family: var(--serif);
   font-size: clamp(2.2rem, 3.5vw, 3rem);
@@ -1664,7 +1694,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   20. PHOTOGRAPHY HOME — editorial intro
+   20. PHOTOGRAPHY HOME - editorial intro
    ============================================================
    The Home tab on photography.html has a different feel from
    the two-column bio format on the homepage:
@@ -1719,7 +1749,7 @@ a { color: inherit; text-decoration: none; }
 .photo-about-text + .photo-about-text { margin-top: 1rem; }
 
 /* ── Instagram card ──
-   Uses paper-warm (same as metrics strip) instead of black —
+   Uses paper-warm (same as metrics strip) instead of black - 
    warm and minimal rather than stark. Sticky so it stays
    visible as you scroll the text. */
 .photo-ig-card {
@@ -1752,7 +1782,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.6;
 }
 
-/* Text link style — underline via border-bottom */
+/* Text link style - underline via border-bottom */
 .photo-ig-btn {
   display: inline-block;
   margin-top: 0.5rem;
@@ -1782,7 +1812,7 @@ a { color: inherit; text-decoration: none; }
   margin-top: 2rem;
 }
 
-/* Three items: name | copyright | links — spread across full width */
+/* Three items: name | copyright | links - spread across full width */
 .footer-inner {
   display: flex;
   align-items: center;
@@ -1831,7 +1861,7 @@ a { color: inherit; text-decoration: none; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Staggered hero animations — each element fades up slightly later */
+/* Staggered hero animations - each element fades up slightly later */
 .hero-eyebrow  { animation: fadeUp 0.6s ease both; }
 .hero-name     { animation: fadeUp 0.6s 0.1s ease both; }
 .hero-location { animation: fadeUp 0.6s 0.18s ease both; }
@@ -1839,7 +1869,7 @@ a { color: inherit; text-decoration: none; }
 .hero-photo-wrap { animation: fadeUp 0.7s 0.05s ease both; }
 
 /* Prevents a flash of invisible content on mobile where
-   hover overlays can't trigger — tap still works via :active */
+   hover overlays can't trigger - tap still works via :active */
 @media (hover: none) {
   .project-overlay { opacity: 0 !important; }
   .gallery-img:active .gallery-overlay { opacity: 1; }
@@ -1852,8 +1882,8 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    23. RESPONSIVE BREAKPOINTS
    ============================================================
-   900px — tablets and small laptops
-   640px — phones (iPhone and similar)
+   900px - tablets and small laptops
+   640px - phones (iPhone and similar)
    ============================================================ */
 
 @media (max-width: 900px) {
@@ -2027,12 +2057,12 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   HOMEPAGE — FEATURED PHOTO TEASER
+   HOMEPAGE - FEATURED PHOTO TEASER
    Single full-width image with caption bar below.
    Replaces the four-thumbnail strip.
    ============================================================ */
 
-/* Wrapper — no fixed height, image defines its own */
+/* Wrapper - no fixed height, image defines its own */
 .photo-feature {
   margin-top: 1.5rem;
   border-radius: 2px;
@@ -2092,7 +2122,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL GUIDES — cards grid
+   TRAVEL GUIDES - cards grid
    ============================================================ */
 
 /* Section intro text above the cards */
@@ -2140,7 +2170,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 4px 18px rgba(194,98,42,0.12);
 }
 
-/* Cover image — fixed height with cover crop */
+/* Cover image - fixed height with cover crop */
 .guide-card-img {
   height: 180px;
   overflow: hidden;
@@ -2201,7 +2231,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.55;
 }
 
-/* Chevron arrow at bottom of card — rotates when open */
+/* Chevron arrow at bottom of card - rotates when open */
 .guide-card-chevron {
   display: flex;
   justify-content: center;
@@ -2254,7 +2284,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL GUIDES — expanded panels
+   TRAVEL GUIDES - expanded panels
    Panels sit in the DOM below the cards grid.
    JS shows/hides them by setting display:block/none.
    ============================================================ */
@@ -2276,7 +2306,7 @@ a { color: inherit; text-decoration: none; }
   position: relative;
 }
 
-/* × close button — top right of the panel */
+/* × close button - top right of the panel */
 .guide-panel-close {
   position: absolute;
   top: 1.25rem;
@@ -2321,7 +2351,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.1;
 }
 
-/* Hero image — natural aspect ratio, full panel width */
+/* Hero image - natural aspect ratio, full panel width */
 .guide-panel-hero {
   width: 100%;
   border-radius: 2px;
@@ -2370,7 +2400,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.8;
 }
 
-/* Guide lists — standard and tips variants */
+/* Guide lists - standard and tips variants */
 .guide-list {
   list-style: none;
   padding: 0;
@@ -2400,7 +2430,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--accent);
 }
 
-/* Photo grid inside the panel — 3 equal columns */
+/* Photo grid inside the panel - 3 equal columns */
 .guide-photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2427,7 +2457,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   RESPONSIVE — guides + featured photo
+   RESPONSIVE - guides + featured photo
    ============================================================ */
 
 @media (max-width: 900px) {
@@ -2449,7 +2479,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL GUIDES — REVISED STYLES
+   TRAVEL GUIDES - REVISED STYLES
    Overrides the earlier guide-card rules with:
    - Fixed image height (all cards same size)
    - Image inner wrapper for tint overlay
@@ -2457,9 +2487,9 @@ a { color: inherit; text-decoration: none; }
    - Richer intro section
    ============================================================ */
 
-/* ── Guide card image — fixed height, cover crop ── */
+/* ── Guide card image - fixed height, cover crop ── */
 .guide-card-img {
-  height: 200px; /* fixed — all cards identical height */
+  height: 200px; /* fixed - all cards identical height */
   overflow: hidden;
   background: var(--accent-faint);
   position: relative;
@@ -2475,7 +2505,7 @@ a { color: inherit; text-decoration: none; }
 .guide-card-img-inner img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* cover crop — fills the fixed box */
+  object-fit: cover; /* cover crop - fills the fixed box */
   transition: transform 0.5s;
   display: block;
 }
@@ -2502,7 +2532,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-/* ── Guide intro — editorial heading treatment ── */
+/* ── Guide intro - editorial heading treatment ── */
 .guides-intro {
   margin-bottom: 3rem;
   padding-bottom: 2.5rem;
@@ -2548,7 +2578,7 @@ a { color: inherit; text-decoration: none; }
   max-width: 480px;
 }
 
-/* Large destination count — right side of intro */
+/* Large destination count - right side of intro */
 .guides-intro-count {
   display: flex;
   flex-direction: column;
@@ -2586,19 +2616,19 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE CARDS — FLAG WATERMARK DESIGN
+   GUIDE CARDS - FLAG WATERMARK DESIGN
    No image files needed. The flag is an SVG watermark that
    fills the top of the card. Card body sits below it with
    the city name colored from the flag's primary color.
    ============================================================ */
 
-/* Flag cards use a different layout from image cards —
+/* Flag cards use a different layout from image cards - 
    the flag area has a fixed height like the old img box */
 .guide-card--flag {
   overflow: visible; /* allow flag bg to fill its area cleanly */
 }
 
-/* Flag background container — same fixed height as the old image */
+/* Flag background container - same fixed height as the old image */
 .guide-flag-bg {
   height: 160px;
   position: relative;
@@ -2608,7 +2638,7 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--ink-faint);
 }
 
-/* The SVG flag — fills the container, faded watermark effect */
+/* The SVG flag - fills the container, faded watermark effect */
 .guide-flag-svg {
   position: absolute;
   inset: 0;
@@ -2620,12 +2650,12 @@ a { color: inherit; text-decoration: none; }
   transition: transform 0.5s ease;
 }
 
-/* Subtle zoom on card hover — flag breathes */
+/* Subtle zoom on card hover - flag breathes */
 .guide-card:hover .guide-flag-svg {
   transform: scale(1.12);
 }
 
-/* Active (open) card — slight tint on the flag area */
+/* Active (open) card - slight tint on the flag area */
 .guide-card--open .guide-flag-bg {
   filter: brightness(0.97);
 }
@@ -2637,14 +2667,14 @@ a { color: inherit; text-decoration: none; }
   z-index: 1;
 }
 
-/* City name inherits the flag color via inline style —
+/* City name inherits the flag color via inline style - 
    make it a bit larger and bolder than the default */
 .guide-card--flag .guide-city {
   font-size: 1.4rem;
   letter-spacing: -0.025em;
 }
 
-/* Chevron bar — neutral, no flag color needed here */
+/* Chevron bar - neutral, no flag color needed here */
 .guide-card--flag .guide-card-chevron {
   background: var(--paper);
   border-top: 1px solid var(--ink-faint);
@@ -2652,7 +2682,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE CARDS V2 — reference-image layout
+   GUIDE CARDS V2 - reference-image layout
    Flag emoji + city name top, region, status badge + date,
    illustrated scene, tagline + CTA bottom.
    Each card is an <a> link to Medium.
@@ -2721,7 +2751,7 @@ a { color: inherit; text-decoration: none; }
   padding: 0 1.25rem 1rem;
 }
 
-/* Status pill — dot + label */
+/* Status pill - dot + label */
 .gc2-status {
   display: inline-flex;
   align-items: center;
@@ -2757,7 +2787,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-light);
 }
 
-/* Illustrated scene area — fixed height, clips the SVG */
+/* Illustrated scene area - fixed height, clips the SVG */
 .gc2-scene {
   width: calc(100% - 2rem); /* inset from card edges like reference */
   margin: 0 1rem;
@@ -2817,15 +2847,15 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE CARDS V2 — REVISED STYLES
+   GUIDE CARDS V2 - REVISED STYLES
    - gc2-city: switch from DM Serif Display (thin/sharp) to
      a fuller weight using DM Sans 500 for the city name
    - All cards: unified neutral background (--paper-warm)
      with just the left border and scene tint carrying the
-     country color — everything else is consistent
+     country color - everything else is consistent
    ============================================================ */
 
-/* Fuller, rounder city name — DM Sans medium weight */
+/* Fuller, rounder city name - DM Sans medium weight */
 .gc2-city {
   font-family: var(--sans);
   font-size: 1.3rem;
@@ -2835,9 +2865,9 @@ a { color: inherit; text-decoration: none; }
   /* color still set per-card via inline style (flag color) */
 }
 
-/* Unified neutral card background — override the per-card --gc-bg */
+/* Unified neutral card background - override the per-card --gc-bg */
 .guide-card-v2 {
-  background: var(--paper-warm) !important; /* same cream for all cards */
+  background: var(--paper-warm) !important; /* same white for all cards */
 }
 
 /* The scene area keeps its illustrated colors (that's where country
@@ -2847,13 +2877,13 @@ a { color: inherit; text-decoration: none; }
   background: var(--paper-warm);
 }
 
-/* Status pills — keep the same colors, they're subtle enough */
-/* CTA text uses the flag color (--gc-color) — that's the hint of country */
+/* Status pills - keep the same colors, they're subtle enough */
+/* CTA text uses the flag color (--gc-color) - that's the hint of country */
 .gc2-cta {
   color: var(--gc-color, var(--accent));
 }
 
-/* Left border accent is the country color — keep it */
+/* Left border accent is the country color - keep it */
 /* Card border otherwise stays --ink-faint on non-hover */
 .guide-card-v2 {
   border-color: var(--ink-faint);
@@ -2869,7 +2899,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   FEATURED PROJECT — hero links (moved from bottom to hero)
+   FEATURED PROJECT - hero links (moved from bottom to hero)
    ============================================================ */
 
 /* Link row sitting below the tagline in the hero band */
@@ -2880,7 +2910,7 @@ a { color: inherit; text-decoration: none; }
   margin-top: 1.5rem;
 }
 
-/* Buttons on the warm hero background — same btn-outline/btn-ghost
+/* Buttons on the warm hero background - same btn-outline/btn-ghost
    styles apply, they already work on light backgrounds */
 
 /* fp-bottom-meta used standalone (no longer in fp-bottom-row flex) */
@@ -2897,12 +2927,12 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   FILMSTRIP — horizontal scroll photo strip
+   FILMSTRIP - horizontal scroll photo strip
    9:16 aspect ratio (Instagram story format).
    Frames are small and uniform; the strip scrolls sideways.
    ============================================================ */
 
-/* Outer scroll container — clips overflow, enables horizontal scroll */
+/* Outer scroll container - clips overflow, enables horizontal scroll */
 .filmstrip {
   display: flex;
   gap: 0.6rem;
@@ -2919,10 +2949,10 @@ a { color: inherit; text-decoration: none; }
 
 .filmstrip::-webkit-scrollbar { display: none; } /* hide scrollbar Chrome/Safari */
 
-/* Individual frame — 9:16 ratio, small fixed width */
+/* Individual frame - 9:16 ratio, small fixed width */
 .film-frame {
   flex-shrink: 0;                    /* never compress */
-  width: 90px;                       /* small — keeps strip compact */
+  width: 90px;                       /* small - keeps strip compact */
   aspect-ratio: 9 / 16;             /* Instagram story ratio */
   border-radius: 6px;
   overflow: hidden;
@@ -2983,7 +3013,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL GUIDE PAGE — guide-nyc.html and future guide pages
+   TRAVEL GUIDE PAGE - guide-nyc.html and future guide pages
    ============================================================ */
 
 /* ── Hero section ── */
@@ -3008,6 +3038,60 @@ a { color: inherit; text-decoration: none; }
 }
 
 .guide-back:hover { color: var(--accent); }
+
+/* Magazine-style masthead line above the title */
+.guide-masthead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.6rem;
+}
+
+/* "In this journal" contents strip */
+.guide-toc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.4rem;
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.guide-toc-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-light);
+  margin-right: 0.25rem;
+}
+
+.guide-toc a {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.guide-toc a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Drop cap on the opening paragraph of a journal entry */
+.guide-dropcap::first-letter {
+  font-family: var(--serif);
+  font-size: 3.4rem;
+  font-style: italic;
+  color: var(--accent);
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.5rem;
+  padding-top: 0.3rem;
+}
 
 /* Header: title left, meta right */
 .guide-page-header {
@@ -3083,7 +3167,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-mid);
 }
 
-/* Full-width cover photo — sits at the bottom of the hero */
+/* Full-width cover photo - sits at the bottom of the hero */
 .guide-page-cover {
   width: 100%;
   max-height: 520px;
@@ -3213,7 +3297,7 @@ a { color: inherit; text-decoration: none; }
 
 .guide-page-photo:hover img { transform: none; }
 
-/* Tall first photo — same as others */
+/* Tall first photo - same as others */
 .guide-page-photo--tall img { height: 100%; object-fit: cover; }
 
 .guide-page-photo-caption {
@@ -3221,7 +3305,7 @@ a { color: inherit; text-decoration: none; }
   bottom: 0.5rem;
   left: 0.6rem;
   font-size: 0.68rem;
-  color: rgba(250,249,246,0.85);
+  color: rgba(255, 255, 255,0.85);
   letter-spacing: 0.04em;
   text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
@@ -3373,7 +3457,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.7rem;
 }
 
-/* Accent card — disclaimer */
+/* Accent card - disclaimer */
 .guide-sidebar-card--accent {
   background: var(--accent-faint);
   border-color: rgba(194,98,42,0.2);
@@ -3411,10 +3495,10 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE PAGE — BOROUGHS & HIGHLIGHTS
+   GUIDE PAGE - BOROUGHS & HIGHLIGHTS
    ============================================================ */
 
-/* Each borough block — separated by border */
+/* Each borough block - separated by border */
 .guide-borough {
   padding: 1.75rem 0;
   border-bottom: 1px solid var(--ink-faint);
@@ -3452,7 +3536,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 1rem;
 }
 
-/* Highlight chips — wrapping row of landmark tags */
+/* Highlight chips - wrapping row of landmark tags */
 .guide-highlights {
   display: flex;
   flex-wrap: wrap;
@@ -3485,7 +3569,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE PAGE — BEST PHOTO SPOTS
+   GUIDE PAGE - BEST PHOTO SPOTS
    ============================================================ */
 
 .guide-photo-spots {
@@ -3507,7 +3591,7 @@ a { color: inherit; text-decoration: none; }
 
 .guide-photo-spot:last-child { border-bottom: none; padding-bottom: 0; }
 
-/* Fixed-size thumbnail — 16:9 crop */
+/* Fixed-size thumbnail - 16:9 crop */
 .guide-photo-spot-img {
   width: 160px;
   height: 90px;
@@ -3580,7 +3664,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE PAGE — MAP
+   GUIDE PAGE - MAP
    ============================================================ */
 
 .guide-map-section { padding-bottom: 0; }
@@ -3590,9 +3674,9 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   border: 1px solid var(--ink-faint);
   background: var(--paper-warm);
-  /* Intrinsic ratio box — 16:9 */
+  /* Intrinsic ratio box - 16:9 */
   position: relative;
-  padding-bottom: 52%; /* slightly less than 56.25% — less tall, more usable */
+  padding-bottom: 52%; /* slightly less than 56.25% - less tall, more usable */
   height: 0;
 }
 
@@ -3607,10 +3691,10 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE PAGE — SIDEBAR UPDATES
+   GUIDE PAGE - SIDEBAR UPDATES
    ============================================================ */
 
-/* "Don't miss" list — positive framing, checkmark bullets */
+/* "Don't miss" list - positive framing, checkmark bullets */
 .guide-sidebar-list {
   list-style: none;
   padding: 0;
@@ -3636,7 +3720,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
 }
 
-/* "Mistakes to avoid" — uses ! arrow styling from guide-tips-list */
+/* "Mistakes to avoid" - uses ! arrow styling from guide-tips-list */
 .guide-tip-arrow {
   flex-shrink: 0;
   color: var(--accent);
@@ -3649,7 +3733,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   RESPONSIVE — new guide sections
+   RESPONSIVE - new guide sections
    ============================================================ */
 
 @media (max-width: 640px) {
@@ -3670,7 +3754,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE PAGE — HERO DIVIDER (replaces full-width cover photo)
+   GUIDE PAGE - HERO DIVIDER (replaces full-width cover photo)
    A thin accent line with a warm-to-white gradient fade,
    separating the hero band from the body cleanly.
    ============================================================ */
@@ -3691,7 +3775,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE PAGE — EAT CATEGORIES
+   GUIDE PAGE - EAT CATEGORIES
    Grouped by type (Restaurant, Pizza, Bagel) with an
    emoji icon + category name as a mini-heading above
    each group's rec list.
@@ -3732,7 +3816,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   COST METER — dollar sign rating out of four
+   COST METER - dollar sign rating out of four
    Use .cost-dollar--filled for active dollars,
    .cost-dollar--empty for inactive ones.
    Examples:
@@ -3764,140 +3848,840 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   GUIDE CARDS — MINIMAL TEXT-ONLY DESIGN
-   No illustration, no left border, no background tint.
-   Just flag, city name, region, status, tagline, and CTA.
-   All cards share the same neutral look — clean and consistent.
+   JOURNAL TAB - journal-card grid
    ============================================================ */
 
-.guide-card-min {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.5rem;
-  background: var(--paper);
-  border: 1px solid var(--ink-faint);
-  border-radius: 8px;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
-.guide-card-min:hover {
-  border-color: var(--ink-light);
-  box-shadow: 0 4px 16px rgba(17,17,16,0.07);
+.journal-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid var(--ink-faint);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+a.journal-card:hover {
+  box-shadow: 0 14px 30px rgba(17,17,16,0.1);
   transform: translateY(-2px);
 }
 
-/* Upcoming cards (coming soon / planning) — slightly muted */
-.guide-card-min--upcoming {
-  background: var(--paper-warm);
-  opacity: 0.82;
+.journal-card-img {
+  aspect-ratio: 16 / 10;
+  background: var(--surface);
 }
 
-.guide-card-min--upcoming:hover {
-  opacity: 1;
+.journal-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Top row: flag emoji left, status badge right */
-.gcm-flag-row {
+.journal-card-body { padding: 1.5rem 1.6rem; }
+
+.journal-card-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.35rem;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
 }
 
-.gcm-flag {
-  font-size: 1.75rem;
+.journal-card-flag { font-size: 1.2rem; }
+
+.journal-card-region {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.journal-card-dest { font-size: 1.4rem; margin-bottom: 0.35rem; }
+
+.journal-card-meta {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.journal-card-desc {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  margin-bottom: 1.1rem;
+}
+
+.journal-card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.journal-card-read {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.journal-card-read--muted { color: var(--ink-light); font-weight: 400; }
+
+
+/* ============================================================
+   GEAR TAB
+   ============================================================ */
+
+.gear-intro-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.gear-intro-img-placeholder {
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+  border: 1px dashed var(--ink-faint);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gear-intro-img-placeholder span {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.gear-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.gear-section-num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--ink-faint);
   line-height: 1;
 }
 
-/* Status badges */
-.gcm-status {
+.gear-section-title { font-size: 1.6rem; }
+
+.gear-section-eyebrow {
   font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.22rem 0.6rem;
-  border-radius: 20px;
-  border: 1px solid transparent;
-}
-
-.gcm-status--live {
-  background: rgba(40,167,69,0.08);
-  color: #1d7a38;
-  border-color: rgba(40,167,69,0.2);
-}
-
-.gcm-status--soon {
-  background: var(--accent-faint);
   color: var(--accent);
-  border-color: rgba(194,98,42,0.2);
+  margin-bottom: 0.2rem;
 }
 
-.gcm-status--planning {
-  background: rgba(255,193,7,0.08);
-  color: #856404;
-  border-color: rgba(255,193,7,0.25);
+.gear-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--ink-faint);
+  border: 1px solid var(--ink-faint);
 }
 
-/* City name — uses DM Sans medium, larger and grounded */
-.gcm-city {
+.gear-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.gear-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+.gear-card {
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+}
+
+.gear-card-img {
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gear-card-img-placeholder span {
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.gear-card-body {
+  padding: 1.25rem 1.4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.gear-card-category {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.gear-card-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.gear-card-sub {
+  font-size: 0.72rem;
+  color: var(--ink-light);
+}
+
+.gear-card-desc {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 900px) {
+  .gear-intro-inner { grid-template-columns: 1fr; }
+  .gear-grid { grid-template-columns: repeat(2, 1fr); }
+  .gear-grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .gear-grid, .gear-grid--2, .gear-grid--4 { grid-template-columns: 1fr; }
+}
+
+
+
+/* ============================================================
+   MAP TAB - real Leaflet map (see main.js section 9 for the
+   lazy-init JS). Full-bleed within the tab, restyled from
+   Leaflet's defaults to match the site's white/accent palette.
+   ============================================================ */
+
+.map-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  height: 65vh;
+  min-height: 480px;
+  border-top: 1px solid var(--ink-faint);
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+#travelMap {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: var(--surface);
+}
+
+/* Countries / US States view toggle (Leaflet control, top right). */
+.map-mode-toggle {
+  display: flex;
+  background: #fff;
+  overflow: hidden;
+}
+.map-mode-btn {
+  border: none;
+  background: #fff;
+  color: var(--ink-light);
+  font: 600 0.78rem 'DM Sans', sans-serif;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.map-mode-btn:hover { background: var(--surface); }
+.map-mode-btn.active,
+.map-mode-btn.active:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Mute the tile colors so they sit quietly behind the accent-colored
+   markers instead of competing with the rest of the site's palette. */
+.leaflet-tile {
+  filter: grayscale(55%) contrast(0.95) brightness(1.04);
+}
+
+.leaflet-container {
+  background: var(--surface);
   font-family: var(--sans);
-  font-size: 1.25rem;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 28px rgba(17,17,16,0.15);
+  border: 1px solid var(--ink-faint);
+  padding: 0;
+}
+
+.leaflet-popup-content { margin: 0; padding: 1.1rem 1.3rem; }
+.leaflet-popup-tip { background: #fff; }
+.leaflet-popup-close-button { color: var(--ink-light) !important; }
+
+.popup-flag { font-size: 1.4rem; margin-bottom: 0.35rem; }
+
+.popup-name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.popup-meta {
+  font-size: 0.72rem;
+  color: var(--ink-light);
+  margin-bottom: 0.7rem;
+}
+
+.popup-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ── Sidebar ── */
+.map-sidebar {
+  background: var(--paper);
+  border-left: 1px solid var(--ink-faint);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.map-sidebar-header {
+  padding: 1.75rem 1.5rem 1.1rem;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.map-sidebar-title {
+  font-size: 1.4rem;
+}
+
+.map-stats {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--ink-faint);
+  justify-content: center;
+}
+
+.map-stat-ring-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.map-stat-ring-svg-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+
+.map-stat-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.map-stat-ring-track {
+  fill: none;
+  stroke: var(--ink-faint);
+  stroke-width: 5;
+}
+
+.map-stat-ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.7s ease;
+}
+
+.map-stat-ring-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--ink);
+}
+
+.map-stat-ring-label {
+  font-size: 0.72rem;
   font-weight: 500;
   color: var(--ink);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
 }
 
-/* Region + context line */
-.gcm-region {
-  font-size: 0.75rem;
+.map-stat-ring-sub {
+  font-size: 0.62rem;
   color: var(--ink-light);
-  letter-spacing: 0.03em;
-  margin-bottom: 0.25rem;
 }
 
-/* Tagline */
-.gcm-tagline {
-  font-size: 0.83rem;
-  color: var(--ink-mid);
-  line-height: 1.6;
-  flex: 1; /* pushes CTA to bottom */
-}
-
-/* CTA text — accent color for live, muted for upcoming */
-.gcm-cta {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--accent);
-  letter-spacing: 0.02em;
-  margin-top: 0.5rem;
-}
-
-.gcm-cta--muted {
+.map-trips-heading {
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--ink-light);
-  font-weight: 400;
+  padding: 0 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.map-trips-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.1rem 0;
+}
+
+.map-trip-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.7rem 1.5rem;
+  border-bottom: 1px solid var(--ink-faint);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.map-trip-item:last-child { border-bottom: none; }
+.map-trip-item:hover { background: var(--surface); }
+
+.map-trip-flag { font-size: 1.15rem; flex-shrink: 0; }
+.map-trip-info { flex: 1; display: flex; flex-direction: column; gap: 0.1rem; }
+
+.map-trip-name {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.map-trip-date {
+  font-size: 0.68rem;
+  color: var(--ink-light);
+}
+
+@media (max-width: 800px) {
+  .map-layout { grid-template-columns: 1fr; height: auto; }
+  #travelMap { height: 60vw; min-height: 300px; }
+  .map-sidebar { border-left: none; border-top: 1px solid var(--ink-faint); }
 }
 
 
-/* Disabled guide cards — not yet clickable, cursor shows it */
-.guide-card-min--disabled {
-  cursor: not-allowed;
-  pointer-events: none; /* prevents all clicks */
-}
-
-/* On touch devices, also suppress the tap highlight */
-.guide-card-min--disabled:active {
-  transform: none;
-  box-shadow: none;
+/* Airmail stripe - diagonal envelope-border motif, recolored to
+   the site's own accent instead of literal red/blue. */
+.airmail-bar {
+  height: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0 10px,
+    var(--paper) 10px 20px
+  );
 }
 
 
 /* ============================================================
-   TRAVEL JOURNAL — DAY BY DAY ENTRIES
+   HERO (Travel About tab) - two-column intro matching the
+   reference site's structure: eyebrow/title/desc/CTA left,
+   photo right.
+   ============================================================ */
+
+/* ============================================================
+   TRAVEL HERO (Travel About tab) - two-column intro matching the
+   reference site's structure: eyebrow/title/desc/CTA left,
+   photo right.
+   Named .travel-hero / .travel-hero-inner (not .hero / .hero-inner)
+   deliberately - the Home page already has its own .hero for the
+   name/photo section, and sharing the same class name caused the
+   two to collide across the shared stylesheet.
+   ============================================================ */
+
+.travel-hero {
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.travel-hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: center;
+}
+
+.hero-left .hero-eyebrow { margin-bottom: 0.75rem; }
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-desc {
+  color: var(--ink-mid);
+  max-width: 46ch;
+  margin-bottom: 1.5rem;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 0.75rem 1.3rem;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.hero-cta:hover { background: var(--ink-mid); }
+
+.hero-img-wrap {
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 760px) {
+  .travel-hero-inner { grid-template-columns: 1fr; }
+  .hero-right { order: -1; max-width: 260px; margin: 0 auto; }
+}
+
+
+/* ============================================================
+   SECTION HEADER - reusable "eyebrow + title (+ optional link)"
+   row used above Featured Trip, Coming Up, Best Shots, and
+   From the Road.
+   ============================================================ */
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.section-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.section-title { font-size: 1.6rem; }
+
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+}
+
+.section-link:hover { color: var(--accent-hover); }
+
+.section--featured { padding-top: 3rem; }
+
+
+/* ============================================================
+   FEATURED TRIP - image + content layout matching the reference
+   site (replaces the earlier flag/stat-card version).
+   ============================================================ */
+
+.featured-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+.featured-image {
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-content {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.featured-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--ink-faint);
+  line-height: 1;
+  flex: none;
+}
+
+.featured-eyebrow {
+  font-size: 0.78rem;
+  color: var(--ink-light);
+  margin-bottom: 0.5rem;
+}
+
+.featured-title { font-size: 1.8rem; margin-bottom: 0.3rem; }
+
+.featured-dates {
+  font-size: 0.82rem;
+  color: var(--accent);
+  margin-bottom: 0.9rem;
+}
+
+.featured-desc {
+  color: var(--ink-mid);
+  font-size: 0.92rem;
+  margin-bottom: 1.1rem;
+}
+
+.featured-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.featured-tag {
+  font-size: 0.72rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--ink-faint);
+  border-radius: 20px;
+  color: var(--ink-mid);
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.btn-accent--muted {
+  background: var(--surface);
+  color: var(--ink-light);
+  border: 1px solid var(--ink-faint);
+}
+
+@media (max-width: 760px) {
+  .featured-wrap { grid-template-columns: 1fr; }
+  .featured-content { flex-direction: column; gap: 0.5rem; }
+}
+
+
+/* ============================================================
+   COMING UP - teaser section for the next trip.
+   ============================================================ */
+
+.teaser-section { padding-top: 0.5rem; }
+
+.teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.teaser-card {
+  border: 1px solid var(--ink-faint);
+  border-radius: 8px;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+}
+
+.teaser-body {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.teaser-flag { font-size: 1.8rem; }
+
+.teaser-text { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.teaser-dest {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.teaser-meta {
+  font-size: 0.78rem;
+  color: var(--ink-light);
+}
+
+
+/* ============================================================
+   RECENT SHOTS (Best Shots) - photo grid: one tall + two regular,
+   matching the reference site's layout.
+   ============================================================ */
+
+.photos-section { padding-top: 3rem; }
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+}
+
+.photo-item {
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--surface);
+  aspect-ratio: 3 / 4;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .photos-grid { grid-template-columns: repeat(4, 1fr); }
+  .photo-item:nth-child(5) { display: none; }
+}
+
+@media (max-width: 600px) {
+  .photos-grid { grid-template-columns: 1fr 1fr; }
+}
+
+
+
+.marquee-wrap {
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink-faint);
+  padding: 0.85rem 0;
+  background: var(--surface);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2.5rem;
+  animation: marquee 42s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.marquee-item {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.marquee-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+
+/* ============================================================
+   SCROLL-TRACKING PLANE - travels down the day-by-day rail
+   as you scroll through the journal on a guide page.
+   ============================================================ */
+
+.journal-track {
+  position: relative;
+  padding-left: 30px;
+}
+
+.journal-track::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--ink-faint);
+}
+
+.plane-tracker {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  transition: top 0.05s linear;
+}
+
+.plane-tracker svg { width: 100%; height: 100%; display: block; }
+
+
+/* ============================================================
+   TRAVEL JOURNAL - DAY BY DAY ENTRIES
    ============================================================ */
 
 .journal-day {
@@ -4010,7 +4794,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL JOURNAL — WHERE I VISITED
+   TRAVEL JOURNAL - WHERE I VISITED
    ============================================================ */
 
 .journal-stays {
@@ -4067,7 +4851,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL JOURNAL — CURRENCY BANNER
+   TRAVEL JOURNAL - CURRENCY BANNER
    ============================================================ */
 
 .journal-currency-banner {
@@ -4095,7 +4879,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL JOURNAL — WHERE I VISITED TAGS
+   TRAVEL JOURNAL - WHERE I VISITED TAGS
    ============================================================ */
 
 .journal-stay-tags {
@@ -4119,7 +4903,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL JOURNAL — DAY BY DAY ENTRIES
+   TRAVEL JOURNAL - DAY BY DAY ENTRIES
    ============================================================ */
 
 .journal-day {
@@ -4213,7 +4997,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL JOURNAL — WHERE I VISITED
+   TRAVEL JOURNAL - WHERE I VISITED
    ============================================================ */
 
 .journal-stays {
@@ -4290,7 +5074,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL JOURNAL — CURRENCY BANNER
+   TRAVEL JOURNAL - CURRENCY BANNER
    ============================================================ */
 
 .journal-currency-banner {
@@ -4318,7 +5102,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL PAGE — TIMELINE (Option 5)
+   TRAVEL PAGE - TIMELINE (Option 5)
    ============================================================ */
 
 .travel-timeline {
@@ -4410,7 +5194,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ============================================================
-   TRAVEL PAGE — DESTINATION CARDS STRIP (Option 6)
+   TRAVEL PAGE - DESTINATION CARDS STRIP (Option 6)
    ============================================================ */
 
 .travel-dest-strip {
@@ -4568,3 +5352,46 @@ a { color: inherit; text-decoration: none; }
   .edu-card { flex-wrap: wrap; gap: 1rem; }
   .edu-year { align-items: flex-start; }
 }
+
+.journal-day-photo--portrait { max-width: 340px; }
+.journal-day-photo-row { display: flex; flex-wrap: nowrap; gap: 1rem; }
+.journal-day-photo-row .journal-day-photo { flex: 1 1 0; min-width: 0; max-width: none; margin: 1rem 0; }
+@media (max-width: 640px) {
+  .journal-day-photo-row { flex-wrap: wrap; }
+  .journal-day-photo-row .journal-day-photo { flex: 1 1 100%; max-width: 340px; }
+}
+
+/* Gallery trip filter chips */
+.gallery-filter { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+.gallery-chip {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-light);
+  background: transparent;
+  border: 1px solid var(--ink-faint);
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 38px;
+}
+.gallery-chip:hover { color: var(--ink); border-color: var(--ink-light); }
+.gallery-chip.active { color: var(--accent); border-color: var(--accent); background: var(--accent-faint); }
+.gallery-trip-section[hidden] { display: none; }
+
+.gallery-img { cursor: zoom-in; }
+
+/* Keep every photo in a journal row the same size (3:4), whatever the source file's shape */
+.journal-day-photo-row .journal-day-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.gear-card-img { position: relative; overflow: hidden; }
+.gear-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Full-width gear card (camera): keep the illustration from becoming huge */
+.gear-card[style*="grid-column"] .gear-card-img { aspect-ratio: 2 / 1; }
+.gear-card[style*="grid-column"] .gear-card-img img { object-fit: contain; }

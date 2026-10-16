@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration of a hard-shell carry-on suitcase">
+<rect width="800" height="600" fill="#f7f7f6"/>
+<defs></defs>
+<g transform="translate(400 300) scale(1.1) translate(-400 -300)"><g fill="none" stroke="#c2622a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+<path d="M352,100 v-26 q0,-14 14,-14 h68 q14,0 14,14 v26" fill="#fbeee6"/>
+<path d="M366,100 v-18 q0,-4 4,-4 h60 q4,0 4,4 v18" fill="none" stroke-width="2"/>
+<rect x="288" y="498" width="24" height="18" rx="4" fill="#fbeee6"/>
+<circle cx="291" cy="538" r="12" fill="#fbeee6" stroke-width="3"/>
+<circle cx="309" cy="538" r="12" fill="#fbeee6" stroke-width="3"/>
+<circle cx="291" cy="538" r="4" fill="none" stroke-width="2"/>
+<circle cx="309" cy="538" r="4" fill="none" stroke-width="2"/>
+<rect x="488" y="498" width="24" height="18" rx="4" fill="#fbeee6"/>
+<circle cx="491" cy="538" r="12" fill="#fbeee6" stroke-width="3"/>
+<circle cx="509" cy="538" r="12" fill="#fbeee6" stroke-width="3"/>
+<circle cx="491" cy="538" r="4" fill="none" stroke-width="2"/>
+<circle cx="509" cy="538" r="4" fill="none" stroke-width="2"/>
+<rect x="270" y="100" width="260" height="400" rx="40" fill="#fbeee6"/>
+<rect x="286" y="116" width="228" height="368" rx="28" fill="none" stroke-width="2.5"/>
+<path d="M286,116 " fill="none"/>
+<rect x="292" y="122" width="216" height="356" rx="24" fill="none" stroke-width="1.2"/>
+<rect x="305" y="152" width="14" height="296" rx="7" fill="#f3d9c8" stroke-width="2.2"/>
+<rect x="331" y="152" width="14" height="296" rx="7" fill="#f3d9c8" stroke-width="2.2"/>
+<rect x="357" y="152" width="14" height="296" rx="7" fill="#f3d9c8" stroke-width="2.2"/>
+<rect x="383" y="152" width="14" height="296" rx="7" fill="#f3d9c8" stroke-width="2.2"/>
+<rect x="409" y="152" width="14" height="296" rx="7" fill="#f3d9c8" stroke-width="2.2"/>
+<rect x="435" y="152" width="14" height="296" rx="7" fill="#f3d9c8" stroke-width="2.2"/>
+<rect x="461" y="152" width="14" height="296" rx="7" fill="#f3d9c8" stroke-width="2.2"/>
+<rect x="487" y="152" width="14" height="296" rx="7" fill="#f3d9c8" stroke-width="2.2"/>
+<path d="M270,154 q0,-54 54,-54" fill="none" stroke-width="5"/>
+<path d="M530,154 q0,-54 -54,-54" fill="none" stroke-width="5"/>
+<path d="M270,446 q0,54 54,54" fill="none" stroke-width="5"/>
+<path d="M530,446 q0,54 -54,54" fill="none" stroke-width="5"/>
+<path d="M304,134 h16 v14 h-16z" fill="#fbeee6" stroke-width="2.5"/>
+<circle cx="312" cy="141" r="2.5" fill="#c2622a"/>
+<path d="M516,220 q26,0 26,26 q0,26 -26,26" fill="none" stroke-width="2.5"/>
+<rect x="534" y="238" width="20" height="22" rx="5" fill="#fbeee6" stroke-width="2.5"/>
+<rect x="472" y="454" width="30" height="22" rx="5" fill="#fbeee6" stroke-width="2.5"/>
+<circle cx="487" cy="465" r="3.5" fill="#fbeee6" stroke-width="2"/>
+<path d="M270,296 h-14 q-8,0 -8,8 v34 q0,8 8,8 h14" fill="#fbeee6" stroke-width="2.5"/>
+</g></g>
+</svg>
