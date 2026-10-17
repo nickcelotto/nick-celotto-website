@@ -517,9 +517,13 @@ function initTravelMap() {
   map.setView(worldCenter, worldZoom(), { animate: false });
   window.addEventListener('resize', sizeMap);
 
-  L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 20,
+  // OpenStreetMap's own tiles: no account or API key needed, so they
+  // can't be blocked by a provider's auth rules (Stadia and CARTO both
+  // return error tiles on the live domain). The CSS in style.css grays
+  // them down so the terracotta fills stand out.
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19,
     noWrap: true,
   }).addTo(map);
 

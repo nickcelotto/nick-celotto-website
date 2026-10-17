@@ -4108,7 +4108,7 @@ a.journal-card:hover {
 /* Mute the tile colors so they sit quietly behind the accent-colored
    markers instead of competing with the rest of the site's palette. */
 .leaflet-tile {
-  filter: grayscale(55%) contrast(0.95) brightness(1.04);
+  filter: grayscale(100%) contrast(0.85) brightness(1.1);
 }
 
 .leaflet-container {
